@@ -115,6 +115,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="Donnees CSV\AttributeType.csv" />
+    <None Include="Donnees CSV\data_10sensors_1year.csv" />
+    <None Include="Donnees CSV\Sensors.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Module Representation des données de mesure\Capteur.h" />
+    <ClInclude Include="Module Representation des données de mesure\Mesure.h" />
+    <ClInclude Include="Module Representation des données de mesure\TypeMesure.h" />
+    <ClInclude Include="Module Traitement et Analyse\Analyse.h" />
+    <ClInclude Include="Module Traitement et Analyse\TraitementDonnees.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Module Representation des données de mesure\Capteur.cpp" />
+    <ClCompile Include="Module Representation des données de mesure\Mesure.cpp" />
+    <ClCompile Include="Module Representation des données de mesure\TypeMesure.cpp" />
+    <ClCompile Include="Module Traitement et Analyse\Analyse.cpp" />
+    <ClCompile Include="Module Traitement et Analyse\TraitementDonnees.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
