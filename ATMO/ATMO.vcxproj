@@ -120,18 +120,18 @@
     <None Include="Donnees CSV\Sensors.csv" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Module Representation des données de mesure\Capteur.h" />
-    <ClInclude Include="Module Representation des données de mesure\Mesure.h" />
-    <ClInclude Include="Module Representation des données de mesure\TypeMesure.h" />
-    <ClInclude Include="Module Traitement et Analyse\Analyse.h" />
-    <ClInclude Include="Module Traitement et Analyse\TraitementDonnees.h" />
+    <ClInclude Include="Analyse.h" />
+    <ClInclude Include="Capteur.h" />
+    <ClInclude Include="Mesure.h" />
+    <ClInclude Include="TraitementDonnees.h" />
+    <ClInclude Include="TypeMesure.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Module Representation des données de mesure\Capteur.cpp" />
-    <ClCompile Include="Module Representation des données de mesure\Mesure.cpp" />
-    <ClCompile Include="Module Representation des données de mesure\TypeMesure.cpp" />
-    <ClCompile Include="Module Traitement et Analyse\Analyse.cpp" />
-    <ClCompile Include="Module Traitement et Analyse\TraitementDonnees.cpp" />
+    <ClCompile Include="Analyse.cpp" />
+    <ClCompile Include="Capteur.cpp" />
+    <ClCompile Include="Mesure.cpp" />
+    <ClCompile Include="TraitementDonnees.cpp" />
+    <ClCompile Include="TypeMesure.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

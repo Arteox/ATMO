@@ -26,36 +26,36 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Module Representation des données de mesure\Capteur.h">
+    <ClInclude Include="Analyse.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Module Representation des données de mesure\Mesure.h">
+    <ClInclude Include="Capteur.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Module Representation des données de mesure\TypeMesure.h">
+    <ClInclude Include="Mesure.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Module Traitement et Analyse\Analyse.h">
+    <ClInclude Include="TraitementDonnees.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Module Traitement et Analyse\TraitementDonnees.h">
+    <ClInclude Include="TypeMesure.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Module Traitement et Analyse\Analyse.cpp">
+    <ClCompile Include="Analyse.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Module Traitement et Analyse\TraitementDonnees.cpp">
+    <ClCompile Include="Capteur.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Module Representation des données de mesure\Capteur.cpp">
+    <ClCompile Include="Mesure.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Module Representation des données de mesure\Mesure.cpp">
+    <ClCompile Include="TraitementDonnees.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Module Representation des données de mesure\TypeMesure.cpp">
+    <ClCompile Include="TypeMesure.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
