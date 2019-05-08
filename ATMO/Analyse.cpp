@@ -1,40 +1,66 @@
-/**
- * Project Diagrammes GL UML
- */
+/*************************************************************************
+						   Analyse  -  description
+							 -------------------
+	début                : ${date}
+	copyright            : (C) ${year} par ${user}
+*************************************************************************/
 
+//---------- Réalisation de la classe <Analyse> (fichier Analyse.h) --
 
+//---------------------------------------------------------------- INCLUDE
+
+//-------------------------------------------------------- Include système
+using namespace std;
+#include <iostream>
+
+//------------------------------------------------------ Include personnel
 #include "Analyse.h"
 
-/**
- * Analyse implementation
- */
+//------------------------------------------------------------- Constantes
+
+//---------------------------------------------------- Variables de classe
+
+//----------------------------------------------------------- Types privés
 
 
-void Analyse::CaracteristiquesZone(bool d, double lat, double long,double rayon,  Date horodateDeb,  Date horodateFin) : Map<TypeMesure, double>() {
+//----------------------------------------------------------------- PUBLIC
+//-------------------------------------------------------- Fonctions amies
+
+//----------------------------------------------------- Méthodes publiques
+conteneurMoyMesures Analyse::caracteristiquesZone(bool d, double lat, double long, double rayon, Date horodateDeb, Date horodateFin)
+{
+
+}
+// Algorithme :
+//
+//{
+//} //----- Fin de Méthode
+
+doubleCollectionCapteurs Analyse::comportementSimilaire(Date horodateDeb, Date horodateFin)
+{
 
 }
 
-/**
- * @param Date horodateDeb
- * @param Date horodateFin
- * @return List<List<Capteur>>
- */
-List<List<Capteur>> Analyse::ComportementSimilaire(void Date horodateDeb, void Date horodateFin) {
-    return null;
-}
-
-/**
- * @param Date horodateDeb
- * @param Date horodateFin
- */
-void Analyse::Dysfonctionnement(void Date horodateDeb, void Date horodateFin) {
+collectionCapteurs Analyse::dysfonctionnement(Date horodateDeb, Date horodateFin)
+{
 
 }
 
-void Analyse::CaracteristiquesPoint ( double long, double lat, Date horodateDeb, Date horodateFin ) : Map<TypeMesure, double> () {
+conteneurMoyMesures Analyse::caracteristiquesPoint(double long, double lat, Date horodateDeb, Date horodateFin)
+{
 
 }
 
-void Analyse::QualiteAir(Map<TypeMesure, double>):Integer() {
+int Analyse::qualiteAir(conteneurMoyMesures MoyMesures)
+{
 
 }
+
+//------------------------------------------------- Surcharge d'opérateurs
+
+
+//------------------------------------------------------------------ PRIVE
+
+//----------------------------------------------------- Méthodes protégées
+
+//------------------------------------------------------- Méthodes privées
