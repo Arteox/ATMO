@@ -8,7 +8,7 @@
 //---------- Interface de la classe <Analyse> (fichier Analyse.h) ------
 #if ! defined ( ANALYSE_H )
 #define ANALYSE_H
-
+ 
 //--------------------------------------------------- Interfaces utilisées
 #include <time.h>;
 #include <map>;
