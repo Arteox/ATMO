@@ -11,7 +11,7 @@
 
 class Mesure {
 private: 
-    t_time Horodate;
+    t_time Horodate; 
     double Value;
     Capteur SensorID;
 };
