@@ -1,16 +1,57 @@
-/**
- * Project Diagrammes GL UML
- */
+/*************************************************************************
+TypeMesure  -  description
+-------------------
+début                : 07/05/2019
+copyright            : (C) 2019 par Mengxing ZHANG, Louis UNG, Fabien GELUS et Baptiste PAULETTO
+*************************************************************************/
 
+//---------- Interface de la classe <TypeMesure> (fichier TypeMesure.h) ------
+#ifndef _TypeMesure_H
+#define _TypeMesure_H
 
-#ifndef _TYPEMESURE_H
-#define _TYPEMESURE_H
+//--------------------------------------------------- Interfaces utilisées
+#include <string>
+#include "TypeMesure.h"
 
-class TypeMesure {
-private: 
-    String ID;
-    String Unite;
-    String Description;
+//------------------------------------------------------------- Constantes 
+
+//------------------------------------------------------------------ Types 
+
+//------------------------------------------------------------------------ 
+// Rôle de la classe <TypeMesure>
+//
+//
+//------------------------------------------------------------------------ 
+class TypeMesure
+{
+	//----------------------------------------------------------------- PUBLIC
+public:
+	//----------------------------------------------------- Méthodes publiques
+
+	//------------------------------------------------------------------ PRIVE
+
+protected:
+	//----------------------------------------------------- Méthodes protégées
+
+private:
+	//------------------------------------------------------- Méthodes privées
+
+protected:
+	//----------------------------------------------------- Attributs protégés
+
+private:
+	//------------------------------------------------------- Attributs privés
+	int ID;
+	string unite;
+	string description;
+
+	//---------------------------------------------------------- Classes amies
+
+	//-------------------------------------------------------- Classes privées
+
+	//----------------------------------------------------------- Types privés
 };
 
-#endif //_TYPEMESURE_H
+//----------------------------------------- Types dépendants de <TypeMesure>
+
+#endif //_TypeMesure_H

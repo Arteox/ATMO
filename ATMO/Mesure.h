@@ -1,19 +1,58 @@
-/**
- * Project Diagrammes GL UML
- */
+/*************************************************************************
+Mesure  -  description
+-------------------
+début                : 07/05/2019
+copyright            : (C) 2019 par Mengxing ZHANG, Louis UNG, Fabien GELUS et Baptiste PAULETTO
+*************************************************************************/
 
+//---------- Interface de la classe <Mesure> (fichier Mesure.h) ------
+#ifndef _Mesure_H
+#define _Mesure_H
 
-#ifndef _MESURE_H
-#define _MESURE_H
+//--------------------------------------------------- Interfaces utilisées
+#include <string>
+#include "Date.h"
+#include "Mesure.h"
+#include "TypeMesure.h"
 
-#include "Capteur.h"
+//------------------------------------------------------------- Constantes 
 
+//------------------------------------------------------------------ Types 
 
-class Mesure {
-private: 
-    t_time Horodate; 
-    double Value;
-    Capteur SensorID;
+//------------------------------------------------------------------------ 
+// Rôle de la classe <Mesure>
+//
+//
+//------------------------------------------------------------------------ 
+class Mesure
+{
+	//----------------------------------------------------------------- PUBLIC
+public:
+	//----------------------------------------------------- Méthodes publiques
+
+	//------------------------------------------------------------------ PRIVE
+
+protected:
+	//----------------------------------------------------- Méthodes protégées
+
+private:
+	//------------------------------------------------------- Méthodes privées
+
+protected:
+	//----------------------------------------------------- Attributs protégés
+
+private:
+	//------------------------------------------------------- Attributs privés
+	Date horodate;
+	double value;
+	TypeMesure typeMesure;
+	//---------------------------------------------------------- Classes amies
+
+	//-------------------------------------------------------- Classes privées
+
+	//----------------------------------------------------------- Types privés
 };
 
-#endif //_MESURE_H
+//----------------------------------------- Types dépendants de <Mesure>
+
+#endif //_Mesure_H
