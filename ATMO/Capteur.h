@@ -29,6 +29,36 @@ class Capteur
 public:
 	//----------------------------------------------------- Méthodes publiques
 
+	int getId() const;
+	double getLat() const;
+	double getLong() const;
+	string getDescription() const;
+	multiset<Mesure> getMesures() const;
+
+	//------------------------------------------------- Surcharge d'opérateurs
+	Capteur & operator = (const Capteur & unCapteur);
+	// Mode d'emploi :
+	// RAS
+	// Contrat : Aucun
+	//
+	//-------------------------------------------- Constructeurs - destructeur
+	Capteur(const Capteur & unCapteur);
+	// Mode d'emploi (constructeur de copie) :
+	// RAS
+	// Contrat : Aucun
+	//
+
+	Capteur(int ID, double lat, double longi, string description, multiset<Mesure> mesures);
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
+
+	virtual ~Capteur();
+	// Mode d'emploi : RAS, contenu vide
+	//
+	// Contrat : Aucun
+	//
 	//------------------------------------------------------------------ PRIVE
 
 protected:
@@ -43,10 +73,10 @@ protected:
 private:
 	//------------------------------------------------------- Attributs privés
 	int ID;
-	double Lat;
-	double Long;
-	string Description;
-	multiset<Mesure> Mesures;
+	double lat;
+	double longi;
+	string description;
+	multiset<Mesure> mesures;
 	//---------------------------------------------------------- Classes amies
 
 	//-------------------------------------------------------- Classes privées

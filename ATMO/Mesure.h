@@ -30,6 +30,31 @@ class Mesure
 public:
 	//----------------------------------------------------- Méthodes publiques
 
+	//------------------------------------------------- Surcharge d'opérateurs
+	Mesure & operator = (const Mesure & unMesure);
+	// Mode d'emploi :
+	// RAS
+	// Contrat : Aucun
+	//
+	//-------------------------------------------- Constructeurs - destructeur
+	Mesure(const Mesure & unMesure);
+	// Mode d'emploi (constructeur de copie) :
+	// RAS
+	// Contrat : Aucun
+	//
+
+	Mesure();
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
+
+	virtual ~Mesure();
+	// Mode d'emploi : RAS, contenu vide
+	//
+	// Contrat : Aucun
+	//
+
 	//------------------------------------------------------------------ PRIVE
 
 protected:

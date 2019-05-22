@@ -74,12 +74,7 @@ public:
 	// Contrat : Aucun
 	//
 
-	Date(string date_brute);
-	// Mode d'emploi :
-	// Contrat :
-	// 
-
-	Date();
+	Date(const int& annee, const int& mois, const int& jour, const int& heure, const int& min, const int& sec);
 	// Mode d'emploi : Constructeur sans paramètres, contenu vide
 	//
 	// Contrat : Ne pas mettre de paramètre
@@ -100,7 +95,6 @@ protected:
 	int sec;
 	int min;
 	int heure;
-	int GMT;
 	int jour;
 	int mois;
 	int annee;

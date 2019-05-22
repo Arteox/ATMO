@@ -79,7 +79,7 @@ Date & Date::operator = (const Date & unDate)
 } //----- Fin de operator =
 
 
-  //-------------------------------------------- Constructeurs - destructeur
+//-------------------------------------------- Constructeurs - destructeur
 Date::Date(const Date & unDate)
 // Algorithme :
 // Même algorithme que le constructeur de copie par défaut
@@ -95,20 +95,15 @@ Date::Date(const Date & unDate)
 	annee = unDate.GetAnnee();
 } //----- Fin de Date (constructeur de copie)
 
-
-Date::Date(string date_brute)
-// Algorithme :
-
-{
-#ifdef MAP
-	cout << "Appel au constructeur de <Date>" << endl;
-#endif
-	//a faire
-} //----- Fin de Date
-
-Date::Date()
+Date::Date(const int& annee, const int& mois, const int& jour, const int& heure, const int& min, const int& sec)
 // Algorithme : RAS
 {
+	this->annee = annee;
+	this->mois = mois;
+	this->jour = jour;
+	this->heure = heure;
+	this->min = min;
+	this->sec = sec;
 }
 
 Date::~Date()

@@ -28,6 +28,35 @@ class TypeMesure
 public:
 	//----------------------------------------------------- Méthodes publiques
 
+	int getId() const;
+	string getUnite() const;
+	string getDescription() const;
+
+	//------------------------------------------------- Surcharge d'opérateurs
+	TypeMesure & operator = (const TypeMesure & unTypeMesure);
+	// Mode d'emploi :
+	// RAS
+	// Contrat : Aucun
+	//
+	//-------------------------------------------- Constructeurs - destructeur
+	TypeMesure(const TypeMesure & unTypeMesure);
+	// Mode d'emploi (constructeur de copie) :
+	// RAS
+	// Contrat : Aucun
+	//
+
+	TypeMesure();
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
+
+	virtual ~TypeMesure();
+	// Mode d'emploi : RAS, contenu vide
+	//
+	// Contrat : Aucun
+	//
+
 	//------------------------------------------------------------------ PRIVE
 
 protected:
