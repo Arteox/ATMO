@@ -45,7 +45,7 @@ public:
 	// Contrat : Aucun
 	//
 
-	TypeMesure();
+	TypeMesure(int id, string unite, string description);
 	// Mode d'emploi :
 	//
 	// Contrat :

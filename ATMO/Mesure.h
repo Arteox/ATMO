@@ -30,6 +30,11 @@ class Mesure
 public:
 	//----------------------------------------------------- Méthodes publiques
 
+	Date getDate() const;
+	double getValeur() const;
+	TypeMesure getTypeMesure() const;
+
+
 	//------------------------------------------------- Surcharge d'opérateurs
 	Mesure & operator = (const Mesure & unMesure);
 	// Mode d'emploi :
@@ -43,7 +48,7 @@ public:
 	// Contrat : Aucun
 	//
 
-	Mesure();
+	Mesure(Date horodate, double valeur, TypeMesure typeMesure);
 	// Mode d'emploi :
 	//
 	// Contrat :
@@ -69,7 +74,7 @@ protected:
 private:
 	//------------------------------------------------------- Attributs privés
 	Date horodate;
-	double value;
+	double valeur;
 	TypeMesure typeMesure;
 	//---------------------------------------------------------- Classes amies
 

@@ -1,5 +1,5 @@
 /*************************************************************************
-Capteur  -  description
+TypeMesure  -  description
 -------------------
 début                : ${date}
 copyright            : (C) ${year} par ${user}
@@ -42,9 +42,35 @@ string TypeMesure::getDescription() const
 	return description;
 }
 
+TypeMesure & TypeMesure::operator=(const TypeMesure & unTypeMesure)
+{
+	this->ID = unTypeMesure.getId();
+	this->unite = unTypeMesure.getUnite();
+	this->description = unTypeMesure.getDescription();
+	return *this;
+}
+
 //------------------------------------------------- Surcharge d'opérateurs
 
 //-------------------------------------------- Constructeurs - destructeur
+
+TypeMesure::TypeMesure(const TypeMesure & unTypeMesure)
+{
+	this->ID = unTypeMesure.getId();
+	this->unite = unTypeMesure.getUnite();
+	this->description = unTypeMesure.getDescription();
+}
+
+TypeMesure::TypeMesure(int id, string unite, string description)
+{
+	this->ID = id;
+	this->unite = unite;
+	this->description = description;
+}
+
+TypeMesure::~TypeMesure()
+{
+}
 
 //------------------------------------------------------------------ PRIVE
 
