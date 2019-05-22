@@ -122,6 +122,7 @@
   <ItemGroup>
     <ClInclude Include="Analyse.h" />
     <ClInclude Include="Capteur.h" />
+    <ClInclude Include="Date.h" />
     <ClInclude Include="Mesure.h" />
     <ClInclude Include="TraitementDonnees.h" />
     <ClInclude Include="TypeMesure.h" />
@@ -129,6 +130,7 @@
   <ItemGroup>
     <ClCompile Include="Analyse.cpp" />
     <ClCompile Include="Capteur.cpp" />
+    <ClCompile Include="Date.cpp" />
     <ClCompile Include="Mesure.cpp" />
     <ClCompile Include="TraitementDonnees.cpp" />
     <ClCompile Include="TypeMesure.cpp" />
