@@ -49,12 +49,12 @@ collectionCapteurs TraitementDonnees::ParcoursCapteurs(double lat, double longi)
 	return collectionCapteurs();
 }
 
-multiset<Mesure> TraitementDonnees::ParcoursMesures(collectionCapteurs, vector<TypeMesure>, Date horodateDeb, Date horodateFin)
+collectionMesures TraitementDonnees::ParcoursMesures(collectionCapteurs, Date horodateDeb, Date horodateFin)
 {
 	return multiset<Mesure>();
 }
 
-vector<TypeMesure> TraitementDonnees::ParcoursTypesMesure()
+collectionTypesMesure TraitementDonnees::ParcoursTypesMesure()
 {
 	//a faire
 	return vector<TypeMesure>();

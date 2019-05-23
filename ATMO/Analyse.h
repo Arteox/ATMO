@@ -10,9 +10,9 @@
 #define ANALYSE_H
  
 //--------------------------------------------------- Interfaces utilisées
-#include <map>;
-#include <vector>;
-#include "TypeMesure.h";
+#include <map>
+#include <vector>
+#include "TypeMesure.h"
 #include "Capteur.h"
 #include "Date.h"
 //------------------------------------------------------------- Constantes 
@@ -33,7 +33,7 @@ class Analyse
 
 public:
 	//----------------------------------------------------- Méthodes publiques
-	static conteneurMoyMesures caracteristiquesZone(bool d, double lat, double long, double rayon, Date horodateDeb, Date horodateFin);
+	static conteneurMoyMesures caracteristiquesZone(bool d, double lat, double longi, double rayon, Date horodateDeb, Date horodateFin);
 	// Mode d'emploi :
 	//
 	// Contrat :

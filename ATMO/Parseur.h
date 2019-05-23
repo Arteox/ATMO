@@ -1,59 +1,65 @@
 /*************************************************************************
-TypeMesure  -  description
+Parseur  -  description
 -------------------
 début                : 07/05/2019
 copyright            : (C) 2019 par Mengxing ZHANG, Louis UNG, Fabien GELUS et Baptiste PAULETTO
 *************************************************************************/
 
-//---------- Interface de la classe <TypeMesure> (fichier TypeMesure.h) ------
-#ifndef _TypeMesure_H
-#define _TypeMesure_H
+//---------- Interface de la classe <Parseur> (fichier Parseur.h) ------
+#ifndef _Parseur_H
+#define _Parseur_H
 
 //--------------------------------------------------- Interfaces utilisées
 #include <string>
-#include "TypeMesure.h"
+using namespace std;
+#include <list>
+
 
 //------------------------------------------------------------- Constantes 
 
 //------------------------------------------------------------------ Types 
 
 //------------------------------------------------------------------------ 
-// Rôle de la classe <TypeMesure>
-//
-//
+// Rôle de la classe <Parseur>
+// Le rôle de la classe Parseur est de permettre à la partie Modèle d'obtenir
+// les informations entrées par l'utilisateur dans le menu en mode commande.
+// Pour cela il utilise une méthode principale qui va factoriser toutes ces 
+// informations.
 //------------------------------------------------------------------------ 
-class TypeMesure
+class Parseur
 {
 	//----------------------------------------------------------------- PUBLIC
 public:
 	//----------------------------------------------------- Méthodes publiques
 
-	string getAttributeId() const;
-	string getUnite() const;
-	string getDescription() const;
+	list<double> ParserCommande();
+	// Mode d'emploi :
+	//  Cette fonction renvoie une suite de valeurs commençant par le code de 
+	//  la commande suivie de toutes ses options et paramètres.
+	//  Elle est notamment utilisées dans le main avant d'exécuter la dite fonction.
+	// Contrat : Aucun
+	//
 
 	//------------------------------------------------- Surcharge d'opérateurs
-	TypeMesure & operator = (const TypeMesure & unTypeMesure);
+	Parseur & operator = (const Parseur & unParseur);
 	// Mode d'emploi :
 	// RAS
 	// Contrat : Aucun
 	//
 	//-------------------------------------------- Constructeurs - destructeur
-	TypeMesure(const TypeMesure & unTypeMesure);
+	Parseur(const Parseur & unParseur);
 	// Mode d'emploi (constructeur de copie) :
 	// RAS
 	// Contrat : Aucun
 	//
 
-	TypeMesure(string attributeID, string unite, string description);
+	Parseur();
 	// Mode d'emploi :
-	//
+	// Constructeur par défaut de la classe Parseur
 	// Contrat :
 	//
 
-	TypeMesure();
-
-	virtual ~TypeMesure();
+	virtual ~Parseur();
 	// Mode d'emploi : RAS, contenu vide
 	//
 	// Contrat : Aucun
@@ -62,27 +68,23 @@ public:
 	//------------------------------------------------------------------ PRIVE
 
 protected:
+	//----------------------------------------------------- Attributs protégés
+
 	//----------------------------------------------------- Méthodes protégées
 
 private:
-	//------------------------------------------------------- Méthodes privées
-
-protected:
-	//----------------------------------------------------- Attributs protégés
-
-private:
 	//------------------------------------------------------- Attributs privés
-	string attributeID;
-	string unite;
-	string description;
 
 	//---------------------------------------------------------- Classes amies
 
 	//-------------------------------------------------------- Classes privées
 
 	//----------------------------------------------------------- Types privés
+
+	//------------------------------------------------------- Méthodes privées
 };
 
-//----------------------------------------- Types dépendants de <TypeMesure>
+//----------------------------------------- Types dépendants de <Parseur>
 
-#endif //_TypeMesure_H
+#endif //_Parseur_H
+
