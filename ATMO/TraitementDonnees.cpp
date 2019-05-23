@@ -75,7 +75,7 @@ collectionCapteurs TraitementDonnees::ParcoursCapteurs(double lat, double longi)
 
 collectionMesures TraitementDonnees::ParcoursMesures(collectionCapteurs, Date horodateDeb, Date horodateFin)
 {
-	return multiset<Mesure>();
+	return collectionMesures();
 }
 
 collectionTypesMesure TraitementDonnees::ParcoursTypesMesure()

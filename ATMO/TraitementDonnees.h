@@ -24,7 +24,14 @@ copyright            : (C) 2019 par Mengxing ZHANG, Louis UNG, Fabien GELUS et B
 typedef vector<vector<Capteur>> doubleCollectionCapteurs;
 typedef vector<Capteur> collectionCapteurs;
 typedef vector<TypeMesure> collectionTypesMesure;
-typedef multiset<Mesure> collectionMesures;
+typedef struct compareMesure {
+	bool operator()(Mesure &mesureGauche,
+		Mesure &mesureDroite) const {
+		return mesureGauche.getValeur() < mesureDroite.getValeur();
+	}
+};
+typedef multiset<Mesure, compareMesure> collectionMesures;
+
 //------------------------------------------------------------------------ 
 // Rôle de la classe <TraitementDonnees>
 //
@@ -42,14 +49,13 @@ public:
 	}
 
 	//----------------------------------------------------- Méthodes publiques
-	//mettre en static ?
 	collectionCapteurs ParcoursCapteurs(double lat, double longi, double rayon);
 
 	collectionCapteurs ParcoursCapteurs(double lat, double longi);
 
-	multiset<Mesure> ParcoursMesures(collectionCapteurs, Date horodateDeb, Date horodateFin);
+	collectionMesures ParcoursMesures(collectionCapteurs, Date horodateDeb, Date horodateFin);
 
-	vector<TypeMesure> ParcoursTypesMesure();
+	collectionTypesMesure ParcoursTypesMesure();
 
 	//-------------------------------------------- Constructeurs - destructeur
 	TraitementDonnees(const TraitementDonnees & unTraitementDonnees);
