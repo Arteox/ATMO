@@ -24,12 +24,6 @@ copyright            : (C) 2019 par Mengxing ZHANG, Louis UNG, Fabien GELUS et B
 typedef vector<vector<Capteur>> doubleCollectionCapteurs;
 typedef vector<Capteur> collectionCapteurs;
 typedef vector<TypeMesure> collectionTypesMesure;
-typedef struct compareMesure {
-	bool operator()(Mesure &mesureGauche,
-		Mesure &mesureDroite) const {
-		return mesureGauche.getValeur() < mesureDroite.getValeur();
-	}
-};
 typedef multiset<Mesure, compareMesure> collectionMesures;
 
 //------------------------------------------------------------------------ 
