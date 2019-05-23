@@ -115,11 +115,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="Donnees CSV\AttributeType.csv" />
-    <None Include="Donnees CSV\data_10sensors_1year.csv" />
-    <None Include="Donnees CSV\Sensors.csv" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Analyse.h" />
     <ClInclude Include="Capteur.h" />
     <ClInclude Include="Date.h" />
@@ -137,6 +132,12 @@
     <ClCompile Include="Parseur.cpp" />
     <ClCompile Include="TraitementDonnees.cpp" />
     <ClCompile Include="TypeMesure.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DonneesCSV\AttributeType.csv" />
+    <None Include="DonneesCSV\Mesures.csv" />
+    <None Include="DonneesCSV\MesuresSample.csv" />
+    <None Include="DonneesCSV\Sensors.csv" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -15,17 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Donnees CSV\AttributeType.csv">
-      <Filter>Fichiers de ressources</Filter>
-    </None>
-    <None Include="Donnees CSV\data_10sensors_1year.csv">
-      <Filter>Fichiers de ressources</Filter>
-    </None>
-    <None Include="Donnees CSV\Sensors.csv">
-      <Filter>Fichiers de ressources</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Analyse.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -73,5 +62,19 @@
     <ClCompile Include="Parseur.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DonneesCSV\AttributeType.csv">
+      <Filter>Fichiers de ressources</Filter>
+    </None>
+    <None Include="DonneesCSV\Mesures.csv">
+      <Filter>Fichiers de ressources</Filter>
+    </None>
+    <None Include="DonneesCSV\MesuresSample.csv">
+      <Filter>Fichiers de ressources</Filter>
+    </None>
+    <None Include="DonneesCSV\Sensors.csv">
+      <Filter>Fichiers de ressources</Filter>
+    </None>
   </ItemGroup>
 </Project>
