@@ -101,14 +101,10 @@ collectionTypesMesure TraitementDonnees::ParcoursTypesMesure()
 				string description = attributs[2];
 				TypeMesure type(attributID, unite, description);
 				donneesTypesMesure.push_back(type);
-				//type.afficher();
 			}
 		}
 	}
 	fic.close();
-	for (collectionTypesMesure::iterator it = donneesTypesMesure.begin(); it != donneesTypesMesure.end(); ++it) {
-		it->afficher();
-	}
 
 	return donneesTypesMesure;
 }
