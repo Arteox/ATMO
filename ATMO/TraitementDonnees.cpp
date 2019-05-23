@@ -16,6 +16,8 @@ using namespace std;
 //------------------------------------------------------ Include personnel
 #include "TraitementDonnees.h"
 #include <fstream>
+#include <sstream>
+#include <vector>
 //------------------------------------------------------------- Constantes
 
 //---------------------------------------------------- Variables de classe
@@ -37,7 +39,18 @@ collectionCapteurs TraitementDonnees::ParcoursCapteurs(double lat, double longi,
 	fic.open(FichierCapteurs);
 	if (fic) {
 		for (lectLigne; getline(fic, lectLigne); ) {
+			
+			istringstream iss(lectLigne);
 			cout << lectLigne << endl;
+			//vector <string> motsIndiv {istream_iterator<string>{iss}, istream_iterator<string>{}};
+			if (lectLigne != "AttributeID;Unit;Description;"){
+				string attribut;
+				vector<string> attributs;
+				while (getline(iss, attribut, ';'))
+				{
+					attributs.push_back(attribut);
+				}
+			}
 		}
 	}
 	fic.close();
