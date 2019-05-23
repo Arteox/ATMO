@@ -45,8 +45,11 @@ conteneurMoyMesures Analyse::caracteristiquesZone(bool d, double lat, double lon
 
 	for (it = mesures.begin(); it != mesures.end(); it++) 
 	{	
-
-		//if(it->getTypeMesure().getAttributeId().strcmp("O3")
+		
+		it->getTypeMesure().getAttributeId())
+		
+			
+			
 	}
 
 	
