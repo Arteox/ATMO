@@ -28,7 +28,7 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 
 int main() {
-	Traitement
+	TraitementD.ParcoursTypesMesure();
 }
 
 //------------------------------------------------- Surcharge d'opérateurs

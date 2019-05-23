@@ -27,9 +27,9 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
-int TypeMesure::getId() const
+string TypeMesure::getAttributeId() const
 {
-	return ID;
+	return attributeID;
 }
 
 string TypeMesure::getUnite() const
@@ -44,7 +44,7 @@ string TypeMesure::getDescription() const
 
 TypeMesure & TypeMesure::operator=(const TypeMesure & unTypeMesure)
 {
-	this->ID = unTypeMesure.getId();
+	this->attributeID = unTypeMesure.getAttributeId();
 	this->unite = unTypeMesure.getUnite();
 	this->description = unTypeMesure.getDescription();
 	return *this;
@@ -56,14 +56,14 @@ TypeMesure & TypeMesure::operator=(const TypeMesure & unTypeMesure)
 
 TypeMesure::TypeMesure(const TypeMesure & unTypeMesure)
 {
-	this->ID = unTypeMesure.getId();
+	this->attributeID = unTypeMesure.getAttributeId();
 	this->unite = unTypeMesure.getUnite();
 	this->description = unTypeMesure.getDescription();
 }
 
-TypeMesure::TypeMesure(int id, string unite, string description)
+TypeMesure::TypeMesure(string attributeID, string unite, string description)
 {
-	this->ID = id;
+	this->attributeID = attributeID;
 	this->unite = unite;
 	this->description = description;
 }

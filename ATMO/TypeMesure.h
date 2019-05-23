@@ -28,7 +28,7 @@ class TypeMesure
 public:
 	//----------------------------------------------------- Méthodes publiques
 
-	int getId() const;
+	string getAttributeId() const;
 	string getUnite() const;
 	string getDescription() const;
 
@@ -45,7 +45,7 @@ public:
 	// Contrat : Aucun
 	//
 
-	TypeMesure(int id, string unite, string description);
+	TypeMesure(string attributeID, string unite, string description);
 	// Mode d'emploi :
 	//
 	// Contrat :
@@ -70,7 +70,7 @@ protected:
 
 private:
 	//------------------------------------------------------- Attributs privés
-	int ID;
+	string attributeID;
 	string unite;
 	string description;
 
