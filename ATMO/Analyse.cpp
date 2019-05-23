@@ -16,6 +16,7 @@ using namespace std;
 //------------------------------------------------------ Include personnel
 #include "Analyse.h"
 #include "TraitementDonnees.h"
+#include "Mesure.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -30,18 +31,26 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 conteneurMoyMesures Analyse::caracteristiquesZone(bool d, double lat, double longi, double rayon, Date horodateDeb, Date horodateFin)
 {
+	conteneurMoyMesures moyMesures;
+
 	collectionCapteurs capteurs;
 	//todo : typedef TraitementDonnesInstance
 	capteurs = TraitementDonnesInstance::ParcoursCapteurs(lat, longi, rayon);
 	//todo : typedef collectionMesures
 	vector<Mesure> mesures;
 	mesures = TraitementDonnesInstance::ParcoursMesures(capteurs,horodateDeb, horodateFin);
+
+	vector<Mesure> ::iterator it;  // declare an iterator to a vector of strings
+
+	for (it = mesures.begin(); it != mesures.end(); it++) 
+	{
+		if(it.getTypeMesure().getId().strcmp(")
+	}
+
 	
 
 
-
-
-
+	return moyMesures;
 
 }
 // Algorithme :
@@ -51,22 +60,22 @@ conteneurMoyMesures Analyse::caracteristiquesZone(bool d, double lat, double lon
 
 doubleCollectionCapteurs Analyse::comportementSimilaire(Date horodateDeb, Date horodateFin)
 {
-
+	return doubleCollectionCapteurs();
 }
 
 collectionCapteurs Analyse::dysfonctionnement(Date horodateDeb, Date horodateFin)
 {
-
+	return collectionCapteurs();
 }
 
 conteneurMoyMesures Analyse::caracteristiquesPoint(double long, double lat, Date horodateDeb, Date horodateFin)
 {
-
+	return conteneurMoyMesures();
 }
 
 int Analyse::qualiteAir(conteneurMoyMesures MoyMesures)
 {
-
+	return int();
 }
 
 //------------------------------------------------- Surcharge d'opérateurs
