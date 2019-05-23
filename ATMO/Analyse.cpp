@@ -15,6 +15,7 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Analyse.h"
+#include "TraitementDonnees.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -33,8 +34,9 @@ conteneurMoyMesures Analyse::caracteristiquesZone(bool d, double lat, double lon
 	//todo : typedef TraitementDonnesInstance
 	capteurs = TraitementDonnesInstance::ParcoursCapteurs(lat, longi, rayon);
 	//todo : typedef collectionMesures
-	collectionMesures mesures;
-	mesures = TraitementDonnesInstance::ParcoursCapteurs(lat, longi, rayon);
+	vector<Mesure> mesures;
+	mesures = TraitementDonnesInstance::ParcoursMesures(capteurs,horodateDeb, horodateFin);
+	
 
 
 
