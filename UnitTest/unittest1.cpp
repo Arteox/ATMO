@@ -44,11 +44,17 @@ namespace UnitTest
 		TEST_METHOD(CapteurTest)
 		{
 			TraitementDonnees t;
-			TypeMesure t1("O3", "µg/m3", "concentration d'ozone");
-			TypeMesure t2("SO2", "µg/m3", "concentration de dioxyde de soufre");
-			TypeMesure t3("NO2", "µg/m3", "concentration de dioxyde d'azote");
-			TypeMesure t4("PM10", "µg/m3", "concentration de particules fines");
-			std::vector<TypeMesure> v1;
+			Capteur c1("Sensor0", -19.4789835505555, -35.2425725968753);
+			Capteur c2("Sensor1",-38.3884286616875,-24.9593580676985);
+			Capteur c3("Sensor2", -44.5357010278551, -40.5272071485069);
+			Capteur c4("Sensor3", 18.9026808524051, -60.4696149986561);
+			Capteur c5("Sensor4",11.9072994016611,18.2016632092193);
+			Capteur c6("PM10", "µg/m3", "concentration de particules fines");
+			Capteur c7("PM10", "µg/m3", "concentration de particules fines");
+			Capteur c8("PM10", "µg/m3", "concentration de particules fines");
+			Capteur c9("PM10", "µg/m3", "concentration de particules fines");
+			Capteur c10("PM10", "µg/m3", "concentration de particules fines");
+			std::vector<Capteur> v1;
 			v1.push_back(t1);
 			v1.push_back(t2);
 			v1.push_back(t3);
