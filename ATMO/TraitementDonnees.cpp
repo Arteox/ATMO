@@ -12,18 +12,23 @@ copyright            : (C) ${year} par ${user}
 //-------------------------------------------------------- Include système
 #include <iostream>
 using namespace std;
+#include <locale>
+#include <codecvt>
 
 //------------------------------------------------------ Include personnel
 #include "TraitementDonnees.h"
+#include "Capteur.h"
+#include "Mesure.h"
+#include "TypeMesure.h"
 #include <fstream>
 #include <sstream>
 #include <vector>
 //------------------------------------------------------------- Constantes
 
 //---------------------------------------------------- Variables de classe
-const string TraitementDonnees::FichierCapteurs = "Sensors.csv";
-const string TraitementDonnees::FichierTypesMesure = "AttributeType.csv";
-const string TraitementDonnees::FichierMesures = "MesuresSample.csv";
+const string TraitementDonnees::FichierCapteurs = "DonneesCSV\\Sensors.csv";
+const string TraitementDonnees::FichierTypesMesure = "DonneesCSV\\AttributeType.csv";
+const string TraitementDonnees::FichierMesures = "DonneesCSV\\MesuresSample.csv";
 //----------------------------------------------------------- Types privés
 
 
@@ -34,31 +39,37 @@ const string TraitementDonnees::FichierMesures = "MesuresSample.csv";
 
 collectionCapteurs TraitementDonnees::ParcoursCapteurs(double lat, double longi, double rayon)
 {
+	
+	return collectionCapteurs();
+}
+
+collectionCapteurs TraitementDonnees::ParcoursCapteurs(double lat, double longi)
+{
 	ifstream fic;
 	string lectLigne;
 	fic.open(FichierCapteurs);
 	if (fic) {
 		for (lectLigne; getline(fic, lectLigne); ) {
-			
-			istringstream iss(lectLigne);
-			cout << lectLigne << endl;
-			//vector <string> motsIndiv {istream_iterator<string>{iss}, istream_iterator<string>{}};
-			if (lectLigne != "AttributeID;Unit;Description;"){
+			istringstream iss(lectLigne);			
+			if (lectLigne != "SensorID;Latitude;Longitude;Description;"){
+				cout << lectLigne << endl;
 				string attribut;
 				vector<string> attributs;
 				while (getline(iss, attribut, ';'))
 				{
 					attributs.push_back(attribut);
 				}
+				int sensorID = stoi(attributs[0]);
+				double lat = stod(attributs[1]);
+				double longi = stod(attributs[2]);
+				string description = attributs[3];
+				//Capteur c(sensorID, lat, longi, description);
+				//donneesCapteurs.push_back(c);
+
 			}
 		}
 	}
 	fic.close();
-	return collectionCapteurs();
-}
-
-collectionCapteurs TraitementDonnees::ParcoursCapteurs(double lat, double longi)
-{
 	return collectionCapteurs();
 }
 
@@ -69,8 +80,37 @@ collectionMesures TraitementDonnees::ParcoursMesures(collectionCapteurs, Date ho
 
 collectionTypesMesure TraitementDonnees::ParcoursTypesMesure()
 {
-	//a faire
-	return vector<TypeMesure>();
+	ifstream fic;
+	string lectLigne;
+	fic.open(FichierTypesMesure);
+	if (fic) {
+		for (lectLigne; getline(fic, lectLigne); ) {
+			istringstream iss(lectLigne);
+			if (lectLigne != "AttributeID;Unit;Description;") {
+				string attribut;
+				vector<string> attributs;
+				while (getline(iss, attribut, ';'))
+				{
+					attributs.push_back(attribut);
+				}
+				string attributID = attributs[0];
+
+				wstring_convert<codecvt_utf8_utf16<wchar_t>> converter;
+				wstring unite = converter.from_bytes(attributs[1]); //encodage de la lettre grecque mu ne marche pas
+
+				string description = attributs[2];
+				TypeMesure type(attributID, unite, description);
+				donneesTypesMesure.push_back(type);
+				//type.afficher();
+			}
+		}
+	}
+	fic.close();
+	for (collectionTypesMesure::iterator it = donneesTypesMesure.begin(); it != donneesTypesMesure.end(); ++it) {
+		it->afficher();
+	}
+
+	return donneesTypesMesure;
 }
 
 //------------------------------------------------- Surcharge d'opérateurs

@@ -46,7 +46,7 @@ conteneurMoyMesures Analyse::caracteristiquesZone(bool d, double lat, double lon
 	for (it = mesures.begin(); it != mesures.end(); it++) 
 	{	
 		
-		it->getTypeMesure().getAttributeId())
+		it->getTypeMesure().getAttributeId();
 		
 			
 			

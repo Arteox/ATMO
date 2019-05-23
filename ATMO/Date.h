@@ -67,6 +67,8 @@ public:
 	// RAS
 	// Contrat : Aucun
 	//
+
+	friend ostream & operator << (ostream &out, const Date &date);
 	//-------------------------------------------- Constructeurs - destructeur
 	Date(const Date & unDate);
 	// Mode d'emploi (constructeur de copie) :

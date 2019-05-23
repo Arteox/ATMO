@@ -32,7 +32,7 @@ string TypeMesure::getAttributeId() const
 	return attributeID;
 }
 
-string TypeMesure::getUnite() const
+wstring TypeMesure::getUnite() const
 {
 	return unite;
 }
@@ -42,6 +42,14 @@ string TypeMesure::getDescription() const
 	return description;
 }
 
+void TypeMesure::afficher() const
+{
+	cout << attributeID;
+	wcout << unite;
+	cout << description << endl;
+}
+
+//------------------------------------------------- Surcharge d'opérateurs
 TypeMesure & TypeMesure::operator=(const TypeMesure & unTypeMesure)
 {
 	this->attributeID = unTypeMesure.getAttributeId();
@@ -50,7 +58,6 @@ TypeMesure & TypeMesure::operator=(const TypeMesure & unTypeMesure)
 	return *this;
 }
 
-//------------------------------------------------- Surcharge d'opérateurs
 
 //-------------------------------------------- Constructeurs - destructeur
 
@@ -61,7 +68,7 @@ TypeMesure::TypeMesure(const TypeMesure & unTypeMesure)
 	this->description = unTypeMesure.getDescription();
 }
 
-TypeMesure::TypeMesure(string attributeID, string unite, string description)
+TypeMesure::TypeMesure(string attributeID, wstring unite, string description)
 {
 	this->attributeID = attributeID;
 	this->unite = unite;

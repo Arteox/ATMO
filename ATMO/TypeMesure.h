@@ -29,8 +29,9 @@ public:
 	//----------------------------------------------------- Méthodes publiques
 
 	string getAttributeId() const;
-	string getUnite() const;
+	wstring getUnite() const;
 	string getDescription() const;
+	void afficher() const;
 
 	//------------------------------------------------- Surcharge d'opérateurs
 	TypeMesure & operator = (const TypeMesure & unTypeMesure);
@@ -38,6 +39,8 @@ public:
 	// RAS
 	// Contrat : Aucun
 	//
+
+	
 	//-------------------------------------------- Constructeurs - destructeur
 	TypeMesure(const TypeMesure & unTypeMesure);
 	// Mode d'emploi (constructeur de copie) :
@@ -45,7 +48,7 @@ public:
 	// Contrat : Aucun
 	//
 
-	TypeMesure(string attributeID, string unite, string description);
+	TypeMesure(string attributeID, wstring unite, string description);
 	// Mode d'emploi :
 	//
 	// Contrat :
@@ -73,7 +76,7 @@ protected:
 private:
 	//------------------------------------------------------- Attributs privés
 	string attributeID;
-	string unite;
+	wstring unite;
 	string description;
 
 	//---------------------------------------------------------- Classes amies

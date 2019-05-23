@@ -78,7 +78,12 @@ Date & Date::operator = (const Date & unDate)
 	return *this;
 } //----- Fin de operator =
 
-
+ostream & operator << (ostream &out, const Date &date)
+{
+	out << date.GetAnnee() << '-' << date.GetMois() << '-' << date.GetJour();
+	out << date.GetHeure() << ':' << date.GetMin() << ':' << date.GetSec() << endl;
+	return out;
+}
 //-------------------------------------------- Constructeurs - destructeur
 Date::Date(const Date & unDate)
 // Algorithme :

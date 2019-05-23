@@ -53,7 +53,11 @@ Mesure & Mesure::operator=(const Mesure & unMesure)
 }
 
 //------------------------------------------------- Surcharge d'opérateurs
-
+ostream & operator << (ostream &out, const Mesure &mesure)
+{
+	out << mesure.getTypeMesure().getAttributeId() << mesure.getValeur() << mesure.getDate() << endl;
+	return out;
+}
 //-------------------------------------------- Constructeurs - destructeur
 
 Mesure::Mesure(const Mesure & unMesure)

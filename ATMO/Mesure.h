@@ -41,6 +41,8 @@ public:
 	// RAS
 	// Contrat : Aucun
 	//
+
+	friend ostream & operator << (ostream &out, const Mesure &mesure);
 	//-------------------------------------------- Constructeurs - destructeur
 	Mesure(const Mesure & unMesure);
 	// Mode d'emploi (constructeur de copie) :

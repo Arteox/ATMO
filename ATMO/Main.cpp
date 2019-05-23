@@ -28,7 +28,9 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 
 int main() {
+	cout << "hello" << endl;
 	TraitementD.ParcoursTypesMesure();
+	return 0;
 }
 
 //------------------------------------------------- Surcharge d'opérateurs
