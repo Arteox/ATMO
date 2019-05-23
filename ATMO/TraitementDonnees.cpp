@@ -15,11 +15,13 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "TraitementDonnees.h"
-
+#include <fstream>
 //------------------------------------------------------------- Constantes
 
 //---------------------------------------------------- Variables de classe
-
+const string TraitementDonnees::FichierCapteurs = "Sensors.csv";
+const string TraitementDonnees::FichierTypesMesure = "AttributeType.csv";
+const string TraitementDonnees::FichierMesures = "MesuresSample.csv";
 //----------------------------------------------------------- Types privés
 
 
@@ -28,17 +30,26 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-vector<Capteur> TraitementDonnees::ParcoursCapteurs(double lat, double longi, double rayon)
+collectionCapteurs TraitementDonnees::ParcoursCapteurs(double lat, double longi, double rayon)
 {
-	return vector<Capteur>();
+	ifstream fic;
+	string lectLigne;
+	fic.open(FichierCapteurs);
+	if (fic) {
+		for (lectLigne; getline(fic, lectLigne); ) {
+			cout << lectLigne << endl;
+		}
+	}
+	fic.close();
+	return collectionCapteurs();
 }
 
-vector<Capteur> TraitementDonnees::ParcoursCapteurs(double lat, double longi)
+collectionCapteurs TraitementDonnees::ParcoursCapteurs(double lat, double longi)
 {
-	return vector<Capteur>();
+	return collectionCapteurs();
 }
 
-multiset<Mesure> TraitementDonnees::ParcoursMesures(vector<Capteur>, vector<TypeMesure>, Date horodateDeb, Date horodateFin)
+multiset<Mesure> TraitementDonnees::ParcoursMesures(collectionCapteurs, vector<TypeMesure>, Date horodateDeb, Date horodateFin)
 {
 	return multiset<Mesure>();
 }
@@ -58,16 +69,15 @@ TraitementDonnees::TraitementDonnees(const TraitementDonnees & unTraitementDonne
 
 }
 
-TraitementDonnees::TraitementDonnees()
-{
-
-}
-
 TraitementDonnees::~TraitementDonnees()
 {
 }
 
 //------------------------------------------------------------------ PRIVE
+TraitementDonnees::TraitementDonnees()
+{
+	
+}
 
 //----------------------------------------------------- Méthodes protégées
 

@@ -47,7 +47,7 @@ string Capteur::getDescription() const
 	return description;
 }
 
-multiset<Mesure> Capteur::getMesures() const
+collectionMesures Capteur::getMesures() const
 {
 	return mesures;
 }
