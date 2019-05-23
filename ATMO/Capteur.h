@@ -17,7 +17,7 @@ copyright            : (C) 2019 par Mengxing ZHANG, Louis UNG, Fabien GELUS et B
 //------------------------------------------------------------- Constantes 
 
 //------------------------------------------------------------------ Types 
-
+typedef multiset<Mesure> collectionMesures;
 //------------------------------------------------------------------------ 
 // Rôle de la classe <Capteur>
 //
@@ -33,7 +33,7 @@ public:
 	double getLat() const;
 	double getLong() const;
 	string getDescription() const;
-	multiset<Mesure> getMesures() const;
+	collectionMesures getMesures() const;
 
 	//------------------------------------------------- Surcharge d'opérateurs
 	Capteur & operator = (const Capteur & unCapteur);
@@ -48,7 +48,7 @@ public:
 	// Contrat : Aucun
 	//
 
-	Capteur(int ID, double lat, double longi, string description, multiset<Mesure> mesures);
+	Capteur(int ID, double lat, double longi, string description, collectionMesures mesures);
 	// Mode d'emploi :
 	//
 	// Contrat :
@@ -76,7 +76,7 @@ private:
 	double lat;
 	double longi;
 	string description;
-	multiset<Mesure> mesures;
+	collectionMesures mesures;
 	//---------------------------------------------------------- Classes amies
 
 	//-------------------------------------------------------- Classes privées

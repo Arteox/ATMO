@@ -131,6 +131,7 @@
     <ClCompile Include="Analyse.cpp" />
     <ClCompile Include="Capteur.cpp" />
     <ClCompile Include="Date.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Mesure.cpp" />
     <ClCompile Include="TraitementDonnees.cpp" />
     <ClCompile Include="TypeMesure.cpp" />

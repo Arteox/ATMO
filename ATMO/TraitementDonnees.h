@@ -18,9 +18,13 @@ copyright            : (C) 2019 par Mengxing ZHANG, Louis UNG, Fabien GELUS et B
 #include "TypeMesure.h"
 
 //------------------------------------------------------------- Constantes 
+#define TraitementD TraitementDonnees::GetInstance()
 
 //------------------------------------------------------------------ Types 
-
+typedef vector<vector<Capteur>> doubleCollectionCapteurs;
+typedef vector<Capteur> collectionCapteurs;
+typedef vector<TypeMesure> collectionTypesMesure;
+typedef multiset<Mesure> collectionMesures;
 //------------------------------------------------------------------------ 
 // Rôle de la classe <TraitementDonnees>
 //
@@ -30,13 +34,20 @@ class TraitementDonnees
 {
 	//----------------------------------------------------------------- PUBLIC
 public:
+
+	static TraitementDonnees & GetInstance()
+	{
+		static TraitementDonnees instance;
+		return instance;
+	}
+
 	//----------------------------------------------------- Méthodes publiques
 	//mettre en static ?
-	vector<Capteur> ParcoursCapteurs(double lat, double longi, double rayon);
+	collectionCapteurs ParcoursCapteurs(double lat, double longi, double rayon);
 
-	vector<Capteur> ParcoursCapteurs(double lat, double longi);
+	collectionCapteurs ParcoursCapteurs(double lat, double longi);
 
-	multiset<Mesure> ParcoursMesures(vector<Capteur>, vector<TypeMesure>, Date horodateDeb, Date horodateFin);
+	multiset<Mesure> ParcoursMesures(collectionCapteurs, vector<TypeMesure>, Date horodateDeb, Date horodateFin);
 
 	vector<TypeMesure> ParcoursTypesMesure();
 
@@ -47,11 +58,7 @@ public:
 	// Contrat : Aucun
 	//
 
-	TraitementDonnees();
-	// Mode d'emploi :
-	//
-	// Contrat :
-	//
+	
 
 	virtual ~TraitementDonnees();
 	// Mode d'emploi : RAS, contenu vide
@@ -70,10 +77,20 @@ protected:
 	//----------------------------------------------------- Attributs protégés
 
 private:
+	//constructeur mis ici pour interdire la creation d'un autre constructeur hormis le singleton
+	TraitementDonnees();
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
+
 	//------------------------------------------------------- Attributs privés
-	string FichierTypesMesure = "AttributeType.csv";
-	string FichierCapteurs = "Sensors.csv";
-	string FichierMesures = "MesuresSample.csv";
+	static const string FichierTypesMesure;
+	static const string FichierCapteurs;
+	static const string FichierMesures;
+	collectionCapteurs donneesCapteurs;
+	collectionTypesMesure donneesTypesMesure;
+	collectionMesures donneesMesures;
 	//---------------------------------------------------------- Classes amies
 
 	//-------------------------------------------------------- Classes privées
