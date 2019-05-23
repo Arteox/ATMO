@@ -68,6 +68,10 @@ TypeMesure::TypeMesure(string attributeID, string unite, string description)
 	this->description = description;
 }
 
+TypeMesure::TypeMesure()
+{
+}
+
 TypeMesure::~TypeMesure()
 {
 }

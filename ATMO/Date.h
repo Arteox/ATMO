@@ -75,6 +75,8 @@ public:
 	//
 
 	Date(const int& annee, const int& mois, const int& jour, const int& heure, const int& min, const int& sec);
+
+	Date();
 	// Mode d'emploi : Constructeur sans paramètres, contenu vide
 	//
 	// Contrat : Ne pas mettre de paramètre
