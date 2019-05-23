@@ -1,19 +1,88 @@
-/**
- * Project Diagrammes GL UML
- */
+/*************************************************************************
+Mesure  -  description
+-------------------
+début                : 07/05/2019
+copyright            : (C) 2019 par Mengxing ZHANG, Louis UNG, Fabien GELUS et Baptiste PAULETTO
+*************************************************************************/
+
+//---------- Interface de la classe <Mesure> (fichier Mesure.h) ------
+#ifndef _Mesure_H
+#define _Mesure_H
+
+//--------------------------------------------------- Interfaces utilisées
+#include <string>
+#include "Date.h"
+#include "Mesure.h"
+#include "TypeMesure.h"
+
+//------------------------------------------------------------- Constantes 
+
+//------------------------------------------------------------------ Types 
+
+//------------------------------------------------------------------------ 
+// Rôle de la classe <Mesure>
+//
+//
+//------------------------------------------------------------------------ 
+class Mesure
+{
+	//----------------------------------------------------------------- PUBLIC
+public:
+	//----------------------------------------------------- Méthodes publiques
+
+	Date getDate() const;
+	double getValeur() const;
+	TypeMesure getTypeMesure() const;
 
 
-#ifndef _MESURE_H
-#define _MESURE_H
+	//------------------------------------------------- Surcharge d'opérateurs
+	Mesure & operator = (const Mesure & unMesure);
+	// Mode d'emploi :
+	// RAS
+	// Contrat : Aucun
+	//
+	//-------------------------------------------- Constructeurs - destructeur
+	Mesure(const Mesure & unMesure);
+	// Mode d'emploi (constructeur de copie) :
+	// RAS
+	// Contrat : Aucun
+	//
 
-#include "Capteur.h"
+	Mesure(Date horodate, double valeur, TypeMesure typeMesure);
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
 
+	virtual ~Mesure();
+	// Mode d'emploi : RAS, contenu vide
+	//
+	// Contrat : Aucun
+	//
 
-class Mesure {
-private: 
-    t_time Horodate;
-    double Value;
-    Capteur SensorID;
+	//------------------------------------------------------------------ PRIVE
+
+protected:
+	//----------------------------------------------------- Méthodes protégées
+
+private:
+	//------------------------------------------------------- Méthodes privées
+
+protected:
+	//----------------------------------------------------- Attributs protégés
+
+private:
+	//------------------------------------------------------- Attributs privés
+	Date horodate;
+	double valeur;
+	TypeMesure typeMesure;
+	//---------------------------------------------------------- Classes amies
+
+	//-------------------------------------------------------- Classes privées
+
+	//----------------------------------------------------------- Types privés
 };
 
-#endif //_MESURE_H
+//----------------------------------------- Types dépendants de <Mesure>
+
+#endif //_Mesure_H

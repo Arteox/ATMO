@@ -1,41 +1,76 @@
-/**
- * Project Diagrammes GL UML
- */
+/*************************************************************************
+TraitementDonnees  -  description
+-------------------
+début                : ${date}
+copyright            : (C) ${year} par ${user}
+*************************************************************************/
 
+//---------- Réalisation de la classe <Capteur> (fichier Capteur.h) --
 
+//---------------------------------------------------------------- INCLUDE
+
+//-------------------------------------------------------- Include système
+#include <iostream>
+using namespace std;
+
+//------------------------------------------------------ Include personnel
 #include "TraitementDonnees.h"
 
-/**
- * TraitementDonnees implementation
- */
+//------------------------------------------------------------- Constantes
+
+//---------------------------------------------------- Variables de classe
+
+//----------------------------------------------------------- Types privés
 
 
-/**
- * @param double lat
- * @param double long
- * @param double rayon
- * @return List<Capteur>
- */
-List<Capteur> TraitementDonnees::ParcoursCapteurs(void double lat, void double long, void double rayon) {
-    return null;
+//----------------------------------------------------------------- PUBLIC
+//-------------------------------------------------------- Fonctions amies
+
+//----------------------------------------------------- Méthodes publiques
+
+vector<Capteur> TraitementDonnees::ParcoursCapteurs(double lat, double longi, double rayon)
+{
+	return vector<Capteur>();
 }
 
-/**
- * @param double lat
- * @param double long
- * @return List<Capteur>
- */
-List<Capteur> TraitementDonnees::ParcoursCapteurs(void double lat, void double long) {
-    return null;
+vector<Capteur> TraitementDonnees::ParcoursCapteurs(double lat, double longi)
+{
+	return vector<Capteur>();
 }
 
-void TraitementDonnees::ParcoursMesures(List<Capteur>, List<TypeMesure>, Date horodateDeb, Date horodateFin): List<Mesure>() {
+multiset<Mesure> TraitementDonnees::ParcoursMesures(vector<Capteur>, vector<TypeMesure>, Date horodateDeb, Date horodateFin)
+{
+	return multiset<Mesure>();
+}
+
+vector<TypeMesure> TraitementDonnees::ParcoursTypesMesure()
+{
+	//a faire
+	return vector<TypeMesure>();
+}
+
+//------------------------------------------------- Surcharge d'opérateurs
+
+//-------------------------------------------- Constructeurs - destructeur
+
+TraitementDonnees::TraitementDonnees(const TraitementDonnees & unTraitementDonnees)
+{
 
 }
 
-/**
- * @return List<TypeMesure>
- */
-List<TypeMesure> TraitementDonnees::ParcoursTypesMesure() {
-    return null;
+TraitementDonnees::TraitementDonnees()
+{
+
 }
+
+TraitementDonnees::~TraitementDonnees()
+{
+}
+
+//------------------------------------------------------------------ PRIVE
+
+//----------------------------------------------------- Méthodes protégées
+
+//------------------------------------------------------- Méthodes privées
+
+

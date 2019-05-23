@@ -1,34 +1,86 @@
-/**
- * Project Diagrammes GL UML
- */
+/*************************************************************************
+TraitementDonnees  -  description
+-------------------
+début                : 07/05/2019
+copyright            : (C) 2019 par Mengxing ZHANG, Louis UNG, Fabien GELUS et Baptiste PAULETTO
+*************************************************************************/
 
+//---------- Interface de la classe <TraitementDonnees> (fichier TraitementDonnees.h) ------
+#ifndef _TraitementDonnees_H
+#define _TraitementDonnees_H
 
-#ifndef _TRAITEMENTDONNEES_H
-#define _TRAITEMENTDONNEES_H
+//--------------------------------------------------- Interfaces utilisées
+#include <string>
+#include <vector>
+#include <set>
+#include "Mesure.h"
+#include "Capteur.h"
+#include "TypeMesure.h"
 
-class TraitementDonnees {
-public: 
-    
-/**
- * @param double lat
- * @param double long
- * @param double rayon
- */
-List<Capteur> ParcoursCapteurs(void double lat, void double long, void double rayon);
-    
-/**
- * @param double lat
- * @param double long
- */
-List<Capteur> ParcoursCapteurs(void double lat, void double long);
-    
-void ParcoursMesures(List<Capteur>, List<TypeMesure>, Date horodateDeb, Date horodateFin): List<Mesure>();
-    
-List<TypeMesure> ParcoursTypesMesure();
-private: 
-    String FichierTypesMesure;
-    String FichierCapteurs;
-    String FichierMesures;
+//------------------------------------------------------------- Constantes 
+
+//------------------------------------------------------------------ Types 
+
+//------------------------------------------------------------------------ 
+// Rôle de la classe <TraitementDonnees>
+//
+//
+//------------------------------------------------------------------------ 
+class TraitementDonnees
+{
+	//----------------------------------------------------------------- PUBLIC
+public:
+	//----------------------------------------------------- Méthodes publiques
+	//mettre en static ?
+	vector<Capteur> ParcoursCapteurs(double lat, double longi, double rayon);
+
+	vector<Capteur> ParcoursCapteurs(double lat, double longi);
+
+	multiset<Mesure> ParcoursMesures(vector<Capteur>, vector<TypeMesure>, Date horodateDeb, Date horodateFin);
+
+	vector<TypeMesure> ParcoursTypesMesure();
+
+	//-------------------------------------------- Constructeurs - destructeur
+	TraitementDonnees(const TraitementDonnees & unTraitementDonnees);
+	// Mode d'emploi (constructeur de copie) :
+	// RAS
+	// Contrat : Aucun
+	//
+
+	TraitementDonnees();
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
+
+	virtual ~TraitementDonnees();
+	// Mode d'emploi : RAS, contenu vide
+	//
+	// Contrat : Aucun
+	//
+	//------------------------------------------------------------------ PRIVE
+
+protected:
+	//----------------------------------------------------- Méthodes protégées
+
+private:
+	//------------------------------------------------------- Méthodes privées
+
+protected:
+	//----------------------------------------------------- Attributs protégés
+
+private:
+	//------------------------------------------------------- Attributs privés
+	string FichierTypesMesure = "AttributeType.csv";
+	string FichierCapteurs = "Sensors.csv";
+	string FichierMesures = "MesuresSample.csv";
+	//---------------------------------------------------------- Classes amies
+
+	//-------------------------------------------------------- Classes privées
+
+	//----------------------------------------------------------- Types privés
 };
 
-#endif //_TRAITEMENTDONNEES_H
+//----------------------------------------- Types dépendants de <TraitementDonnees>
+
+#endif //_TraitementDonnees_H

@@ -1,8 +1,8 @@
 /*************************************************************************
 						   Analyse  -  description
 							 -------------------
-	début                : ${date}
-	copyright            : (C) ${year} par ${user}
+	début                : 07/05/2019
+	copyright            : (C) 2019 par Mengxing ZHANG, Louis UNG, Fabien GELUS et Baptiste PAULETTO
 *************************************************************************/
 
 //---------- Interface de la classe <Analyse> (fichier Analyse.h) ------
@@ -10,17 +10,16 @@
 #define ANALYSE_H
  
 //--------------------------------------------------- Interfaces utilisées
-#include <time.h>;
 #include <map>;
-#include <list>;
+#include <vector>;
 #include "TypeMesure.h";
 #include "Capteur.h"
+#include "Date.h"
 //------------------------------------------------------------- Constantes 
 
 //------------------------------------------------------------------ Types 
-typedef time_t Date;
-typedef std::list<std::list<Capteur>> doubleCollectionCapteurs;
-typedef std::list<Capteur> collectionCapteurs;
+typedef vector<vector<Capteur>> doubleCollectionCapteurs;
+typedef vector<Capteur> collectionCapteurs;
 typedef std::map<TypeMesure, double> conteneurMoyMesures;
 //------------------------------------------------------------------------ 
 // Rôle de la classe <Analyse>
