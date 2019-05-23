@@ -31,24 +31,26 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 conteneurMoyMesures Analyse::caracteristiquesZone(bool d, double lat, double longi, double rayon, Date horodateDeb, Date horodateFin)
 {
+	
 	conteneurMoyMesures moyMesures;
-
+	
 	collectionCapteurs capteurs;
 	//todo : typedef TraitementDonnesInstance
-	capteurs = TraitementDonnesInstance::ParcoursCapteurs(lat, longi, rayon);
+	capteurs = TraitementD.ParcoursCapteurs(lat, longi, rayon);
 	//todo : typedef collectionMesures
-	vector<Mesure> mesures;
-	mesures = TraitementDonnesInstance::ParcoursMesures(capteurs,horodateDeb, horodateFin);
+	collectionMesures mesures;
+	mesures = TraitementD.ParcoursMesures(capteurs,horodateDeb, horodateFin);
 
-	vector<Mesure> ::iterator it;  // declare an iterator to a vector of strings
+	collectionMesures ::iterator it;  // declare an iterator to a vector of strings
 
 	for (it = mesures.begin(); it != mesures.end(); it++) 
-	{
-		if(it.getTypeMesure().getId().strcmp(")
+	{	
+
+		//if(it->getTypeMesure().getAttributeId().strcmp("O3")
 	}
 
 	
-
+	
 
 	return moyMesures;
 

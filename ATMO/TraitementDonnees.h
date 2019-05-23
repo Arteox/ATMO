@@ -47,7 +47,7 @@ public:
 
 	collectionCapteurs ParcoursCapteurs(double lat, double longi);
 
-	multiset<Mesure> ParcoursMesures(collectionCapteurs, vector<TypeMesure>, Date horodateDeb, Date horodateFin);
+	multiset<Mesure> ParcoursMesures(collectionCapteurs, Date horodateDeb, Date horodateFin);
 
 	vector<TypeMesure> ParcoursTypesMesure();
 
