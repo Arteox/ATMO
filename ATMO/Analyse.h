@@ -15,7 +15,6 @@
 #include "TypeMesure.h";
 #include "Capteur.h"
 #include "Date.h"
-#include "TraitementDonnees.h"
 //------------------------------------------------------------- Constantes 
 
 //------------------------------------------------------------------ Types 
