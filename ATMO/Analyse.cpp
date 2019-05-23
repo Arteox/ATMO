@@ -27,8 +27,18 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
-conteneurMoyMesures Analyse::caracteristiquesZone(bool d, double lat, double long, double rayon, Date horodateDeb, Date horodateFin)
+conteneurMoyMesures Analyse::caracteristiquesZone(bool d, double lat, double longi, double rayon, Date horodateDeb, Date horodateFin)
 {
+	collectionCapteurs capteurs;
+	//todo : typedef TraitementDonnesInstance
+	capteurs = TraitementDonnesInstance::ParcoursCapteurs(lat, longi, rayon);
+	//todo : typedef collectionMesures
+	collectionMesures mesures;
+	mesures = TraitementDonnesInstance::ParcoursCapteurs(lat, longi, rayon);
+
+
+
+
 
 }
 // Algorithme :
