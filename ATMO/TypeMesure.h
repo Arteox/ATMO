@@ -51,6 +51,8 @@ public:
 	// Contrat :
 	//
 
+	TypeMesure();
+
 	virtual ~TypeMesure();
 	// Mode d'emploi : RAS, contenu vide
 	//

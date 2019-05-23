@@ -106,6 +106,10 @@ Date::Date(const int& annee, const int& mois, const int& jour, const int& heure,
 	this->sec = sec;
 }
 
+Date::Date()
+{
+}
+
 Date::~Date()
 // Algorithme : RAS
 //
