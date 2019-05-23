@@ -10,9 +10,9 @@
 #define ANALYSE_H
  
 //--------------------------------------------------- Interfaces utilisées
-#include <map>;
-#include <vector>;
-#include "TypeMesure.h";
+#include <map>
+#include <vector>
+#include "TypeMesure.h"
 #include "Capteur.h"
 #include "Date.h"
 //------------------------------------------------------------- Constantes 

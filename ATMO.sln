@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.28010.2036
+VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ATMO", "ATMO\ATMO.vcxproj", "{F77D89EA-3CB5-4B10-9127-0D50745FDC75}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTest", "UnitTest\UnitTest.vcxproj", "{817A1FEB-DC86-44F1-BDE6-FC0C8A1DA9A4}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ATMO", "ATMO.vcxproj", "{F77D89EA-3CB5-4B10-9127-0D50745FDC75}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,19 +21,11 @@ Global
 		{F77D89EA-3CB5-4B10-9127-0D50745FDC75}.Release|x64.Build.0 = Release|x64
 		{F77D89EA-3CB5-4B10-9127-0D50745FDC75}.Release|x86.ActiveCfg = Release|Win32
 		{F77D89EA-3CB5-4B10-9127-0D50745FDC75}.Release|x86.Build.0 = Release|Win32
-		{817A1FEB-DC86-44F1-BDE6-FC0C8A1DA9A4}.Debug|x64.ActiveCfg = Debug|x64
-		{817A1FEB-DC86-44F1-BDE6-FC0C8A1DA9A4}.Debug|x64.Build.0 = Debug|x64
-		{817A1FEB-DC86-44F1-BDE6-FC0C8A1DA9A4}.Debug|x86.ActiveCfg = Debug|Win32
-		{817A1FEB-DC86-44F1-BDE6-FC0C8A1DA9A4}.Debug|x86.Build.0 = Debug|Win32
-		{817A1FEB-DC86-44F1-BDE6-FC0C8A1DA9A4}.Release|x64.ActiveCfg = Release|x64
-		{817A1FEB-DC86-44F1-BDE6-FC0C8A1DA9A4}.Release|x64.Build.0 = Release|x64
-		{817A1FEB-DC86-44F1-BDE6-FC0C8A1DA9A4}.Release|x86.ActiveCfg = Release|Win32
-		{817A1FEB-DC86-44F1-BDE6-FC0C8A1DA9A4}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {C8AA48D3-83D3-4A7A-8BE3-1862697B95FA}
+		SolutionGuid = {B24EC929-D164-44FD-B8CF-F5E02570387B}
 	EndGlobalSection
 EndGlobal
