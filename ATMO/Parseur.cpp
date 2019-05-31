@@ -57,7 +57,7 @@ list<double> Parseur::ParserCommande() // mettre ici le paramètre entrée
 			if (aDesOptions) { // on récupère la dite option
                 getline(fluxEntree, parametreCourant,' ');
 				if(AttributionOption(parametreCourant) == optionInvalide) {
-					cout << "option invalide";
+					cout << "Option invalide" << endl;
 				}
 				else if (AttributionOption(parametreCourant) == optionAbsente) {
 					commandeParsee.push_back(optionAbsente); // on envoie le fait qu'il n'y ait pas d'options
@@ -73,7 +73,7 @@ list<double> Parseur::ParserCommande() // mettre ici le paramètre entrée
 				getline(fluxEntree, parametreCourant, ' ');
 				if (!verificationParametre(parametreCourant)) {
 					//faire l'affichage menu de l'erreur cerr
-					cout << "ta un soucis3" << endl;
+					cout << "Paramètre vide" << endl;
 				}
 				else {
 					commandeParsee.push_back(stod(parametreCourant));
