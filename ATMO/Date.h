@@ -32,32 +32,32 @@ public:
 
 	int getHeure() const;
 	// Mode d'emploi : 
-	// Renvoie l'attribut protégé heure
+	// Renvoie l'attribut protég?heure
 	// Contrat : Aucun
 
 	int getMin() const;
 	// Mode d'emploi : 
-	// Renvoie l'attribut protégé min
+	// Renvoie l'attribut protég?min
 	// Contrat : Aucun
 
 	int getSec() const;
 	// Mode d'emploi : 
-	// Renvoie l'attribut protégé sec
+	// Renvoie l'attribut protég?sec
 	// Contrat : Aucun
 
 	int getJour() const;
 	// Mode d'emploi : 
-	// Renvoie l'attribut protégé jour
+	// Renvoie l'attribut protég?jour
 	// Contrat : Aucun
 
 	int getMois() const;
 	// Mode d'emploi : 
-	// Renvoie l'attribut protégé mois
+	// Renvoie l'attribut protég?mois
 	// Contrat : Aucun
 
 	int getAnnee() const;
 	// Mode d'emploi : 
-	// Renvoie l'attribut protégé annee
+	// Renvoie l'attribut protég?annee
 	// Contrat : Aucun
 
 

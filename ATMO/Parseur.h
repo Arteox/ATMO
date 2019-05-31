@@ -22,7 +22,7 @@ enum Options { d, optionAbsente = -2, optionInvalide = -1 };
 
 //------------------------------------------------------------------------ 
 // Rôle de la classe <Parseur>
-// Le rôle de la classe Parseur est de permettre à la partie Modèle d'obtenir
+// Le rôle de la classe Parseur est de permettre ?la partie Modèle d'obtenir
 // les informations entrées par l'utilisateur dans le menu en mode commande.
 // Pour cela il utilise une méthode principale qui va factoriser toutes ces 
 // informations.
@@ -78,8 +78,8 @@ private:
 
 	//------------------------------------------------------- Méthodes privées
 	double AttributionCommande(string & commande);
-	// Mode d'emploi : Cette méthode permet de faire des vérifications quant à
-	// la validité de la commande tapée par l'utilisateur ainsi que d'attribuer
+	// Mode d'emploi : Cette méthode permet de faire des vérifications quant ?
+	// la validit?de la commande tapée par l'utilisateur ainsi que d'attribuer
 	// cette dernière sa valeur numérique pour qu'elle puisse ensuite 
 	// être utilisée par le système.
 	// string & commande : nom de la commande tapée par l'utilisateur.
@@ -87,8 +87,8 @@ private:
 	//
 
 	double AttributionOption(string & option);
-	// Mode d'emploi : Cette méthode permet de faire des vérifications quant à
-	// la validité de l'option tapée par l'utilisateur ainsi que d'attribuer
+	// Mode d'emploi : Cette méthode permet de faire des vérifications quant ?
+	// la validit?de l'option tapée par l'utilisateur ainsi que d'attribuer
 	// cette dernière sa valeur numérique pour qu'elle puisse ensuite 
 	// être utilisée par le système.
 	// string & option : nom de l'option tapée par l'utilisateur.
@@ -111,10 +111,10 @@ private:
 	//
 
 	bool verificationParametre(string & parametre);
-	// Mode d'emploi : Cette méthode est uniquement destinée à la 
-	// gestion des erreurs, pour un paramètre donné, elle vérifie qu'il
+	// Mode d'emploi : Cette méthode est uniquement destinée ?la 
+	// gestion des erreurs, pour un paramètre donn? elle vérifie qu'il
 	// n'est pas vide et adapte un comportement en conséquence.
-	// string & parametre : paramètre tapé par l'utilisateur.
+	// string & parametre : paramètre tap?par l'utilisateur.
 	// Contrat : Aucun
 	//
 
@@ -122,7 +122,7 @@ private:
 	// Mode d'emploi : Cette méthode est uniquement utlisée dans la méthode
 	// AttributionCommande pour avoir un comportement des plus maintenables
 	// possibles, elle permet simplement d'associer une des valeurs de l'énum
-	// à sa valeur en chaîne de caractères.
+	// ?sa valeur en chaîne de caractères.
 	// Contrat : Aucun
 	//
 
@@ -130,7 +130,7 @@ private:
 	// Mode d'emploi : Dans le même but que la précédente méthode, cette méthode
 	// est uniquement utlisée dans la méthode AttributionOption pour avoir un
 	// comportement des plus maintenables possibles, elle permet simplement 
-	// d'associer une des valeurs de l'énum à sa valeur en chaîne de caractères.
+	// d'associer une des valeurs de l'énum ?sa valeur en chaîne de caractères.
 	// Contrat : Aucun
 	//
 };

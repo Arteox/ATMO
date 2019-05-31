@@ -23,9 +23,9 @@ namespace UnitTest
 		static bool CapteurSort(Capteur& c1, Capteur& c2) {
 			return c1.getId() > c2.getId();
 		}
-		TEST_METHOD(TypeMesureTest) 
+		/*TEST_METHOD(TypeMesureTest) 
 		{
-			TraitementDonnees t = TraitementDonnees::GetInstance();
+			//TraitementDonnees t = TraitementDonnees::GetInstance();
 			TypeMesure t1 ("O3", "µg/m3", "concentration d'ozone");
 			TypeMesure t2("SO2", "µg/m3" ,"concentration de dioxyde de soufre");
 			TypeMesure t3("NO2", "µg/m3","concentration de dioxyde d'azote");
@@ -36,7 +36,7 @@ namespace UnitTest
 			v1.push_back(t3);
 			v1.push_back(t4);
 			
-			collectionTypesMesure v2 = t.ParcoursTypesMesure();
+			collectionTypesMesure v2 = TraitementD.ParcoursTypesMesure();
 			//std::set<TypeMesure> s2(v.begin(), v.end());
 			Assert::IsTrue(v1.size() == v2.size());
 			std::sort(v1.begin(), v2.end(), TypeMesureSort);
@@ -46,13 +46,13 @@ namespace UnitTest
 				Assert::AreEqual(v1[i].getAttributeId(), v2[i].getAttributeId());
 			}
 
-		}
+		}*/
 		TEST_METHOD(CapteurTest1)
 			/*
 			6 chiffres  significafs
 			*/
 		{
-			TraitementDonnees t = TraitementDonnees::GetInstance();
+			//TraitementDonnees t = TraitementDonnees::GetInstance();
 			/*Capteur c1("Sensor0", -19.4789835505555, -35.2425725968753);
 			Capteur c2("Sensor1",-38.3884286616875,-24.9593580676985);
 			Capteur c3("Sensor2", -44.5357010278551, -40.5272071485069);
@@ -62,10 +62,9 @@ namespace UnitTest
 			Capteur c7("Sensor6", 32.1496770005439, 11.685259370918);
 			Capteur c8("Sensor7", -28.5704283665728, 24.1637584633025);
 			Capteur c9("Sensor8",18.3597523781283, -58.1587766800815);*/
-			multiset <Mesure> m;
 			//resultat expecte:
-			Capteur c(9 , -2.03317773855905, -70.6545565746047,"",m);
-			collectionCapteurs v = t.ParcoursCapteurs(-2.033178,-70.654557);
+			Capteur c(9 , -2.03317773855905, -70.6545565746047,"");
+			collectionCapteurs v = TraitementD.ParcoursCapteurs(-2.033178,-70.654557);
 			//il y a un seul capteur dans la collection reponse
 			Assert::IsTrue(v.size() == 1);
 			//et c'est bien le capteur c
@@ -74,28 +73,28 @@ namespace UnitTest
 		}
 		TEST_METHOD(CapteurTest2)
 		{
-			TraitementDonnees t=TraitementDonnees::GetInstance();
-			collectionCapteurs v = t.ParcoursCapteurs(-25.123456, 45.123456);
+			//TraitementDonnees t=TraitementDonnees::GetInstance();
+			collectionCapteurs v = TraitementD.ParcoursCapteurs(-25.123456, 45.123456);
 			Assert::IsTrue(v.size() == 0);
 		}
 		TEST_METHOD(CapteurTest3)
 		{
-			TraitementDonnees t = TraitementDonnees::GetInstance();
-			collectionCapteurs v = t.ParcoursCapteurs(-480, 560);
+			//TraitementDonnees t = TraitementDonnees::GetInstance();
+			collectionCapteurs v = TraitementD.ParcoursCapteurs(-480, 560);
 			Assert::IsTrue(v.size() == 0);
 		}
 		TEST_METHOD(CapteurRayonTest1)
 		{
-			TraitementDonnees t = TraitementDonnees::GetInstance();
-			multiset <Mesure> m;
-			Capteur c2(1, -38.3884286616875, -24.9593580676985, "", m);
-			Capteur c3(2, -44.5357010278551, -40.5272071485069, "", m);
-			Capteur c4(3, 18.9026808524051, -60.4696149986561, "", m);
+			//TraitementDonnees t = TraitementDonnees::GetInstance();
+			//multiset <Mesure> m;
+			Capteur c2(1, -38.3884286616875, -24.9593580676985, "");
+			Capteur c3(2, -44.5357010278551, -40.5272071485069, "");
+			Capteur c4(3, 18.9026808524051, -60.4696149986561, "");
 			collectionCapteurs v1;
 			v1.push_back(c2);
 			v1.push_back(c3);
 			v1.push_back(c4);
-			collectionCapteurs v2 = t.ParcoursCapteurs(-38, -24, 2500);
+			collectionCapteurs v2 = TraitementD.ParcoursCapteurs(-38, -24, 2500);
 			Assert::IsTrue(v1.size() == v2.size());
 			std::sort(v1.begin(), v1.end(), CapteurSort);
 			std::sort(v2.begin(), v2.end(), CapteurSort);
@@ -106,27 +105,27 @@ namespace UnitTest
 		}
 		TEST_METHOD(CapteurRayonTest2)
 		{
-			TraitementDonnees t = TraitementDonnees::GetInstance();
-			collectionCapteurs v = t.ParcoursCapteurs(-38, -24, 1);
+			//TraitementDonnees t = TraitementDonnees::GetInstance();
+			collectionCapteurs v = TraitementD.ParcoursCapteurs(-38, -24, 1);
 			Assert::IsTrue(v.size() == 0);
 		}
 		TEST_METHOD(CapteurRayonTest3)
 		{
-			TraitementDonnees t = TraitementDonnees::GetInstance();
-			collectionCapteurs v = t.ParcoursCapteurs(-480, 560,1);
+			//TraitementDonnees t = TraitementDonnees::GetInstance();
+			collectionCapteurs v = TraitementD.ParcoursCapteurs(-480, 560,1);
 			Assert::IsTrue(v.size() == 0);
 		}
 		TEST_METHOD(CapteurRayonTest4)
 		{
-			TraitementDonnees t = TraitementDonnees::GetInstance();
-			collectionCapteurs v = t.ParcoursCapteurs(-25.123456, 45.123456, -1);
+			//TraitementDonnees t = TraitementDonnees::GetInstance();
+			collectionCapteurs v = TraitementD.ParcoursCapteurs(-25.123456, 45.123456, -1);
 			Assert::IsTrue(v.size() == 0);
 		}
 		TEST_METHOD(MesureTest1)
 		{
-			TraitementDonnees t = TraitementDonnees::GetInstance();
+			//TraitementDonnees t = TraitementDonnees::GetInstance();
 			collectionCapteurs capteurs;
-			TypeMesure t1("O3", "µg/m3", "concentration d'ozone");
+			/*TypeMesure t1("O3", "µg/m3", "concentration d'ozone");
 			TypeMesure t2("SO2", "µg/m3", "concentration de dioxyde de soufre");
 			TypeMesure t3("NO2", "µg/m3", "concentration de dioxyde d'azote");
 			TypeMesure t4("PM10", "µg/m3", "concentration de particules fines");
@@ -134,22 +133,22 @@ namespace UnitTest
 			typeMesures.push_back(t1);
 			typeMesures.push_back(t2);
 			typeMesures.push_back(t3);
-			typeMesures.push_back(t4);
+			typeMesures.push_back(t4);*/
 			Date dateDebut(2017, 1, 1, 0, 0, 0);
 			Date dateFin(2017, 12, 30, 23, 59, 59);
-			collectionMesures v = t.ParcoursMesures(capteurs, dateDebut,dateFin);
+			collectionMesures v = TraitementD.ParcoursMesures(capteurs, dateDebut,dateFin);
 			Assert::IsTrue(v.size() == 0);
 		}
 		TEST_METHOD(MesureTest2)
 		{
-			TraitementDonnees t = TraitementDonnees::GetInstance();
+			//TraitementDonnees t = TraitementDonnees::GetInstance();
 			collectionCapteurs capteurs;
-			multiset <Mesure> m;
-			Capteur c1(0, -19.4789835505555, -35.2425725968753,"",m);
-			Capteur c2(1, -38.3884286616875, -24.9593580676985,"",m);
-			Capteur c3(2, -44.5357010278551, -40.5272071485069,"",m);
-			Capteur c4(3, 18.9026808524051, -60.4696149986561,"",m);
-			Capteur c5(4, 11.9072994016611, 18.2016632092193,"",m);
+			//multiset <Mesure> m;
+			Capteur c1(0, -19.4789835505555, -35.2425725968753,"");
+			Capteur c2(1, -38.3884286616875, -24.9593580676985,"");
+			Capteur c3(2, -44.5357010278551, -40.5272071485069,"");
+			Capteur c4(3, 18.9026808524051, -60.4696149986561,"");
+			Capteur c5(4, 11.9072994016611, 18.2016632092193,"");
 			capteurs.push_back(c1);
 			capteurs.push_back(c2);
 			capteurs.push_back(c3);
@@ -158,25 +157,25 @@ namespace UnitTest
 			collectionTypesMesure typeMesures;
 			Date dateDebut(2017, 1, 1, 0, 0, 0);
 			Date dateFin(2017, 12, 30, 23, 59, 59);
-			collectionMesures v = t.ParcoursMesures(capteurs, dateDebut, dateFin);
+			collectionMesures v = TraitementD.ParcoursMesures(capteurs, dateDebut, dateFin);
 			Assert::IsTrue(v.size() == 0);
 		}
 		TEST_METHOD(MesureTest3)
 		{
-			TraitementDonnees t = TraitementDonnees::GetInstance();
+			//TraitementDonnees t = TraitementDonnees::GetInstance();
 			collectionCapteurs capteurs;
 			multiset <Mesure> m;
-			Capteur c1(0, -19.4789835505555, -35.2425725968753, "", m);
-			Capteur c2(1, -38.3884286616875, -24.9593580676985, "", m);
-			Capteur c3(2, -44.5357010278551, -40.5272071485069, "", m);
-			Capteur c4(3, 18.9026808524051, -60.4696149986561, "", m);
-			Capteur c5(4, 11.9072994016611, 18.2016632092193, "", m);
+			Capteur c1(0, -19.4789835505555, -35.2425725968753, "");
+			Capteur c2(1, -38.3884286616875, -24.9593580676985, "");
+			Capteur c3(2, -44.5357010278551, -40.5272071485069, "");
+			Capteur c4(3, 18.9026808524051, -60.4696149986561, "");
+			Capteur c5(4, 11.9072994016611, 18.2016632092193, "");
 			capteurs.push_back(c1);
 			capteurs.push_back(c2);
 			capteurs.push_back(c3);
 			capteurs.push_back(c4);
 			capteurs.push_back(c5);
-			TypeMesure t1("O3", "µg/m3", "concentration d'ozone");
+			/*TypeMesure t1("O3", "µg/m3", "concentration d'ozone");
 			TypeMesure t2("SO2", "µg/m3", "concentration de dioxyde de soufre");
 			TypeMesure t3("NO2", "µg/m3", "concentration de dioxyde d'azote");
 			TypeMesure t4("PM10", "µg/m3", "concentration de particules fines");
@@ -184,10 +183,10 @@ namespace UnitTest
 			typeMesures.push_back(t1);
 			typeMesures.push_back(t2);
 			typeMesures.push_back(t3);
-			typeMesures.push_back(t4);
+			typeMesures.push_back(t4);*/
 			Date dateFin(2017, 1, 1, 0, 0, 0);
 			Date dateDebut(2017, 12, 30, 23, 59, 59);
-			collectionMesures v = t.ParcoursMesures(capteurs, dateDebut, dateFin);
+			collectionMesures v = TraitementD.ParcoursMesures(capteurs, dateDebut, dateFin);
 			Assert::IsTrue(v.size() == 0);
 		}
 		/*TEST_METHOD(MesureTest3)

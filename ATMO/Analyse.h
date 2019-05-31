@@ -56,7 +56,7 @@ public:
 	static int qualiteAir(conteneurMoyMesures MoyMesures);
 	// Mode d'emploi :
 	// entrée : moyenne des mesures pour chaque type
-	// sortie : indice de qualité de l'air de 1 à 10  ou -1 si données incohérentes
+	// sortie : indice de qualit?de l'air de 1 ?10  ou -1 si données incohérentes
 	// on choisit le plus grand des sous - indices calculés pour le dioxyde de soufre, le dioxyde d'azote, l'ozone et les particules fines;
 	// Contrat :
 	// 

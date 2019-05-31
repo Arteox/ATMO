@@ -1,7 +1,14 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
-#include "string"
+#include <string>
+#include <vector>
+#include <set>
+#include "../ATMO/Mesure.h"
 #include "../ATMO/Capteur.h"
+#include "../ATMO/TypeMesure.h"
+#include "../ATMO/TraitementDonnees.h"
+#include "../ATMO/Date.h"
+#include <algorithm>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 

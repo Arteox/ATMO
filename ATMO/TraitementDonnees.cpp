@@ -41,7 +41,7 @@ const string TraitementDonnees::fichierMesures = "DonneesCSV\\MesuresSample.csv"
 
 collectionCapteurs TraitementDonnees::ParcoursCapteurs(double lat, double longi, double rayon)
 {
-	
+	//todo
 	return collectionCapteurs();
 }
 
@@ -50,7 +50,9 @@ collectionCapteurs TraitementDonnees::ParcoursCapteurs(double lat, double longi)
 	ifstream fic;
 	string lectLigne;
 	fic.open(fichierCapteurs);
+	collectionCapteurs capteurs;
 	if (fic) {
+		//todo: il manque la partie selection de capteurs.
 		for (lectLigne; getline(fic, lectLigne); ) {
 			istringstream iss(lectLigne);			
 			if (lectLigne != "SensorID;Latitude;Longitude;Description;"){
@@ -62,17 +64,22 @@ collectionCapteurs TraitementDonnees::ParcoursCapteurs(double lat, double longi)
 					attributs.push_back(attribut);
 				}
 				int sensorID = stoi(attributs[0]);
-				double lat = stod(attributs[1]);
-				double longi = stod(attributs[2]);
-				string description = attributs[3];
-				//Capteur c(sensorID, lat, longi, description);
+				cout << sensorID << endl;
+				double latRead = stod(attributs[1]);
+				double longiRead = stod(attributs[2]);
+				string descriptionRead = attributs[3];
+				if (latRead<lat + 0.0000005&&latRead>lat - 0.0000005&&longiRead < longi + 0.0000005&&longiRead>longi - 0.0000005) {
+					Capteur c(sensorID, lat, longi, descriptionRead);
+					capteurs.push_back(c);
+				}
+				
 				//donneesCapteurs.push_back(c);
 
 			}
 		}
 	}
 	fic.close();
-	return collectionCapteurs();
+	return capteurs;
 }
 
 void TraitementDonnees::lectureMesures()
