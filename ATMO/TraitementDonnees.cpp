@@ -73,6 +73,11 @@ collectionCapteurs TraitementDonnees::ParcoursCapteurs(double lat, double longi)
 	return collectionCapteurs();
 }
 
+collectionCapteurs TraitementDonnees::ParcoursCapteurs()
+{
+	return collectionCapteurs();
+}
+
 collectionMesures TraitementDonnees::ParcoursMesures(collectionCapteurs, Date horodateDeb, Date horodateFin)
 {
 	return collectionMesures();
