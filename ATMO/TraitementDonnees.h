@@ -64,9 +64,9 @@ protected:
 
 private:
 	//------------------------------------------------------- Méthodes privées
-	collectionTypesMesure lectureTypesMesure();
-	collectionMesures lectureMesures();
-	collectionCapteurs lectureCapteurs();
+	void lectureTypesMesure();
+	void lectureMesures();
+	void lectureCapteurs();
 
 protected:
 	//----------------------------------------------------- Attributs protégés

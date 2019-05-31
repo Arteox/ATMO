@@ -75,14 +75,13 @@ collectionCapteurs TraitementDonnees::ParcoursCapteurs(double lat, double longi)
 	return collectionCapteurs();
 }
 
-collectionMesures TraitementDonnees::lectureMesures()
+void TraitementDonnees::lectureMesures()
 {
-	cout << "lecture des mesure" << endl;
 	ifstream fic;
 	string lectLigne;
 
 	if (donneesTypesMesure.empty()) {
-		donneesTypesMesure = lectureTypesMesure();
+		lectureTypesMesure();
 	}
 
 	fic.open(fichierMesures);
@@ -101,6 +100,8 @@ collectionMesures TraitementDonnees::lectureMesures()
 					string date_brute = attributs[0];
 					Date date(date_brute);
 
+					int sensorID = stoi(attributs[1].substr(6, 1));
+
 					string type = attributs[2];
 					TypeMesure typeMesure;
 
@@ -114,7 +115,7 @@ collectionMesures TraitementDonnees::lectureMesures()
 
 					double valeur = stod(attributs[3]);
 
-					Mesure mesure(date, valeur, typeMesure);
+					Mesure mesure(date, valeur, typeMesure, sensorID);
 					donneesMesures.insert(mesure);
 				}
 			}
@@ -124,13 +125,58 @@ collectionMesures TraitementDonnees::lectureMesures()
 		}
 	}
 	fic.close();
-
-	return donneesMesures;
 }
 
-collectionCapteurs TraitementDonnees::lectureCapteurs()
+void TraitementDonnees::lectureCapteurs()
 {
-	return collectionCapteurs();
+	if (donneesMesures.empty()) {
+		lectureMesures();
+	}
+
+	ifstream fic;
+	string lectLigne;
+	fic.open(fichierCapteurs);
+	if (fic) {
+		for (lectLigne; getline(fic, lectLigne); ) {
+			istringstream iss(lectLigne);			
+			if (lectLigne != "SensorID;Latitude;Longitude;Description;"){
+				string attribut;
+				vector<string> attributs;
+				while (getline(iss, attribut, ';'))
+				{
+					attributs.push_back(attribut);
+				}
+				int sensorID = stoi(attributs[0].substr(6,1));
+
+				//6 chiffres apres la virgule pour les coordonnees GPS
+				size_t dot1 = attributs[1].find(".");
+				double lat = stod(attributs[1].substr(dot1,6));
+
+				size_t dot2 = attributs[2].find(".");
+				double longi = stod(attributs[2].substr(dot2,6));
+
+				string description = attributs[3];
+
+				//on ajoute les mesures après car sinon il faudrai parcourir toutes les mesures pour chaque capteur
+				Capteur c(sensorID, lat, longi, description);
+				donneesCapteurs.push_back(c);
+			}
+		}
+	}
+	fic.close();
+
+	//recherche des mesures associees au capteur
+	//on parcourt qu'une seule fois la liste des mesures mais plusieurs fois celles des capteurs
+	cout << "taille donneesMesure : " << donneesMesures.size() << endl;
+	for (collectionMesures::iterator itM = donneesMesures.begin(); itM != donneesMesures.end(); ++itM) {
+		for (collectionCapteurs::iterator itC = donneesCapteurs.begin(); itC != donneesCapteurs.end(); ++itC) {
+			if (itM->getSensorID() == itC->getId()) {
+				collectionMesures m = itC->getMesures();
+				m.insert(*itM);
+				itC->setMesures(m);
+			}
+		}
+	}
 }
 
 collectionCapteurs TraitementDonnees::ParcoursCapteurs()
@@ -143,9 +189,8 @@ collectionMesures TraitementDonnees::ParcoursMesures(collectionCapteurs, Date ho
 	return collectionMesures();
 }
 
-collectionTypesMesure TraitementDonnees::lectureTypesMesure()
+void TraitementDonnees::lectureTypesMesure()
 {
-	cout << "lecture des types de mesures" << endl;
 	ifstream fic;
 	string lectLigne;
 	fic.open(fichierTypesMesure);
@@ -171,8 +216,6 @@ collectionTypesMesure TraitementDonnees::lectureTypesMesure()
 		}
 	}
 	fic.close();
-
-	return donneesTypesMesure;
 }
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -188,6 +231,7 @@ TraitementDonnees::TraitementDonnees()
 {
 	lectureTypesMesure();
 	lectureMesures();
+	lectureCapteurs();
 
 }
 

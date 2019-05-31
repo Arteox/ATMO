@@ -34,6 +34,7 @@ public:
 	Date getDate() const;
 	double getValeur() const;
 	TypeMesure getTypeMesure() const;
+	int getSensorID() const;
 
 
 	//------------------------------------------------- Surcharge d'opérateurs
@@ -53,7 +54,7 @@ public:
 	// Contrat : Aucun
 	//
 
-	Mesure(Date horodate, double valeur, TypeMesure typeMesure);
+	Mesure(Date horodate, double valeur, TypeMesure typeMesure, int sensorID);
 	// Mode d'emploi :
 	//
 	// Contrat :
@@ -81,6 +82,7 @@ private:
 	Date horodate;
 	double valeur;
 	TypeMesure typeMesure;
+	int sensorID;
 	//---------------------------------------------------------- Classes amies
 
 	//-------------------------------------------------------- Classes privées

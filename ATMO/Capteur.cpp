@@ -52,6 +52,11 @@ collectionMesures Capteur::getMesures() const
 	return mesures;
 }
 
+void Capteur::setMesures(collectionMesures mesures)
+{
+	this->mesures = mesures;
+}
+
 //------------------------------------------------- Surcharge d'opérateurs
 Capteur & Capteur::operator=(const Capteur & unCapteur)
 {
@@ -63,10 +68,36 @@ Capteur & Capteur::operator=(const Capteur & unCapteur)
 	return *this;
 }
 
+ostream & operator<<(ostream & out, const Capteur & capteur)
+{
+	out << capteur.getId() << " " << capteur.getLat() << " " << capteur.getLong() << endl;
+	collectionMesures m = capteur.getMesures();
+
+	for (collectionMesures::iterator itM = m.begin(); itM != m.end(); ++itM) {
+		out << *itM << " ";
+	}
+	out << endl;
+
+	return out;
+}
+
 //-------------------------------------------- Constructeurs - destructeur
 
 Capteur::Capteur(const Capteur & unCapteur)
 {
+	this->ID = unCapteur.getId();
+	this->lat = unCapteur.getLat();
+	this->longi = unCapteur.getLong();
+	this->description = unCapteur.getDescription();
+	this->mesures = unCapteur.getMesures();
+}
+
+Capteur::Capteur(int ID, double lat, double longi, string description)
+{
+	this->ID = ID;
+	this->lat = lat;
+	this->longi = longi;
+	this->description = description;
 }
 
 Capteur::Capteur(int id, double lat, double longi, string description, collectionMesures mesures)

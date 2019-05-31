@@ -138,4 +138,3 @@ private:
 //----------------------------------------- Types dépendants de <Parseur>
 
 #endif //_Parseur_H
-
