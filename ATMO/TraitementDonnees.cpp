@@ -167,7 +167,6 @@ void TraitementDonnees::lectureCapteurs()
 
 	//recherche des mesures associees au capteur
 	//on parcourt qu'une seule fois la liste des mesures mais plusieurs fois celles des capteurs
-	cout << "taille donneesMesure : " << donneesMesures.size() << endl;
 	for (collectionMesures::iterator itM = donneesMesures.begin(); itM != donneesMesures.end(); ++itM) {
 		for (collectionCapteurs::iterator itC = donneesCapteurs.begin(); itC != donneesCapteurs.end(); ++itC) {
 			if (itM->getSensorID() == itC->getId()) {
@@ -184,9 +183,31 @@ collectionCapteurs TraitementDonnees::ParcoursCapteurs()
 	return donneesCapteurs;
 }
 
-collectionMesures TraitementDonnees::ParcoursMesures(collectionCapteurs, Date horodateDeb, Date horodateFin)
+collectionMesures TraitementDonnees::ParcoursMesures(collectionCapteurs capteurs, Date horodateDeb, Date horodateFin)
+//Les mesures doivent appartenir aux capteurs en paramètre, et être réalisées entre les 2 dates indiquées, borne supérieure excluse
 {
-	return collectionMesures();
+	collectionMesures mesuresFiltrees;
+
+	for (collectionCapteurs::iterator itC = capteurs.begin(); itC != capteurs.end(); ++itC) {
+		collectionMesures mesuresCapteur = itC->getMesures();
+		for (collectionMesures::iterator it = mesuresCapteur.begin(); it != mesuresCapteur.end(); ++it) {
+			if ((!(it->getDate() < horodateDeb)) && it->getDate() < horodateFin) {
+				mesuresFiltrees.insert(*it);
+			}
+		}
+	}
+
+	return mesuresFiltrees;
+}
+
+collectionMesures TraitementDonnees::ParcoursMesures()
+{
+	return donneesMesures;
+}
+
+collectionTypesMesure TraitementDonnees::ParcoursTypeeMesure()
+{
+	return donneesTypesMesure;
 }
 
 void TraitementDonnees::lectureTypesMesure()
@@ -232,7 +253,6 @@ TraitementDonnees::TraitementDonnees()
 	lectureTypesMesure();
 	lectureMesures();
 	lectureCapteurs();
-
 }
 
 TraitementDonnees::~TraitementDonnees()

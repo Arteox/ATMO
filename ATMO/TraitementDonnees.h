@@ -46,7 +46,11 @@ public:
 	
 	collectionCapteurs ParcoursCapteurs(); // tous les capteurs (pour le comportement similaire)
 
-	collectionMesures ParcoursMesures(collectionCapteurs, Date horodateDeb, Date horodateFin);
+	collectionMesures ParcoursMesures(collectionCapteurs capteurs, Date horodateDeb, Date horodateFin);
+	
+	collectionMesures ParcoursMesures();
+
+	collectionTypesMesure ParcoursTypeeMesure();
 
 	
 

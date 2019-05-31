@@ -64,6 +64,8 @@ public:
 	//------------------------------------------------- Surcharge d'opérateurs
 	bool operator < (const Date & unDate);
 
+	bool operator == (const Date & unDate);
+
 	Date & operator = (const Date & unDate);
 	// Mode d'emploi :
 	// RAS
