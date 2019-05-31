@@ -1,62 +1,51 @@
 /*************************************************************************
-TraitementDonnees  -  description
+Zone  -  description
 -------------------
 début                : 07/05/2019
 copyright            : (C) 2019 par Mengxing ZHANG, Louis UNG, Fabien GELUS et Baptiste PAULETTO
 *************************************************************************/
 
-//---------- Interface de la classe <TraitementDonnees> (fichier TraitementDonnees.h) ------
-#ifndef _TraitementDonnees_H
-#define _TraitementDonnees_H
+//---------- Interface de la classe <Zone> (fichier Zone.h) ------
+#ifndef _ZONE_H
+#define _ZONE_H
 
 //--------------------------------------------------- Interfaces utilisées
-#include <string>
-#include <vector>
-#include <set>
-#include "Mesure.h"
-#include "Capteur.h"
-#include "TypeMesure.h"
 
 //------------------------------------------------------------- Constantes 
-#define TraitementD TraitementDonnees::GetInstance()
 
 //------------------------------------------------------------------ Types 
-
-
 //------------------------------------------------------------------------ 
-// Rôle de la classe <TraitementDonnees>
+// Rôle de la classe <Zone>
 //
 //
 //------------------------------------------------------------------------ 
-class TraitementDonnees
+class Zone
 {
 	//----------------------------------------------------------------- PUBLIC
 public:
-
-	static TraitementDonnees & GetInstance()
-	{
-		static TraitementDonnees instance;
-		return instance;
-	}
-
 	//----------------------------------------------------- Méthodes publiques
-	collectionCapteurs ParcoursCapteurs(double lat, double longi, double rayon);
 
-	collectionCapteurs ParcoursCapteurs(double lat, double longi);
-	
-	collectionCapteurs ParcoursCapteurs(); // tous les capteurs (pour le comportement similaire)
 
-	collectionMesures ParcoursMesures(collectionCapteurs capteurs, Date horodateDeb, Date horodateFin);
-	
-	collectionMesures ParcoursMesures();
-
-	collectionTypesMesure ParcoursTypeeMesure();
-
-	
+	//------------------------------------------------- Surcharge d'opérateurs
+	// Mode d'emploi :
+	// RAS
+	// Contrat : Aucun
+	//
 
 	//-------------------------------------------- Constructeurs - destructeur
+	Zone(const Zone & unZone);
+	// Mode d'emploi (constructeur de copie) :
+	// RAS
+	// Contrat : Aucun
+	//
 
-	virtual ~TraitementDonnees();
+	Zone();
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
+
+	virtual ~Zone();
 	// Mode d'emploi : RAS, contenu vide
 	//
 	// Contrat : Aucun
@@ -68,30 +57,13 @@ protected:
 
 private:
 	//------------------------------------------------------- Méthodes privées
-	void lectureTypesMesure();
-	void lectureMesures();
-	void lectureCapteurs();
 
 protected:
 	//----------------------------------------------------- Attributs protégés
 
 private:
-	//constructeur mis ici pour interdire la creation d'un autre constructeur hormis le singleton
-	TraitementDonnees();
-	// Mode d'emploi :
-	//
-	// Contrat :
-	//
-
-	TraitementDonnees(const TraitementDonnees &);              
-
 	//------------------------------------------------------- Attributs privés
-	static const string fichierTypesMesure;
-	static const string fichierCapteurs;
-	static const string fichierMesures;
-	collectionCapteurs donneesCapteurs;
-	collectionTypesMesure donneesTypesMesure;
-	collectionMesures donneesMesures;
+
 	//---------------------------------------------------------- Classes amies
 
 	//-------------------------------------------------------- Classes privées
@@ -99,6 +71,6 @@ private:
 	//----------------------------------------------------------- Types privés
 };
 
-//----------------------------------------- Types dépendants de <TraitementDonnees>
+//----------------------------------------- Types dépendants de <Zone>
 
-#endif //_TraitementDonnees_H
+#endif //_ZONE_H

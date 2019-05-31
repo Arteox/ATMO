@@ -94,6 +94,36 @@ bool Date::operator<(const Date & unDate)
 	}
 }
 
+bool Date::operator==(const Date & unDate)
+{
+	if (annee != unDate.getAnnee()) {
+		return false;
+	}
+	else {
+		if (mois != unDate.getMois()) {
+			return false;
+		}
+		else {
+			if (jour != unDate.getJour()) {
+				return false;
+			}
+			else {
+				if (heure != unDate.getHeure()) {
+					return false;
+				}
+				else {
+					if (min != unDate.getMin()) {
+						return false;
+					}
+					else {
+						return (sec == unDate.getSec());
+					}
+				}
+			}
+		}
+	}
+}
+
 //------------------------------------------------- Surcharge d'opérateurs
 Date & Date::operator = (const Date & unDate)
 // Algorithme :
