@@ -13,6 +13,7 @@
 #include <map>
 #include <vector>
 #include <string>
+
 #include "TypeMesure.h"
 #include "Capteur.h"
 #include "Date.h"
@@ -50,7 +51,7 @@ public:
 	//
 	static collectionCapteurs dysfonctionnement(Date horodateDeb, Date horodateFin);
 
-	static conteneurMoyMesures caracteristiquesPoint(double long, double lat, Date horodateDeb, Date horodateFin);
+	static conteneurMoyMesures caracteristiquesPoint(double longi, double lat, Date horodateDeb, Date horodateFin);
 
 	static int qualiteAir(conteneurMoyMesures MoyMesures);
 	// Mode d'emploi :
