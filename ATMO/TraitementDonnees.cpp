@@ -14,21 +14,23 @@ copyright            : (C) ${year} par ${user}
 using namespace std;
 #include <locale>
 #include <codecvt>
+#include <fstream>
+#include <sstream>
+#include <vector>
+#include <algorithm>
+#include <set>
 
 //------------------------------------------------------ Include personnel
 #include "TraitementDonnees.h"
 #include "Capteur.h"
 #include "Mesure.h"
 #include "TypeMesure.h"
-#include <fstream>
-#include <sstream>
-#include <vector>
 //------------------------------------------------------------- Constantes
 
 //---------------------------------------------------- Variables de classe
-const string TraitementDonnees::FichierCapteurs = "DonneesCSV\\Sensors.csv";
-const string TraitementDonnees::FichierTypesMesure = "DonneesCSV\\AttributeType.csv";
-const string TraitementDonnees::FichierMesures = "DonneesCSV\\MesuresSample.csv";
+const string TraitementDonnees::fichierCapteurs = "DonneesCSV\\Sensors.csv";
+const string TraitementDonnees::fichierTypesMesure = "DonneesCSV\\AttributeType.csv";
+const string TraitementDonnees::fichierMesures = "DonneesCSV\\MesuresSample.csv";
 //----------------------------------------------------------- Types privés
 
 
@@ -47,7 +49,7 @@ collectionCapteurs TraitementDonnees::ParcoursCapteurs(double lat, double longi)
 {
 	ifstream fic;
 	string lectLigne;
-	fic.open(FichierCapteurs);
+	fic.open(fichierCapteurs);
 	if (fic) {
 		for (lectLigne; getline(fic, lectLigne); ) {
 			istringstream iss(lectLigne);			
@@ -73,9 +75,67 @@ collectionCapteurs TraitementDonnees::ParcoursCapteurs(double lat, double longi)
 	return collectionCapteurs();
 }
 
-collectionCapteurs TraitementDonnees::ParcoursCapteurs()
+collectionMesures TraitementDonnees::lectureMesures()
+{
+	cout << "lecture des mesure" << endl;
+	ifstream fic;
+	string lectLigne;
+
+	if (donneesTypesMesure.empty()) {
+		donneesTypesMesure = lectureTypesMesure();
+	}
+
+	fic.open(fichierMesures);
+	if (fic) {
+		for (lectLigne; getline(fic, lectLigne); ) {
+			istringstream iss(lectLigne);
+			try {
+				if (lectLigne != "Timestamp;SensorID;AttributeID;Value;") {
+					string attribut;
+					vector<string> attributs;
+					while (getline(iss, attribut, ';'))
+					{
+						attributs.push_back(attribut);
+					}
+
+					string date_brute = attributs[0];
+					Date date(date_brute);
+
+					string type = attributs[2];
+					TypeMesure typeMesure;
+
+					collectionTypesMesure::iterator it;
+					for (it = donneesTypesMesure.begin(); it != donneesTypesMesure.end(); ++it) {
+						if (it->getAttributeId() == type) {
+							typeMesure = *it;
+							break;
+						}
+					}
+
+					double valeur = stod(attributs[3]);
+
+					Mesure mesure(date, valeur, typeMesure);
+					donneesMesures.insert(mesure);
+				}
+			}
+			catch (const exception& e) {
+				cerr << "out of memory maybe" << endl;
+			}
+		}
+	}
+	fic.close();
+
+	return donneesMesures;
+}
+
+collectionCapteurs TraitementDonnees::lectureCapteurs()
 {
 	return collectionCapteurs();
+}
+
+collectionCapteurs TraitementDonnees::ParcoursCapteurs()
+{
+	return donneesCapteurs;
 }
 
 collectionMesures TraitementDonnees::ParcoursMesures(collectionCapteurs, Date horodateDeb, Date horodateFin)
@@ -83,11 +143,12 @@ collectionMesures TraitementDonnees::ParcoursMesures(collectionCapteurs, Date ho
 	return collectionMesures();
 }
 
-collectionTypesMesure TraitementDonnees::ParcoursTypesMesure()
+collectionTypesMesure TraitementDonnees::lectureTypesMesure()
 {
+	cout << "lecture des types de mesures" << endl;
 	ifstream fic;
 	string lectLigne;
-	fic.open(FichierTypesMesure);
+	fic.open(fichierTypesMesure);
 	if (fic) {
 		for (lectLigne; getline(fic, lectLigne); ) {
 			istringstream iss(lectLigne);
@@ -123,15 +184,19 @@ TraitementDonnees::TraitementDonnees(const TraitementDonnees & unTraitementDonne
 
 }
 
+TraitementDonnees::TraitementDonnees()
+{
+	lectureTypesMesure();
+	lectureMesures();
+
+}
+
 TraitementDonnees::~TraitementDonnees()
 {
 }
 
 //------------------------------------------------------------------ PRIVE
-TraitementDonnees::TraitementDonnees()
-{
-	
-}
+
 
 //----------------------------------------------------- Méthodes protégées
 

@@ -30,38 +30,40 @@ class Date
 public:
 	//----------------------------------------------------- Méthodes publiques
 
-	int GetHeure() const;
+	int getHeure() const;
 	// Mode d'emploi : 
 	// Renvoie l'attribut protégé heure
 	// Contrat : Aucun
 
-	int GetMin() const;
+	int getMin() const;
 	// Mode d'emploi : 
 	// Renvoie l'attribut protégé min
 	// Contrat : Aucun
 
-	int GetSec() const;
+	int getSec() const;
 	// Mode d'emploi : 
 	// Renvoie l'attribut protégé sec
 	// Contrat : Aucun
 
-	int GetJour() const;
+	int getJour() const;
 	// Mode d'emploi : 
 	// Renvoie l'attribut protégé jour
 	// Contrat : Aucun
 
-	int GetMois() const;
+	int getMois() const;
 	// Mode d'emploi : 
 	// Renvoie l'attribut protégé mois
 	// Contrat : Aucun
 
-	int GetAnnee() const;
+	int getAnnee() const;
 	// Mode d'emploi : 
 	// Renvoie l'attribut protégé annee
 	// Contrat : Aucun
 
 
 	//------------------------------------------------- Surcharge d'opérateurs
+	bool operator < (const Date & unDate);
+
 	Date & operator = (const Date & unDate);
 	// Mode d'emploi :
 	// RAS
@@ -77,6 +79,8 @@ public:
 	//
 
 	Date(const int& annee, const int& mois, const int& jour, const int& heure, const int& min, const int& sec);
+
+	Date(string date_brute);
 
 	Date();
 	// Mode d'emploi : Constructeur sans paramètres, contenu vide

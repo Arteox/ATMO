@@ -21,10 +21,7 @@ copyright            : (C) 2019 par Mengxing ZHANG, Louis UNG, Fabien GELUS et B
 #define TraitementD TraitementDonnees::GetInstance()
 
 //------------------------------------------------------------------ Types 
-typedef vector<vector<Capteur>> doubleCollectionCapteurs;
-typedef vector<Capteur> collectionCapteurs;
-typedef vector<TypeMesure> collectionTypesMesure;
-typedef multiset<Mesure, compareMesure> collectionMesures;
+
 
 //------------------------------------------------------------------------ 
 // Rôle de la classe <TraitementDonnees>
@@ -46,21 +43,14 @@ public:
 	collectionCapteurs ParcoursCapteurs(double lat, double longi, double rayon);
 
 	collectionCapteurs ParcoursCapteurs(double lat, double longi);
-
+	
 	collectionCapteurs ParcoursCapteurs(); // tous les capteurs (pour le comportement similaire)
 
 	collectionMesures ParcoursMesures(collectionCapteurs, Date horodateDeb, Date horodateFin);
 
-	collectionTypesMesure ParcoursTypesMesure();
+	
 
 	//-------------------------------------------- Constructeurs - destructeur
-	TraitementDonnees(const TraitementDonnees & unTraitementDonnees);
-	// Mode d'emploi (constructeur de copie) :
-	// RAS
-	// Contrat : Aucun
-	//
-
-	
 
 	virtual ~TraitementDonnees();
 	// Mode d'emploi : RAS, contenu vide
@@ -74,6 +64,9 @@ protected:
 
 private:
 	//------------------------------------------------------- Méthodes privées
+	collectionTypesMesure lectureTypesMesure();
+	collectionMesures lectureMesures();
+	collectionCapteurs lectureCapteurs();
 
 protected:
 	//----------------------------------------------------- Attributs protégés
@@ -86,10 +79,12 @@ private:
 	// Contrat :
 	//
 
+	TraitementDonnees(const TraitementDonnees &);              
+
 	//------------------------------------------------------- Attributs privés
-	static const string FichierTypesMesure;
-	static const string FichierCapteurs;
-	static const string FichierMesures;
+	static const string fichierTypesMesure;
+	static const string fichierCapteurs;
+	static const string fichierMesures;
 	collectionCapteurs donneesCapteurs;
 	collectionTypesMesure donneesTypesMesure;
 	collectionMesures donneesMesures;
