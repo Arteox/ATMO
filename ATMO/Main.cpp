@@ -30,10 +30,11 @@ using namespace std;
 
 int main() {
 	cout << "hello" << endl;
-	collectionMesures donneesMesures = TraitementD.lectureMesures();
+	TraitementD;
+	/*collectionMesures donneesMesures = TraitementD.lectureMesures();
 	for (collectionMesures::iterator it = donneesMesures.begin(); it != donneesMesures.end(); ++it) {
 		cout << *it << endl;
-	}
+	}*/
 
 	/*collectionTypesMesure typeMesures =TraitementD.lectureTypesMesure();
 	for (collectionTypesMesure::iterator it = typeMesures.begin(); it != typeMesures.end(); ++it) {

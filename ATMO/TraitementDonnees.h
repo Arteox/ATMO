@@ -43,14 +43,12 @@ public:
 	collectionCapteurs ParcoursCapteurs(double lat, double longi, double rayon);
 
 	collectionCapteurs ParcoursCapteurs(double lat, double longi);
-
-	collectionMesures lectureMesures();
-
+	
 	collectionCapteurs ParcoursCapteurs(); // tous les capteurs (pour le comportement similaire)
 
 	collectionMesures ParcoursMesures(collectionCapteurs, Date horodateDeb, Date horodateFin);
 
-	collectionTypesMesure lectureTypesMesure();
+	
 
 	//-------------------------------------------- Constructeurs - destructeur
 
@@ -66,6 +64,9 @@ protected:
 
 private:
 	//------------------------------------------------------- Méthodes privées
+	collectionTypesMesure lectureTypesMesure();
+	collectionMesures lectureMesures();
+	collectionCapteurs lectureCapteurs();
 
 protected:
 	//----------------------------------------------------- Attributs protégés

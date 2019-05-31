@@ -77,6 +77,7 @@ collectionCapteurs TraitementDonnees::ParcoursCapteurs(double lat, double longi)
 
 collectionMesures TraitementDonnees::lectureMesures()
 {
+	cout << "lecture des mesure" << endl;
 	ifstream fic;
 	string lectLigne;
 
@@ -127,6 +128,11 @@ collectionMesures TraitementDonnees::lectureMesures()
 	return donneesMesures;
 }
 
+collectionCapteurs TraitementDonnees::lectureCapteurs()
+{
+	return collectionCapteurs();
+}
+
 collectionCapteurs TraitementDonnees::ParcoursCapteurs()
 {
 	return donneesCapteurs;
@@ -139,6 +145,7 @@ collectionMesures TraitementDonnees::ParcoursMesures(collectionCapteurs, Date ho
 
 collectionTypesMesure TraitementDonnees::lectureTypesMesure()
 {
+	cout << "lecture des types de mesures" << endl;
 	ifstream fic;
 	string lectLigne;
 	fic.open(fichierTypesMesure);
@@ -177,15 +184,19 @@ TraitementDonnees::TraitementDonnees(const TraitementDonnees & unTraitementDonne
 
 }
 
+TraitementDonnees::TraitementDonnees()
+{
+	lectureTypesMesure();
+	lectureMesures();
+
+}
+
 TraitementDonnees::~TraitementDonnees()
 {
 }
 
 //------------------------------------------------------------------ PRIVE
-TraitementDonnees::TraitementDonnees()
-{
-	
-}
+
 
 //----------------------------------------------------- Méthodes protégées
 
