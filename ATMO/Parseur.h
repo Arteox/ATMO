@@ -16,7 +16,8 @@ using namespace std;
 
 
 //------------------------------------------------------------- Constantes 
-
+enum Commandes {qm, sim, dysfonc, carac, help, commandeInvalide = -1};
+enum Options { d, optionAbsente = -2, optionInvalide = -1 };
 //------------------------------------------------------------------ Types 
 
 //------------------------------------------------------------------------ 
@@ -106,6 +107,30 @@ private:
 	// Mode d'emploi : Cette méthode permet de savoir si la commande
 	// passée en paramètre admet des options ou non.
 	// string & commande : nom de la commande tapée par l'utilisateur.
+	// Contrat : Aucun
+	//
+
+	bool verificationParametre(string & parametre);
+	// Mode d'emploi : Cette méthode est uniquement destinée à la 
+	// gestion des erreurs, pour un paramètre donné, elle vérifie qu'il
+	// n'est pas vide et adapte un comportement en conséquence.
+	// string & parametre : paramètre tapé par l'utilisateur.
+	// Contrat : Aucun
+	//
+
+	Commandes trouverCommande(string & commande);
+	// Mode d'emploi : Cette méthode est uniquement utlisée dans la méthode
+	// AttributionCommande pour avoir un comportement des plus maintenables
+	// possibles, elle permet simplement d'associer une des valeurs de l'énum
+	// à sa valeur en chaîne de caractères.
+	// Contrat : Aucun
+	//
+
+	Options trouverOption(string & option);
+	// Mode d'emploi : Dans le même but que la précédente méthode, cette méthode
+	// est uniquement utlisée dans la méthode AttributionOption pour avoir un
+	// comportement des plus maintenables possibles, elle permet simplement 
+	// d'associer une des valeurs de l'énum à sa valeur en chaîne de caractères.
 	// Contrat : Aucun
 	//
 };
