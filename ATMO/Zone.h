@@ -24,7 +24,7 @@ class Zone
 	//----------------------------------------------------------------- PUBLIC
 public:
 	//----------------------------------------------------- Méthodes publiques
-
+	bool estDansZone(double lat, double longi);
 
 	//------------------------------------------------- Surcharge d'opérateurs
 	// Mode d'emploi :
@@ -39,7 +39,7 @@ public:
 	// Contrat : Aucun
 	//
 
-	Zone();
+	Zone(double lat, double longi, int rayon);
 	// Mode d'emploi :
 	//
 	// Contrat :
@@ -63,7 +63,10 @@ protected:
 
 private:
 	//------------------------------------------------------- Attributs privés
-
+	int id;
+	double latCentre;
+	double longCentre;
+	int rayon;
 	//---------------------------------------------------------- Classes amies
 
 	//-------------------------------------------------------- Classes privées

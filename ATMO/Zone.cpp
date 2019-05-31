@@ -15,6 +15,7 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Zone.h"
+#include "CoordonneesGPS.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -34,13 +35,23 @@ using namespace std;
 
 //-------------------------------------------- Constructeurs - destructeur
 
+bool Zone::estDansZone(double lat, double longi)
+{
+	CoordonneesGPS cGPS;
+	double distance = cGPS.distanceEnKmEntreDeuxPoints(this->latCentre, this->longCentre, lat, longi);
+	//cout << "distance : " << distance << endl;
+	return distance < (double)rayon;
+}
+
 Zone::Zone(const Zone & unZone)
 {
 }
 
-Zone::Zone()
+Zone::Zone(double lat, double longi, int rayon)
 {
-
+	this->latCentre = lat;
+	this->longCentre = longi;
+	this->rayon = rayon;
 }
 
 

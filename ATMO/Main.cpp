@@ -17,6 +17,7 @@ using namespace std;
 #include "TraitementDonnees.h"
 #include "Date.h"
 #include "Capteur.h"
+#include "Zone.h"
 #include "CoordonneesGPS.h"
 #include <vector>
 //------------------------------------------------------------- Constantes
@@ -35,9 +36,12 @@ int main() {
 	cout << "hello" << endl;
 
 	//TraitementD;
+	Zone z(45.746857, 4.827419, 5);
+	cout << z.estDansZone(45.769923, 4.880584) << endl;
 
-	CoordonneesGPS cGPS;
-	cout << cGPS.distanceEnKmEntreDeuxPoints(-19.4789835505555, -35.2425725968753, -38.3884286616875, -24.9593580676985) << endl;
+	//TEST calcul distance GPS
+	//CoordonneesGPS cGPS;
+	//cout << cGPS.distanceEnKmEntreDeuxPoints(-19.4789835505555, -35.2425725968753, -38.3884286616875, -24.9593580676985) << endl;
 
 	//TEST ParcoursMesures avec parametres
 	/*
