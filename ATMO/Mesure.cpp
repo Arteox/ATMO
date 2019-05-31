@@ -44,6 +44,11 @@ TypeMesure Mesure::getTypeMesure() const
 	return typeMesure;
 }
 
+int Mesure::getSensorID() const
+{
+	return sensorID;
+}
+
 
 bool Mesure::operator<(const Mesure & unMesure)
 {
@@ -55,13 +60,14 @@ Mesure & Mesure::operator=(const Mesure & unMesure)
 	this->horodate = unMesure.getDate();
 	this->valeur = unMesure.getValeur();
 	this->typeMesure = unMesure.getTypeMesure();
+	this->sensorID = unMesure.getSensorID();
 	return *this;
 }
 
 //------------------------------------------------- Surcharge d'opérateurs
 ostream & operator << (ostream &out, const Mesure &mesure)
 {
-	out << mesure.getTypeMesure().getAttributeId() << " " << mesure.getValeur() << " "<< mesure.getDate() << endl;
+	out << mesure.getTypeMesure().getAttributeId() << " " << mesure.getValeur() << " "<< mesure.getDate() << " " << mesure.getSensorID() << endl;
 	return out;
 }
 //-------------------------------------------- Constructeurs - destructeur
@@ -71,13 +77,15 @@ Mesure::Mesure(const Mesure & unMesure)
 	this->horodate = unMesure.getDate();
 	this->valeur = unMesure.getValeur();
 	this->typeMesure = unMesure.getTypeMesure();
+	this->sensorID = unMesure.getSensorID();
 }
 
-Mesure::Mesure(Date horodate, double valeur, TypeMesure typeMesure)
+Mesure::Mesure(Date horodate, double valeur, TypeMesure typeMesure, int sensorID)
 {
 	this->horodate = horodate;
 	this->valeur = valeur;
 	this->typeMesure = typeMesure;
+	this->sensorID = sensorID;
 }
 
 Mesure::~Mesure()

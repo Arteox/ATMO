@@ -111,7 +111,7 @@ Date & Date::operator = (const Date & unDate)
 ostream & operator << (ostream &out, const Date &date)
 {
 	out << date.getAnnee() << '-' << date.getMois() << '-' << date.getJour() << " ";
-	out << date.getHeure() << ':' << date.getMin() << ':' << date.getSec() << endl;
+	out << date.getHeure() << ':' << date.getMin() << ':' << date.getSec();
 	return out;
 }
 //-------------------------------------------- Constructeurs - destructeur

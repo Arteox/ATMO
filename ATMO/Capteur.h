@@ -35,6 +35,8 @@ public:
 	double getLong() const;
 	string getDescription() const;
 	collectionMesures getMesures() const;
+	
+	void setMesures(collectionMesures mesures);
 
 	//------------------------------------------------- Surcharge d'opérateurs
 	Capteur & operator = (const Capteur & unCapteur);
@@ -42,11 +44,19 @@ public:
 	// RAS
 	// Contrat : Aucun
 	//
+
+	friend ostream & operator << (ostream &out, const Capteur &capteur);
 	//-------------------------------------------- Constructeurs - destructeur
 	Capteur(const Capteur & unCapteur);
 	// Mode d'emploi (constructeur de copie) :
 	// RAS
 	// Contrat : Aucun
+	//
+
+	Capteur(int ID, double lat, double longi, string description);
+	// Mode d'emploi :
+	//
+	// Contrat :
 	//
 
 	Capteur(int ID, double lat, double longi, string description, collectionMesures mesures);
