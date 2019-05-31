@@ -45,6 +45,7 @@ public:
 	collectionCapteurs ParcoursCapteurs(double lat, double longi);
 
 	collectionMesures lectureMesures();
+
 	collectionCapteurs ParcoursCapteurs(); // tous les capteurs (pour le comportement similaire)
 
 	collectionMesures ParcoursMesures(collectionCapteurs, Date horodateDeb, Date horodateFin);
@@ -52,13 +53,6 @@ public:
 	collectionTypesMesure lectureTypesMesure();
 
 	//-------------------------------------------- Constructeurs - destructeur
-	TraitementDonnees(const TraitementDonnees & unTraitementDonnees);
-	// Mode d'emploi (constructeur de copie) :
-	// RAS
-	// Contrat : Aucun
-	//
-
-	
 
 	virtual ~TraitementDonnees();
 	// Mode d'emploi : RAS, contenu vide
@@ -83,6 +77,8 @@ private:
 	//
 	// Contrat :
 	//
+
+	TraitementDonnees(const TraitementDonnees &);              
 
 	//------------------------------------------------------- Attributs privés
 	static const string fichierTypesMesure;

@@ -129,7 +129,7 @@ collectionMesures TraitementDonnees::lectureMesures()
 
 collectionCapteurs TraitementDonnees::ParcoursCapteurs()
 {
-	return collectionCapteurs();
+	return donneesCapteurs;
 }
 
 collectionMesures TraitementDonnees::ParcoursMesures(collectionCapteurs, Date horodateDeb, Date horodateFin)
