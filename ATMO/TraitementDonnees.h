@@ -45,6 +45,7 @@ public:
 	collectionCapteurs ParcoursCapteurs(double lat, double longi);
 
 	collectionMesures lectureMesures();
+	collectionCapteurs ParcoursCapteurs(); // tous les capteurs (pour le comportement similaire)
 
 	collectionMesures ParcoursMesures(collectionCapteurs, Date horodateDeb, Date horodateFin);
 

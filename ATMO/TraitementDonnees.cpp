@@ -79,7 +79,7 @@ collectionMesures TraitementDonnees::lectureMesures()
 {
 	ifstream fic;
 	string lectLigne;
-	
+
 	if (donneesTypesMesure.empty()) {
 		donneesTypesMesure = lectureTypesMesure();
 	}
@@ -115,7 +115,6 @@ collectionMesures TraitementDonnees::lectureMesures()
 
 					Mesure mesure(date, valeur, typeMesure);
 					donneesMesures.insert(mesure);
-					//donneesMesures.push_back(mesure);
 				}
 			}
 			catch (const exception& e) {
@@ -125,8 +124,12 @@ collectionMesures TraitementDonnees::lectureMesures()
 	}
 	fic.close();
 
-	//sort(donneesMesures.begin(), donneesMesures.end());
 	return donneesMesures;
+}
+
+collectionCapteurs TraitementDonnees::ParcoursCapteurs()
+{
+	return collectionCapteurs();
 }
 
 collectionMesures TraitementDonnees::ParcoursMesures(collectionCapteurs, Date horodateDeb, Date horodateFin)

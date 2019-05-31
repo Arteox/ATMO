@@ -12,15 +12,19 @@
 //--------------------------------------------------- Interfaces utilisées
 #include <map>
 #include <vector>
+#include <string>
 #include "TypeMesure.h"
 #include "Capteur.h"
 #include "Date.h"
+
 //------------------------------------------------------------- Constantes 
 
 //------------------------------------------------------------------ Types 
 typedef vector<vector<Capteur>> doubleCollectionCapteurs;
 typedef vector<Capteur> collectionCapteurs;
-typedef std::map<TypeMesure, double> conteneurMoyMesures;
+typedef std::map<string, double> conteneurMoyMesures; // string = TypeMesure.getAttributeId()
+typedef std::pair<string, double> paireMoyMesures;
+
 //------------------------------------------------------------------------ 
 // Rôle de la classe <Analyse>
 //
@@ -49,7 +53,12 @@ public:
 	static conteneurMoyMesures caracteristiquesPoint(double long, double lat, Date horodateDeb, Date horodateFin);
 
 	static int qualiteAir(conteneurMoyMesures MoyMesures);
-
+	// Mode d'emploi :
+	// entrée : moyenne des mesures pour chaque type
+	// sortie : indice de qualité de l'air de 1 à 10  ou -1 si données incohérentes
+	// on choisit le plus grand des sous - indices calculés pour le dioxyde de soufre, le dioxyde d'azote, l'ozone et les particules fines;
+	// Contrat :
+	// 
 
 	//------------------------------------------------------------------ PRIVE 
 
