@@ -17,10 +17,10 @@ namespace UnitTest
 	TEST_CLASS(RecupereationDesDonnees)
 	{
 	public:
-		bool TypeMesureSort(TypeMesure& t1, TypeMesure& t2) {
-			return t1.getId() > t2.getId();
+		static bool TypeMesureSort(TypeMesure& t1, TypeMesure& t2) {
+			return t1.getAttributeId().compare(t2.getAttributeId());
 		}
-		bool CapteurSort(Capteur& c1, Capteur& c2) {
+		static bool CapteurSort(Capteur& c1, Capteur& c2) {
 			return c1.getId() > c2.getId();
 		}
 		TEST_METHOD(TypeMesureTest) 
@@ -43,7 +43,7 @@ namespace UnitTest
 			std::sort(v2.begin(), v2.end(), TypeMesureSort);
 			int size = v1.size();
 			for (int i = 0; i < size; i++) {
-				Assert::IsTrue(v1[i].getId() == v2[i].getId());
+				Assert::AreEqual(v1[i].getAttributeId(), v2[i].getAttributeId());
 			}
 
 		}
@@ -137,7 +137,7 @@ namespace UnitTest
 			typeMesures.push_back(t4);
 			Date dateDebut(2017, 1, 1, 0, 0, 0);
 			Date dateFin(2017, 12, 30, 23, 59, 59);
-			collectionMesures v = t.ParcoursMesures(capteurs, typeMesures, dateDebut,dateFin);
+			collectionMesures v = t.ParcoursMesures(capteurs, dateDebut,dateFin);
 			Assert::IsTrue(v.size() == 0);
 		}
 		TEST_METHOD(MesureTest2)
@@ -158,7 +158,7 @@ namespace UnitTest
 			collectionTypesMesure typeMesures;
 			Date dateDebut(2017, 1, 1, 0, 0, 0);
 			Date dateFin(2017, 12, 30, 23, 59, 59);
-			collectionMesures v = t.ParcoursMesures(capteurs, typeMesures, dateDebut, dateFin);
+			collectionMesures v = t.ParcoursMesures(capteurs, dateDebut, dateFin);
 			Assert::IsTrue(v.size() == 0);
 		}
 		TEST_METHOD(MesureTest3)
@@ -187,7 +187,7 @@ namespace UnitTest
 			typeMesures.push_back(t4);
 			Date dateFin(2017, 1, 1, 0, 0, 0);
 			Date dateDebut(2017, 12, 30, 23, 59, 59);
-			collectionMesures v = t.ParcoursMesures(capteurs, typeMesures, dateDebut, dateFin);
+			collectionMesures v = t.ParcoursMesures(capteurs, dateDebut, dateFin);
 			Assert::IsTrue(v.size() == 0);
 		}
 		/*TEST_METHOD(MesureTest3)
