@@ -11,6 +11,7 @@ copyright            : (C) 2019 par Mengxing ZHANG, Louis UNG, Fabien GELUS et B
 
 //--------------------------------------------------- Interfaces utilisées
 #include <string>
+#include <vector>
 #include "TypeMesure.h"
 
 //------------------------------------------------------------- Constantes 
@@ -87,5 +88,6 @@ private:
 };
 
 //----------------------------------------- Types dépendants de <TypeMesure>
+typedef vector<TypeMesure> collectionTypesMesure;
 
 #endif //_TypeMesure_H

@@ -11,6 +11,7 @@ copyright            : (C) 2019 par Mengxing ZHANG, Louis UNG, Fabien GELUS et B
 
 //--------------------------------------------------- Interfaces utilisées
 #include <string>
+#include <set>
 #include "Date.h"
 #include "Mesure.h"
 #include "TypeMesure.h"
@@ -36,6 +37,8 @@ public:
 
 
 	//------------------------------------------------- Surcharge d'opérateurs
+	bool operator < (const Mesure & unMesure);
+
 	Mesure & operator = (const Mesure & unMesure);
 	// Mode d'emploi :
 	// RAS
@@ -86,5 +89,11 @@ private:
 };
 
 //----------------------------------------- Types dépendants de <Mesure>
+struct compareMesure {
+	bool operator()(const Mesure &mesureGauche, const Mesure &mesureDroite) {
+		return mesureGauche.getDate() < mesureDroite.getDate();
+	}
+};
+typedef multiset<Mesure, compareMesure> collectionMesures;
 
 #endif //_Mesure_H

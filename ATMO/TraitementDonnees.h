@@ -21,10 +21,7 @@ copyright            : (C) 2019 par Mengxing ZHANG, Louis UNG, Fabien GELUS et B
 #define TraitementD TraitementDonnees::GetInstance()
 
 //------------------------------------------------------------------ Types 
-typedef vector<vector<Capteur>> doubleCollectionCapteurs;
-typedef vector<Capteur> collectionCapteurs;
-typedef vector<TypeMesure> collectionTypesMesure;
-typedef multiset<Mesure, compareMesure> collectionMesures;
+
 
 //------------------------------------------------------------------------ 
 // Rôle de la classe <TraitementDonnees>
@@ -47,9 +44,11 @@ public:
 
 	collectionCapteurs ParcoursCapteurs(double lat, double longi);
 
+	collectionMesures lectureMesures();
+
 	collectionMesures ParcoursMesures(collectionCapteurs, Date horodateDeb, Date horodateFin);
 
-	collectionTypesMesure ParcoursTypesMesure();
+	collectionTypesMesure lectureTypesMesure();
 
 	//-------------------------------------------- Constructeurs - destructeur
 	TraitementDonnees(const TraitementDonnees & unTraitementDonnees);
@@ -85,9 +84,9 @@ private:
 	//
 
 	//------------------------------------------------------- Attributs privés
-	static const string FichierTypesMesure;
-	static const string FichierCapteurs;
-	static const string FichierMesures;
+	static const string fichierTypesMesure;
+	static const string fichierCapteurs;
+	static const string fichierMesures;
 	collectionCapteurs donneesCapteurs;
 	collectionTypesMesure donneesTypesMesure;
 	collectionMesures donneesMesures;

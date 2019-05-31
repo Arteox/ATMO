@@ -44,6 +44,12 @@ TypeMesure Mesure::getTypeMesure() const
 	return typeMesure;
 }
 
+
+bool Mesure::operator<(const Mesure & unMesure)
+{
+	return horodate < unMesure.getDate() ;
+}
+
 Mesure & Mesure::operator=(const Mesure & unMesure)
 {
 	this->horodate = unMesure.getDate();
@@ -55,7 +61,7 @@ Mesure & Mesure::operator=(const Mesure & unMesure)
 //------------------------------------------------- Surcharge d'opérateurs
 ostream & operator << (ostream &out, const Mesure &mesure)
 {
-	out << mesure.getTypeMesure().getAttributeId() << mesure.getValeur() << mesure.getDate() << endl;
+	out << mesure.getTypeMesure().getAttributeId() << " " << mesure.getValeur() << " "<< mesure.getDate() << endl;
 	return out;
 }
 //-------------------------------------------- Constructeurs - destructeur
