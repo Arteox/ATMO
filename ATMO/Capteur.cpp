@@ -69,7 +69,7 @@ Capteur::Capteur(const Capteur & unCapteur)
 {
 }
 
-Capteur::Capteur(int id, double lat, double longi, string description, multiset<Mesure> mesures)
+Capteur::Capteur(int id, double lat, double longi, string description, collectionMesures mesures)
 {
 	this->ID = ID;
 	this->lat = lat;

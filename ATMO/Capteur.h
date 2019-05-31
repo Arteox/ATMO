@@ -12,12 +12,13 @@ copyright            : (C) 2019 par Mengxing ZHANG, Louis UNG, Fabien GELUS et B
 //--------------------------------------------------- Interfaces utilisées
 #include <string>
 #include <set>
+#include <algorithm>
+#include <vector>
 #include "Mesure.h"
 
 //------------------------------------------------------------- Constantes 
 
 //------------------------------------------------------------------ Types 
-typedef multiset<Mesure> collectionMesures;
 //------------------------------------------------------------------------ 
 // Rôle de la classe <Capteur>
 //
@@ -85,5 +86,6 @@ private:
 };
 
 //----------------------------------------- Types dépendants de <Capteur>
-
+typedef vector<vector<Capteur>> doubleCollectionCapteurs;
+typedef vector<Capteur> collectionCapteurs;
 #endif //_CAPTEUR_H
