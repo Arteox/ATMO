@@ -17,6 +17,7 @@ using namespace std;
 #include "TraitementDonnees.h"
 #include "Date.h"
 #include "Capteur.h"
+#include "CoordonneesGPS.h"
 #include <vector>
 //------------------------------------------------------------- Constantes
 
@@ -33,9 +34,10 @@ using namespace std;
 int main() {
 	cout << "hello" << endl;
 
-	TraitementD;
+	//TraitementD;
 
-
+	CoordonneesGPS cGPS;
+	cout << cGPS.distanceEnKmEntreDeuxPoints(-19.4789835505555, -35.2425725968753, -38.3884286616875, -24.9593580676985) << endl;
 
 	//TEST ParcoursMesures avec parametres
 	/*

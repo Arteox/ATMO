@@ -9,10 +9,11 @@ copyright            : (C) 2019 par Mengxing ZHANG, Louis UNG, Fabien GELUS et B
 #ifndef _COORDONNEESGPS_H
 #define _COORDONNEESGPS_H
 
+
 //--------------------------------------------------- Interfaces utilisées
 
 //------------------------------------------------------------- Constantes 
-
+#define RAYON_TERRE 6371
 //------------------------------------------------------------------ Types 
 //------------------------------------------------------------------------ 
 // Rôle de la classe <CoordonneesGPS>
@@ -24,7 +25,7 @@ class CoordonneesGPS
 	//----------------------------------------------------------------- PUBLIC
 public:
 	//----------------------------------------------------- Méthodes publiques
-
+	double distanceEnKmEntreDeuxPoints(double lat1, double long1, double lat2, double long2);
 
 	//------------------------------------------------- Surcharge d'opérateurs
 	// Mode d'emploi :

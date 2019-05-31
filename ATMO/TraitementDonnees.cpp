@@ -25,6 +25,7 @@ using namespace std;
 #include "Capteur.h"
 #include "Mesure.h"
 #include "TypeMesure.h"
+#include "CoordonneesGPS.h"
 //------------------------------------------------------------- Constantes
 
 //---------------------------------------------------- Variables de classe
