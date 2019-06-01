@@ -16,7 +16,8 @@ copyright            : (C) 2019 par Mengxing ZHANG, Louis UNG, Fabien GELUS et B
 //------------------------------------------------------------------ Types 
 //------------------------------------------------------------------------ 
 // Rôle de la classe <Zone>
-//
+// Classe pour gérer une zone géographique qui correspond à un cercle
+// ayant pour un centre une coordonnées GPS et un rayon variable
 //
 //------------------------------------------------------------------------ 
 class Zone
@@ -39,7 +40,7 @@ public:
 	// Contrat : Aucun
 	//
 
-	Zone(double lat, double longi, int rayon);
+	Zone(double lat, double longi, double rayon);
 	// Mode d'emploi :
 	//
 	// Contrat :
@@ -66,7 +67,7 @@ private:
 	int id;
 	double latCentre;
 	double longCentre;
-	int rayon;
+	double rayon;
 	//---------------------------------------------------------- Classes amies
 
 	//-------------------------------------------------------- Classes privées

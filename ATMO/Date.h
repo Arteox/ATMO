@@ -20,7 +20,7 @@ using namespace std;
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Date>
-//
+// Classe pour gérer les dates qui sont au format annee-mois-jour heure:minute:seconde
 //------------------------------------------------------------------------typedef enum TokenType
 
 class Date

@@ -21,7 +21,7 @@ copyright            : (C) 2019 par Mengxing ZHANG, Louis UNG, Fabien GELUS et B
 //------------------------------------------------------------------ Types 
 //------------------------------------------------------------------------ 
 // Rôle de la classe <Capteur>
-//
+// Classe pour gérer l'objet Capteur
 //
 //------------------------------------------------------------------------ 
 class Capteur 

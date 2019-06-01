@@ -17,8 +17,8 @@ copyright            : (C) 2019 par Mengxing ZHANG, Louis UNG, Fabien GELUS et B
 //------------------------------------------------------------------ Types 
 //------------------------------------------------------------------------ 
 // Rôle de la classe <CoordonneesGPS>
-//
-//
+// Cette classe permet de gérer tout ce qui concerne la manipulation
+// des coordonnees GPS, notamment le calcul de distance entre 2 points
 //------------------------------------------------------------------------ 
 class CoordonneesGPS
 {

@@ -20,7 +20,7 @@ copyright            : (C) 2019 par Mengxing ZHANG, Louis UNG, Fabien GELUS et B
 
 //------------------------------------------------------------------------ 
 // Rôle de la classe <TypeMesure>
-//
+// Classe pour gérer l'objet TypeMesure
 //
 //------------------------------------------------------------------------ 
 class TypeMesure

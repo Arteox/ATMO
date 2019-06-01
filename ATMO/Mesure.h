@@ -22,7 +22,7 @@ copyright            : (C) 2019 par Mengxing ZHANG, Louis UNG, Fabien GELUS et B
 
 //------------------------------------------------------------------------ 
 // Rôle de la classe <Mesure>
-//
+// Classe pour gérer l'objet mesure
 //
 //------------------------------------------------------------------------ 
 class Mesure
