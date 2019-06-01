@@ -44,9 +44,23 @@ const string TraitementDonnees::fichierMesures = "DonneesCSV\\MesuresSample.csv"
 //----------------------------------------------------- Méthodes publiques
 
 collectionCapteurs TraitementDonnees::ParcoursCapteurs(double lat, double longi, double rayon)
+//on renvoie tous les capteurs dans la zone indiquée
 {
-	//todo
-	return collectionCapteurs();
+	collectionCapteurs capteurs;
+	Zone zone(lat, longi, rayon);
+	CoordonneesGPS cGPS;
+
+	for (collectionCapteurs::iterator it = donneesCapteurs.begin(); it != donneesCapteurs.end(); ++it) {
+		if (zone.estDansZone(it->getLat(), it->getLong())) {
+			capteurs.push_back(*it);
+		}
+	}
+
+	if (capteurs.size() == 0) {
+		cout << "pas de capteurs aux alentours de ce point" << endl;
+	}
+
+	return capteurs;
 }
 
 collectionCapteurs TraitementDonnees::ParcoursCapteurs(double lat, double longi)

@@ -37,6 +37,24 @@ int main() {
 
 	TraitementD;
 	
+	collectionCapteurs v = TraitementD.ParcoursCapteurs(18.902680, -60.469614);
+	cout << "taille : " << v.size() << endl;
+	cout << v[0].getId() << endl;
+
+	collectionCapteurs v2 = TraitementD.ParcoursCapteurs(-38, -24, 2500);
+	cout << "taille : " << v2.size() << endl;
+	for (collectionCapteurs::iterator it = v2.begin(); it != v2.end(); ++it) {
+		cout << it->getId() << " " << it->getLat() << " " << it->getLong() << endl;
+	}
+
+	//TEST parcoursCapteurs avec zone
+	/*collectionCapteurs capteursPoint;
+	capteursPoint = TraitementD.ParcoursCapteurs(-2.03317773855905, -70.6545565746047, 3000);
+	cout << capteursPoint.size() << endl;
+	for (collectionCapteurs::iterator it = capteursPoint.begin(); it != capteursPoint.end(); ++it) {
+		cout << it->getLat() << " " << it->getLong() << endl;
+	}*/
+
 	//TEST parcoursCapteurs avec point
 	/*collectionCapteurs capteursPoint;
 	capteursPoint = TraitementD.ParcoursCapteurs(-2.03317773855905, -70.6545565746047);

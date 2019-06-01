@@ -63,12 +63,12 @@ namespace UnitTest
 			Capteur c8("Sensor7", -28.5704283665728, 24.1637584633025);
 			Capteur c9("Sensor8",18.3597523781283, -58.1587766800815);*/
 			//resultat expecte:
-			Capteur c(9 , -2.03317773855905, -70.6545565746047,"");
-			collectionCapteurs v = TraitementD.ParcoursCapteurs(-2.033178,-70.654557);
+			Capteur c(3 , 18.9026808524051, -60.4696149986561,"");
+			collectionCapteurs v = TraitementD.ParcoursCapteurs(18.902680, -60.469614);
 			//il y a un seul capteur dans la collection reponse
 			Assert::IsTrue(v.size() == 1);
 			//et c'est bien le capteur c
-			Assert::IsTrue(v[1].getId() == c.getId());
+			Assert::IsTrue(v[0].getId() == c.getId());
 
 		}
 		TEST_METHOD(CapteurTest2)
