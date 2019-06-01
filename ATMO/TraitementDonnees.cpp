@@ -11,6 +11,7 @@ copyright            : (C) ${year} par ${user}
 
 //-------------------------------------------------------- Include système
 #include <iostream>
+#include <iomanip>
 using namespace std;
 #include <locale>
 #include <codecvt>
@@ -19,6 +20,7 @@ using namespace std;
 #include <vector>
 #include <algorithm>
 #include <set>
+#include <map>
 
 //------------------------------------------------------ Include personnel
 #include "TraitementDonnees.h"
@@ -26,6 +28,7 @@ using namespace std;
 #include "Mesure.h"
 #include "TypeMesure.h"
 #include "CoordonneesGPS.h"
+#include "Zone.h"
 //------------------------------------------------------------- Constantes
 
 //---------------------------------------------------- Variables de classe
@@ -47,40 +50,40 @@ collectionCapteurs TraitementDonnees::ParcoursCapteurs(double lat, double longi,
 }
 
 collectionCapteurs TraitementDonnees::ParcoursCapteurs(double lat, double longi)
+//on renvoie les 3 capteurs les plus proches dans un rayon de 10 km
 {
-	ifstream fic;
-	string lectLigne;
-	fic.open(fichierCapteurs);
 	collectionCapteurs capteurs;
-	if (fic) {
-		//todo: il manque la partie selection de capteurs.
-		for (lectLigne; getline(fic, lectLigne); ) {
-			istringstream iss(lectLigne);			
-			if (lectLigne != "SensorID;Latitude;Longitude;Description;"){
-				cout << lectLigne << endl;
-				string attribut;
-				vector<string> attributs;
-				while (getline(iss, attribut, ';'))
-				{
-					attributs.push_back(attribut);
-				}
-				int sensorID = stoi(attributs[0]);
-				cout << sensorID << endl;
-				double latRead = stod(attributs[1]);
-				double longiRead = stod(attributs[2]);
-				string descriptionRead = attributs[3];
-				if (latRead<lat + 0.0000005&&latRead>lat - 0.0000005&&longiRead < longi + 0.0000005&&longiRead>longi - 0.0000005) {
-					Capteur c(sensorID, lat, longi, descriptionRead);
-					capteurs.push_back(c);
-				}
-				
-				//donneesCapteurs.push_back(c);
-
-			}
+	Zone zoneDixKm(lat, longi, 10);
+	CoordonneesGPS cGPS;
+	
+	for (collectionCapteurs::iterator it = donneesCapteurs.begin(); it != donneesCapteurs.end(); ++it) {
+		if (zoneDixKm.estDansZone(it->getLat(), it->getLong())) {
+			capteurs.push_back(*it);
 		}
 	}
-	fic.close();
-	return capteurs;
+
+	if (capteurs.size() <= 3) {
+		if (capteurs.size() == 0) {
+			cout << "pas de capteurs aux alentours de ce point" << endl;
+		}
+
+		return capteurs;
+	}
+	else {
+		//on cherche les 3 capteurs les plus proches
+		map<double, int> distanceIndex;
+		for (collectionCapteurs::iterator it = capteurs.begin(); it != capteurs.end(); ++it) {
+			double distance = cGPS.distanceEnKmEntreDeuxPoints(lat, longi, it->getLat(), it->getLong());
+			distanceIndex.insert(make_pair(distance, it-capteurs.begin()));
+		}
+
+		//une fois les indices trouvees, on insere dans un nouveau vector de taille 3
+		collectionCapteurs capteursProches;
+		for (map<double, int>::iterator it = distanceIndex.begin(); capteursProches.size() < 3; ++it) {
+			capteursProches.push_back(capteurs[it->second]);
+		}
+		return capteursProches;
+	}
 }
 
 void TraitementDonnees::lectureMesures()
@@ -158,14 +161,14 @@ void TraitementDonnees::lectureCapteurs()
 
 				//6 chiffres apres la virgule pour les coordonnees GPS
 				size_t dot1 = attributs[1].find(".");
-				double lat = stod(attributs[1].substr(dot1,6));
+				double lat = stod(attributs[1].substr(0,dot1)+attributs[1].substr(dot1,6));
 
 				size_t dot2 = attributs[2].find(".");
-				double longi = stod(attributs[2].substr(dot2,6));
+				double longi = stod(attributs[2].substr(0, dot2) + attributs[2].substr(dot2,6));
 
 				string description = attributs[3];
 
-				//on ajoute les mesures après car sinon il faudrai parcourir toutes les mesures pour chaque capteur
+				//on ajoute les mesures après car sinon il faudrait parcourir toutes les mesures pour chaque capteur
 				Capteur c(sensorID, lat, longi, description);
 				donneesCapteurs.push_back(c);
 			}

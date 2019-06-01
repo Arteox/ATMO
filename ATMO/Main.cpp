@@ -35,9 +35,19 @@ using namespace std;
 int main() {
 	cout << "hello" << endl;
 
-	//TraitementD;
-	Zone z(45.746857, 4.827419, 5);
-	cout << z.estDansZone(45.769923, 4.880584) << endl;
+	TraitementD;
+	
+	//TEST parcoursCapteurs avec point
+	/*collectionCapteurs capteursPoint;
+	capteursPoint = TraitementD.ParcoursCapteurs(-2.03317773855905, -70.6545565746047);
+	cout << capteursPoint.size() << endl;
+	for (collectionCapteurs::iterator it = capteursPoint.begin(); it != capteursPoint.end(); ++it) {
+		cout << it->getLat() << " " << it->getLong() << endl;
+	}*/
+
+	//TEST appartenance a une zone
+	/*Zone z(45.746857, 4.827419, 10);
+	cout << z.estDansZone(45.746857, 4.827419) << endl;*/
 
 	//TEST calcul distance GPS
 	//CoordonneesGPS cGPS;
