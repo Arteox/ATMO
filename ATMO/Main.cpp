@@ -12,7 +12,10 @@ copyright            : (C) ${year} par ${user}
 //-------------------------------------------------------- Include système
 #include <iostream>
 using namespace std;
-
+#include <vector>
+#include <list>
+#include <string>
+#include <iterator>
 //------------------------------------------------------ Include personnel
 #include "TraitementDonnees.h"
 #include "Date.h"
@@ -21,7 +24,7 @@ using namespace std;
 #include "CoordonneesGPS.h"
 #include "Menu.h"
 #include "Parseur.h"
-#include <vector>
+#include "Analyse.h"
 //------------------------------------------------------------- Constantes
 
 //---------------------------------------------------- Variables de classe
@@ -37,9 +40,40 @@ using namespace std;
 int main(int argc, char** argv) {
 	Menu menu;
 	Parseur parseur;
-	//TraitementD;
+	TraitementD;
+	Analyse analyse;
 
 	menu.InitialiserMenu();
+
+	while (true) {
+		cout << endl << "Veuillez rentrer votre commande" << endl << endl;
+		string entree = menu.RecupererEntreeUtilisateur();
+		list<string> commandes = parseur.ParserCommande(entree);
+
+		//on convertit la liste en vector pour faciliter les accès par index
+		vector<string> commandesV{ make_move_iterator(begin(commandes)),std::make_move_iterator(end(commandes)) };
+
+		if (commandesV[0] == "4") {
+			menu.AfficherAide();
+		}
+		else if (commandesV[0] == "3") {
+			analyse.caracteristiquesPoint(stod(commandesV[2]),stod(commandesV[1]), Date(commandesV[3]), Date(commandesV[4]));
+			//print les resultats
+		}
+		else if (commandesV[0] == "2") {
+			analyse.dysfonctionnement(Date(commandesV[1]), Date(commandesV[2]));
+			//print les resultats
+		}
+		else if (commandesV[0] == "1") {
+			analyse.comportementSimilaire(Date(commandesV[1]), Date(commandesV[2]));
+			//print les resultats
+		}
+		else if (commandesV[0] == "0") {
+			//analyse.qualiteAir();
+			//print les resultats
+		}
+
+	}
 
 	
 

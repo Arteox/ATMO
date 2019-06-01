@@ -49,14 +49,17 @@ void Menu::InitialiserMenu() const {
 
 void Menu::AfficherAide() const {
 	sortieStandard << "Commandes détaillées :" << endl
-	 << " Qualite moyenne : qm [-d] 'lat' 'long' 'rayon' 'horodateDeb' 'horodateFin'" << endl
-	 << " Capteurs similaires : sim 'horodateDeb' 'horodateFin'" << endl
-	 << " Capteurs dysfonctionnants : dysfonc 'horodateDeb' 'horodateFin'" << endl
-	 << " Valeurs caractéristiques d'un point : carac 'long' 'lat' 'horodateDeb' 'horodateFin' " <<endl;
+		<< " Qualite moyenne : qm [-d] 'lat' 'long' 'rayon' 'horodateDeb' 'horodateFin'" << endl
+		<< " Capteurs similaires : sim 'horodateDeb' 'horodateFin'" << endl
+		<< " Capteurs dysfonctionnants : dysfonc 'horodateDeb' 'horodateFin'" << endl
+		<< " Valeurs caractéristiques d'un point : carac 'long' 'lat' 'horodateDeb' 'horodateFin' " << endl << endl
+		<< " Entrez les dates sous le format suivant : annee-mois-jourTheure:minute:seconde " << endl
+		<< " et sans oublier les 0 pour le mois, le jour et l'heure, par exemple : 2017-01-01T00:01:20 " << endl;
+	 
 
 }
 
-string & Menu::RecupererEntreeUtilisateur() {
+string Menu::RecupererEntreeUtilisateur() {
 	string entreeUtilisateur;
 	cin >> entreeUtilisateur;
 	return entreeUtilisateur;

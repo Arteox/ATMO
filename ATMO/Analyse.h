@@ -38,28 +38,36 @@ class Analyse
 
 public:
 	//----------------------------------------------------- Méthodes publiques
-	static conteneurMoyMesures caracteristiquesZone(bool d, double lat, double longi, double rayon, Date horodateDeb, Date horodateFin);
+	conteneurMoyMesures caracteristiquesZone(bool d, double lat, double longi, double rayon, Date horodateDeb, Date horodateFin);
 	// Mode d'emploi :
 	//
 	// Contrat :
 	//
 
-	static  doubleCollectionCapteurs comportementSimilaire(Date horodateDeb, Date horodateFin);
+	doubleCollectionCapteurs comportementSimilaire(Date horodateDeb, Date horodateFin);
 	// Mode d'emploi :
 	//
 	// Contrat :
 	//
-	static collectionCapteurs dysfonctionnement(Date horodateDeb, Date horodateFin);
+	collectionCapteurs dysfonctionnement(Date horodateDeb, Date horodateFin);
 
-	static conteneurMoyMesures caracteristiquesPoint(double longi, double lat, Date horodateDeb, Date horodateFin);
+	conteneurMoyMesures caracteristiquesPoint(double longi, double lat, Date horodateDeb, Date horodateFin);
 
-	static int qualiteAir(conteneurMoyMesures MoyMesures);
+	int qualiteAir(conteneurMoyMesures MoyMesures);
 	// Mode d'emploi :
 	// entrée : moyenne des mesures pour chaque type
 	// sortie : indice de qualit?de l'air de 1 ?10  ou -1 si données incohérentes
 	// on choisit le plus grand des sous - indices calculés pour le dioxyde de soufre, le dioxyde d'azote, l'ozone et les particules fines;
 	// Contrat :
 	// 
+
+	//-------------------------------------------- Constructeurs - destructeur
+
+	Analyse();
+	// Mode d'emploi :
+	//
+	// Contrat :
+	//
 
 	//------------------------------------------------------------------ PRIVE 
 

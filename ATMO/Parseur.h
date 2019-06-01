@@ -33,7 +33,7 @@ class Parseur
 public:
 	//----------------------------------------------------- Méthodes publiques
 
-	list<double> ParserCommande(string & entree);
+	list<string> ParserCommande(string & entree);
 	// Mode d'emploi :
 	//  Cette fonction renvoie une suite de valeurs commençant par le code de 
 	//  la commande suivie de toutes ses options et paramètres.
@@ -81,7 +81,7 @@ private:
 	//------------------------------------------------------- Attributs privés
 
 	//------------------------------------------------------- Méthodes privées
-	double AttributionCommande(string & commande);
+	int AttributionCommande(string & commande);
 	// Mode d'emploi : Cette méthode permet de faire des vérifications quant ?
 	// la validit?de la commande tapée par l'utilisateur ainsi que d'attribuer
 	// cette dernière sa valeur numérique pour qu'elle puisse ensuite 

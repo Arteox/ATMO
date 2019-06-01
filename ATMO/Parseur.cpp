@@ -14,6 +14,7 @@ copyright            : (C) ${year} par ${user}
 #include <list>
 #include <sstream>
 #include <regex>
+#include <string>
 using namespace std;
 
 //------------------------------------------------------ Include personnel
@@ -31,14 +32,14 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-list<double> Parseur::ParserCommande(string & entree) // mettre ici le paramètre entrée
+list<string> Parseur::ParserCommande(string & entree) // mettre ici le paramètre entrée
 {
     //Initialisation des différentes variables utilisées.
-	list<double> commandeParsee;
+	list<string> commandeParsee;
     string parametreCourant;
     unsigned nbParametres (0);
     bool aDesOptions = false;
-	double option = -1;
+	string option = "-1";
     //L'utilisateur entre sa commande (à mettre dans le menu à terme)
     //string entree;
     //getline(cin,entree);
@@ -50,7 +51,7 @@ list<double> Parseur::ParserCommande(string & entree) // mettre ici le paramètre
         //faire l'affichage menu de l'erreur cerr
 		cout << "Commande invalide" << endl;
 	} else {
-		commandeParsee.push_back(AttributionCommande(parametreCourant));
+		commandeParsee.push_back(to_string(AttributionCommande(parametreCourant)));
 		nbParametres = NombreDeParametresCommande(parametreCourant);
 		aDesOptions = PossedeDesOptionsCommande(parametreCourant);
 		if(nbParametres > 1){
@@ -60,8 +61,8 @@ list<double> Parseur::ParserCommande(string & entree) // mettre ici le paramètre
 					cout << "Option invalide" << endl;
 				}
 				else if (AttributionOption(parametreCourant) == optionAbsente) {
-					commandeParsee.push_back(optionAbsente); // on envoie le fait qu'il n'y ait pas d'options
-					option = stod(parametreCourant); // l'option n'étant pas présente, on pousse le premier paramètre.
+					commandeParsee.push_back(to_string(optionAbsente)); // on envoie le fait qu'il n'y ait pas d'options
+					option = parametreCourant; // l'option n'étant pas présente, on pousse le premier paramètre.
 					nbParametres--; // et on retire donc un au nombre de tours nécessaires.
 				}
 				else {
@@ -76,7 +77,7 @@ list<double> Parseur::ParserCommande(string & entree) // mettre ici le paramètre
 					cout << "Paramètre vide" << endl;
 				}
 				else {
-					commandeParsee.push_back(stod(parametreCourant));
+					commandeParsee.push_back(parametreCourant);
 				}
             }      
         }
@@ -116,8 +117,8 @@ Parseur::~Parseur()
 //----------------------------------------------------- Méthodes protégées
 
 //------------------------------------------------------- Méthodes privées
-double Parseur::AttributionCommande(string & commande) {
-	double codeCommande (0);
+int Parseur::AttributionCommande(string & commande) {
+	int codeCommande (0);
 	switch (trouverCommande(commande)) {
 		case qm:
 			codeCommande = 0;

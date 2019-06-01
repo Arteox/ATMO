@@ -361,6 +361,12 @@ int Analyse::qualiteAir(conteneurMoyMesures MoyMesures)
 	return indice;
 }
 
+//-------------------------------------------- Constructeurs - destructeur
+
+Analyse::Analyse()
+{
+}
+
 //------------------------------------------------- Surcharge d'opérateurs
 
 

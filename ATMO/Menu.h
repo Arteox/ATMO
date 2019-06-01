@@ -10,7 +10,7 @@ copyright            : (C) 2019 par Mengxing ZHANG, Louis UNG, Fabien GELUS et B
 #define _MENU_H
 
 //--------------------------------------------------- Interfaces utilisées
-
+#include <string>
 //------------------------------------------------------------- Constantes 
 #define sortieStandard cout // constantes pouvant être modifiée à l'avenir.
 #define sortieErreur cerr // si l'on souhaite travailler dans un fichier par ex.
@@ -58,7 +58,7 @@ public:
 	// Contrat : Aucun
 	//
 
-	string & RecupererEntreeUtilisateur();
+	string RecupererEntreeUtilisateur();
 	// Mode d'emploi : Cette méthode renvoie sous la forme d'une chaîne de caractères,
 	// ce qui a été tapé par l'utilisateur, afin de permettre de parser la commande, 
 	// puis d'agir en conséquence.
