@@ -28,12 +28,12 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-void Menu::AffichageSortieStandard(string & ligne) const {
-	sortieStandard << ligne << endl;
+void Menu::AffichageSortieStandard(string & sortieFonction) const {
+	sortieStandard << sortieFonction << endl;
 }
 
-void Menu::AffichageSortieErreur(string & ligne) const {
-	sortieErreur << ligne << endl;
+void Menu::AffichageSortieErreur(string & sortieFonction) const {
+	sortieErreur << sortieFonction << endl;
 }
 
 void Menu::InitialiserMenu() const {
