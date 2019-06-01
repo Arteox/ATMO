@@ -33,10 +33,14 @@ class Parseur
 public:
 	//----------------------------------------------------- Méthodes publiques
 
-	list<double> ParserCommande();
+	list<double> ParserCommande(string & entree);
 	// Mode d'emploi :
 	//  Cette fonction renvoie une suite de valeurs commençant par le code de 
 	//  la commande suivie de toutes ses options et paramètres.
+	//  C'est la fonction essentielle du parseur et elle réalisera ce travail
+	//  sur la chaîne de caractères passée en paramètre.
+	//  string & entree : Cette chaîne de caractère est celle tapée par 
+	//  l'utilisateur dans le menu.
 	//  Elle est notamment utilisées dans le main avant d'exécuter la dite fonction.
 	// Contrat : Aucun
 	//

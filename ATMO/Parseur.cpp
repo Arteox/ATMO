@@ -31,7 +31,7 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-list<double> Parseur::ParserCommande() // mettre ici le paramètre entrée
+list<double> Parseur::ParserCommande(string & entree) // mettre ici le paramètre entrée
 {
     //Initialisation des différentes variables utilisées.
 	list<double> commandeParsee;
@@ -40,8 +40,8 @@ list<double> Parseur::ParserCommande() // mettre ici le paramètre entrée
     bool aDesOptions = false;
 	double option = -1;
     //L'utilisateur entre sa commande (à mettre dans le menu à terme)
-    string entree;
-    getline(cin,entree);
+    //string entree;
+    //getline(cin,entree);
     //jusqu'ici
     istringstream fluxEntree (entree);
     getline(fluxEntree, parametreCourant,' ');
