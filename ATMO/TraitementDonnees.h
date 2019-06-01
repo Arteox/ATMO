@@ -25,8 +25,10 @@ copyright            : (C) 2019 par Mengxing ZHANG, Louis UNG, Fabien GELUS et B
 
 //------------------------------------------------------------------------ 
 // Rôle de la classe <TraitementDonnees>
-//
-//
+// Cette classe fait 2 choses :
+// 1) Extraction des données des fichiers CSV et stockage dans des structures de données
+// 2) Renvoie des données filtrées en parcourant ces structures de données
+// en fonction de paramètres données par l'utilisateur
 //------------------------------------------------------------------------ 
 class TraitementDonnees
 {
@@ -41,18 +43,44 @@ public:
 
 	//----------------------------------------------------- Méthodes publiques
 	collectionCapteurs ParcoursCapteurs(double lat, double longi, double rayon);
+	// Mode d'emploi :
+	// L'utilisateur indique une zone dont le centre et le rayon sont indiqués en paramètre.
+	// Cette méthode renvoie alors tous les capteurs qui sont présents dans cette zone.
+	// Contrat : Aucun
+	//
 
 	collectionCapteurs ParcoursCapteurs(double lat, double longi);
+	// Mode d'emploi :
+	// L'utilisateur indique une zone dont le centre est indiqué en paramètre. Le rayon fait 10 km.
+	// Cette méthode renvoie alors, s'il y en a, les 3 capteurs les plus proches présents dans cette zone.
+	// Contrat : Aucun
+	//
 	
-	collectionCapteurs ParcoursCapteurs(); // tous les capteurs (pour le comportement similaire)
 
 	collectionMesures ParcoursMesures(collectionCapteurs capteurs, Date horodateDeb, Date horodateFin);
-	
+	// Mode d'emploi :
+	// Renvoie toutes les mesures réalisées par les capteurs précisés en paramètre, et qui sont entre les
+	// 2 dates précisées.
+	// Contrat : Aucun
+	//
+
 	collectionMesures ParcoursMesures();
+	// Mode d'emploi :
+	// Renvoie toutes les mesures extraites
+	// Contrat : Aucun
+	//
 
 	collectionTypesMesure ParcoursTypeeMesure();
+	// Mode d'emploi :
+	// Renvoie toutes les types de mesures
+	// Contrat : Aucun
+	//
 
-	
+	collectionCapteurs ParcoursCapteurs();
+	// Mode d'emploi :
+	// Renvoie tous les capteurs
+	// Contrat : Aucun
+	//
 
 	//-------------------------------------------- Constructeurs - destructeur
 

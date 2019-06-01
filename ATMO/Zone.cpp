@@ -40,14 +40,14 @@ bool Zone::estDansZone(double lat, double longi)
 	CoordonneesGPS cGPS;
 	double distance = cGPS.distanceEnKmEntreDeuxPoints(this->latCentre, this->longCentre, lat, longi);
 	//cout << "distance : " << distance << endl;
-	return distance < (double)rayon;
+	return distance < rayon;
 }
 
 Zone::Zone(const Zone & unZone)
 {
 }
 
-Zone::Zone(double lat, double longi, int rayon)
+Zone::Zone(double lat, double longi, double rayon)
 {
 	this->latCentre = lat;
 	this->longCentre = longi;
