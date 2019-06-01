@@ -15,6 +15,7 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Menu.h"
+#include <string>
 
 //------------------------------------------------------------- Constantes
 

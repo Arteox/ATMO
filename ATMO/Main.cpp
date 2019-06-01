@@ -19,6 +19,8 @@ using namespace std;
 #include "Capteur.h"
 #include "Zone.h"
 #include "CoordonneesGPS.h"
+#include "Menu.h"
+#include "Parseur.h"
 #include <vector>
 //------------------------------------------------------------- Constantes
 
@@ -32,11 +34,18 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-int main() {
-	cout << "hello" << endl;
+int main(int argc, char** argv) {
+	Menu menu;
+	Parseur parseur;
+	//TraitementD;
 
-	TraitementD;
+	menu.InitialiserMenu();
+
 	
+
+
+
+	/*
 	collectionCapteurs v = TraitementD.ParcoursCapteurs(18.902680, -60.469614);
 	cout << "taille : " << v.size() << endl;
 	cout << v[0].getId() << endl;
@@ -45,7 +54,7 @@ int main() {
 	cout << "taille : " << v2.size() << endl;
 	for (collectionCapteurs::iterator it = v2.begin(); it != v2.end(); ++it) {
 		cout << it->getId() << " " << it->getLat() << " " << it->getLong() << endl;
-	}
+	}*/
 
 	//TEST parcoursCapteurs avec zone
 	/*collectionCapteurs capteursPoint;

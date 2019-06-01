@@ -12,8 +12,8 @@ copyright            : (C) 2019 par Mengxing ZHANG, Louis UNG, Fabien GELUS et B
 //--------------------------------------------------- Interfaces utilisées
 
 //------------------------------------------------------------- Constantes 
-#define sortieStandard cout; // constantes pouvant être modifiée à l'avenir.
-#define sortieErreur cerr; // si l'on souhaite travailler dans un fichier par ex.
+#define sortieStandard cout // constantes pouvant être modifiée à l'avenir.
+#define sortieErreur cerr // si l'on souhaite travailler dans un fichier par ex.
 //------------------------------------------------------------------ Types 
 //------------------------------------------------------------------------ 
 // Rôle de la classe <Menu>
@@ -103,4 +103,4 @@ private:
 
 //----------------------------------------- Types dépendants de <Menu>
 
-#endif //_MENU_H
+#endif _MENU_H
