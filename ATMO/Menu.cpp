@@ -65,18 +65,29 @@ string Menu::RecupererEntreeUtilisateur() {
 	return entreeUtilisateur;
 }
 
-
-//-------------------------------------------- Constructeurs - destructeur
-
-Menu::Menu(const Menu & unMenu)
+void Menu::FormaterAffichageCaracteristiques(map<TypeMesure, double>& retourFonction)
 {
 }
+
+void Menu::FormaterAffichageSimilaires(list<list<Capteur>>& retourFonction)
+{
+}
+
+void Menu::FormaterAffichageDysfonctionnement(list<Capteur>& retourFonction)
+{
+}
+
+void Menu::FormaterAffichageQualite(list<double>& retourFonction)
+{
+}
+
+
+//-------------------------------------------- Constructeurs - destructeur
 
 Menu::Menu()
 {
 
 }
-
 
 Menu::~Menu()
 {

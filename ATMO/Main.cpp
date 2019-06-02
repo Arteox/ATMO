@@ -26,6 +26,35 @@ using namespace std;
 #include "Parseur.h"
 #include "Analyse.h"
 
+void executerCommandes(list<string> commandesAvecParams) {
+
+	//on convertit la liste en vector pour faciliter les accès par index
+	vector<string> commandesV{ make_move_iterator(begin(commandesAvecParams)),std::make_move_iterator(end(commandesAvecParams)) };
+
+	if (commandesV[0] == "4") {
+		MenuInstance.AfficherAide();
+	}
+	else if (commandesV[0] == "3") {
+		cout << stod(commandesV[3]) << " " << stod(commandesV[2]) << " " << Date(commandesV[4]) << " " << Date(commandesV[5]) << endl;
+		//AnalyseInstance.caracteristiquesPoint(stod(commandesV[3]), stod(commandesV[2]), Date(commandesV[4]), Date(commandesV[5]));
+		//print les resultats
+	}
+	else if (commandesV[0] == "2") {
+		cout << Date(commandesV[2]) << " " << Date(commandesV[3]) << endl;
+		//AnalyseInstance.dysfonctionnement(Date(commandesV[2]), Date(commandesV[3]));
+		//print les resultats
+	}
+	else if (commandesV[0] == "1") {
+		cout << Date(commandesV[2]) << " " << Date(commandesV[3]) << endl;
+		//AnalyseInstance.comportementSimilaire(Date(commandesV[2]), Date(commandesV[3]));
+		//print les resultats
+	}
+	else if (commandesV[0] == "0") {
+		cout << stod(commandesV[3]) << " " << stod(commandesV[2]) << " " << stod(commandesV[4]) << " " << Date(commandesV[5]) << " " << Date(commandesV[6]) << endl;
+		//AnalyseInstance.qualiteAir(stod(commandesV[3]), stod(commandesV[2]), stod(commandesV[4]), Date(commandesV[5]), Date(commandesV[6])));
+		//print les resultats
+	}
+}
 
 int main(int argc, char** argv) {
 	//TraitementD;
@@ -36,7 +65,7 @@ int main(int argc, char** argv) {
 		cout << endl << "Veuillez rentrer votre commande" << endl << endl;
 		string entree = MenuInstance.RecupererEntreeUtilisateur();
 		list<string> commandes = ParseurInstance.ParserCommande(entree);
-
+		executerCommandes(commandes);
 		
 	}
 
@@ -107,30 +136,4 @@ int main(int argc, char** argv) {
 	return 0;
 }
 
-void executerCommandes(list<double> commandesAvecParams) {
 
-	//on convertit la liste en vector pour faciliter les accès par index
-	vector<string> commandesV{ make_move_iterator(begin(commandesAvecParams)),std::make_move_iterator(end(commandesAvecParams)) };
-
-	if (commandesV[0] == "4") {
-		MenuInstance.AfficherAide();
-	}
-	else if (commandesV[0] == "3") {
-		cout << stod(commandesV[3]) << " " << stod(commandesV[2]) << " " << Date(commandesV[4]) << " " << Date(commandesV[5]) << endl;
-		//AnalyseInstance.caracteristiquesPoint(stod(commandesV[3]), stod(commandesV[2]), Date(commandesV[4]), Date(commandesV[5]));
-		//print les resultats
-	}
-	else if (commandesV[0] == "2") {
-		cout << Date(commandesV[2]) << " " << Date(commandesV[3]) << endl;
-		//AnalyseInstance.dysfonctionnement(Date(commandesV[2]), Date(commandesV[3]));
-		//print les resultats
-	}
-	else if (commandesV[0] == "1") {
-		//AnalyseInstance.comportementSimilaire(Date(commandesV[2]), Date(commandesV[3]));
-		//print les resultats
-	}
-	else if (commandesV[0] == "0") {
-		//AnalyseInstance.qualiteAir(stod(commandesV[3]), stod(commandesV[2]), stod(commandesV[4]), Date(commandesV[5]), Date(commandesV[6])));
-		//print les resultats
-	}
-}
