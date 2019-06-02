@@ -35,22 +35,25 @@ void executerCommandes(list<string> commandesAvecParams) {
 		MenuInstance.AfficherAide();
 	}
 	else if (commandesV[0] == "3") {
-		cout << stod(commandesV[3]) << " " << stod(commandesV[2]) << " " << Date(commandesV[4]) << " " << Date(commandesV[5]) << endl;
-		//AnalyseInstance.caracteristiquesPoint(stod(commandesV[3]), stod(commandesV[2]), Date(commandesV[4]), Date(commandesV[5]));
+		cout << stod(commandesV[2]) << " " << stod(commandesV[1]) << " " << Date(commandesV[3]) << " " << Date(commandesV[4]) << endl;
+		//AnalyseInstance.caracteristiquesPoint(stod(commandesV[2]), stod(commandesV[1]), Date(commandesV[3]), Date(commandesV[4]));
 		//print les resultats
 	}
 	else if (commandesV[0] == "2") {
-		cout << Date(commandesV[2]) << " " << Date(commandesV[3]) << endl;
-		//AnalyseInstance.dysfonctionnement(Date(commandesV[2]), Date(commandesV[3]));
+		cout << Date(commandesV[1]) << " " << Date(commandesV[2]) << endl;
+		//AnalyseInstance.dysfonctionnement(Date(commandesV[1]), Date(commandesV[2]));
 		//print les resultats
 	}
 	else if (commandesV[0] == "1") {
-		cout << Date(commandesV[2]) << " " << Date(commandesV[3]) << endl;
-		//AnalyseInstance.comportementSimilaire(Date(commandesV[2]), Date(commandesV[3]));
+		cout << commandesV[1] << " " << commandesV[2] << endl;
+		Date d(commandesV[1]);
+		cout << d << endl;
+		//AnalyseInstance.comportementSimilaire(Date(commandesV[1]), Date(commandesV[2]));
 		//print les resultats
 	}
 	else if (commandesV[0] == "0") {
 		cout << stod(commandesV[3]) << " " << stod(commandesV[2]) << " " << stod(commandesV[4]) << " " << Date(commandesV[5]) << " " << Date(commandesV[6]) << endl;
+		cout << "option : " << commandesV[1] << endl;
 		//AnalyseInstance.qualiteAir(stod(commandesV[3]), stod(commandesV[2]), stod(commandesV[4]), Date(commandesV[5]), Date(commandesV[6])));
 		//print les resultats
 	}
@@ -65,6 +68,10 @@ int main(int argc, char** argv) {
 	while (true) {
 		cout << endl << "Veuillez rentrer votre commande" << endl << endl;
 		string entree = MenuInstance.RecupererEntreeUtilisateur();
+		if (entree == "quitter") {
+			cout << "A bientôt !" << endl;
+			break;
+		}
 		list<string> commandes = ParseurInstance.ParserCommande(entree);
 		executerCommandes(commandes);
 		

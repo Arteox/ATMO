@@ -83,10 +83,10 @@ list<string> Parseur::ParserCommande(string & entree) // mettre ici le paramètre
         }
     }
 
-	cout << "Resultat" << endl;
+	/*cout << "Resultat" << endl;
 	for (auto v : commandeParsee) {
 		cout << "Valeur : " << v << endl;
-	}
+	}*/
 
     return commandeParsee;
 }

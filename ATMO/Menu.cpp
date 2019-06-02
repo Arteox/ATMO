@@ -44,7 +44,8 @@ void Menu::InitialiserMenu() const {
 	 << " sim : Afin de trouver des zones ayant des caractéristiques similaires " << endl
 	 << " dysfonc : Afin d'essayer de repérer les capteurs qui sont en dysfonctionnement " << endl
 	 << " carac : Pour connaître les caractéristiques spécifiques d'une point précis " << endl
-	 << " help : pour obtenir plus d'informations sur les parametres des commandes " << endl;
+	 << " help : pour obtenir plus d'informations sur les parametres des commandes " << endl
+	 << " quitter : pour obtenir plus d'informations sur les parametres des commandes " << endl;
 }
 
 void Menu::AfficherAide() const {
@@ -61,7 +62,7 @@ void Menu::AfficherAide() const {
 
 string Menu::RecupererEntreeUtilisateur() {
 	string entreeUtilisateur;
-	cin >> entreeUtilisateur;
+	getline(cin, entreeUtilisateur);
 	return entreeUtilisateur;
 }
 
