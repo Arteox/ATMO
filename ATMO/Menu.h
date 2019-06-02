@@ -13,8 +13,8 @@ copyright            : (C) 2019 par Mengxing ZHANG, Louis UNG, Fabien GELUS et B
 #include <string>
 #include <list>
 #include <map>
-#include "TypeMesure.h"
 #include "Capteur.h"
+#include "Analyse.h"
 //------------------------------------------------------------- Constantes 
 #define MenuInstance Menu::GetInstance()
 #define sortieStandard cout // constantes pouvant être modifiée à l'avenir.
@@ -76,14 +76,14 @@ public:
 	// Contrat : Aucun
 	//
 
-	void FormaterAffichageCaracteristiques(map<TypeMesure,double> & retourFonction);
+	void FormaterAffichageCaracteristiques(int & scoreAtmo, conteneurMoyMesures & retourFonction);
 	// Mode d'emploi : Cette méthode a pour but de permettre un affichage correct 
 	// et conforme aux spécifications de la méthode visant à trouver les 
 	// valeurs caractéristiques d'une zone en particulier
 	// Contrat : Aucun
 	//
 
-	void FormaterAffichageSimilaires(list<list<Capteur>> & retourFonction);
+	void FormaterAffichageSimilaires(doubleCollectionCapteurs & retourFonction);
 	// Mode d'emploi : Cette méthode a pour but de permettre un affichage correct 
 	// et conforme aux spécifications de la méthode visant à trouver les 
 	// capteurs ayant des comportements similaires.
@@ -97,7 +97,7 @@ public:
 	// Contrat : Aucun
 	//
 
-	void FormaterAffichageQualite(list<double> & retourFonction);
+	void FormaterAffichageQualite(int & scoreAtmo, conteneurMoyMesures & retourFonction);
 	// Mode d'emploi : Cette méthode a pour but de permettre un affichage correct 
 	// et conforme aux spécifications de la méthode visant à trouver la
 	// qualité de l'air dans une zone, via son score et les valeurs utilisées.
@@ -117,11 +117,19 @@ public:
 protected:
 	//----------------------------------------------------- Attributs protégés
 
-	//----------------------------------------------------- Méthodes protégées
+
 
 
 private:
+	
+	//----------------------------------------------------- Méthodes privées
 	Menu();
+
+	string DescriptionValeur(int & scoreAtmo);
+	// Mode d'emploi : Cette méthode a pour but d'associer une valeur numérique
+	// de score ATMO à une brève indication en langage naturel.
+	// Contrat : Aucun
+	//
 	//------------------------------------------------------- Attributs privés
 
 	//---------------------------------------------------------- Classes amies
