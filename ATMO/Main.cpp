@@ -61,6 +61,7 @@ int main(int argc, char** argv) {
 
 	MenuInstance.InitialiserMenu();
 
+
 	while (true) {
 		cout << endl << "Veuillez rentrer votre commande" << endl << endl;
 		string entree = MenuInstance.RecupererEntreeUtilisateur();
@@ -68,7 +69,7 @@ int main(int argc, char** argv) {
 		executerCommandes(commandes);
 		
 	}
-
+	
 	
 
 
@@ -76,8 +77,8 @@ int main(int argc, char** argv) {
 	/*
 	collectionCapteurs v = TraitementD.ParcoursCapteurs(18.902680, -60.469614);
 	cout << "taille : " << v.size() << endl;
-	cout << v[0].getId() << endl;
-
+	cout << v[0].getId() << endl;*/
+	/*
 	collectionCapteurs v2 = TraitementD.ParcoursCapteurs(-38, -24, 2500);
 	cout << "taille : " << v2.size() << endl;
 	for (collectionCapteurs::iterator it = v2.begin(); it != v2.end(); ++it) {
