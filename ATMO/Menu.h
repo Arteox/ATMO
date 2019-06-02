@@ -90,7 +90,7 @@ public:
 	// Contrat : Aucun
 	//
 
-	void FormaterAffichageDysfonctionnement(list<Capteur> & retourFonction);
+	void FormaterAffichageDysfonctionnement(collectionCapteurs & retourFonction);
 	// Mode d'emploi : Cette méthode a pour but de permettre un affichage correct 
 	// et conforme aux spécifications de la méthode visant à trouver les 
 	// capteurs étant potentiellement en situation de dysfonctionnement.

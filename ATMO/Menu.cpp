@@ -13,12 +13,11 @@ copyright            : (C) ${year} par ${user}
 #include <iostream>
 #include <string>
 #include <list>
+#include <iterator>
 using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Menu.h"
-
-
 
 //------------------------------------------------------------- Constantes
 
@@ -71,7 +70,7 @@ void Menu::FormaterAffichageCaracteristiques(int & scoreAtmo, conteneurMoyMesure
 {
 	sortieStandard << "Atmo Score " << scoreAtmo << DescriptionValeur(scoreAtmo)
 	<< ", valeurs moyennes utilisées :" << endl;
-	for( auto it : retourFonction){
+	for (auto it = retourFonction.begin(); it != retourFonction.end(); ++it) {
 		sortieStandard << it->first << ";" << it->second << endl;
 	}
 
@@ -79,10 +78,12 @@ void Menu::FormaterAffichageCaracteristiques(int & scoreAtmo, conteneurMoyMesure
 
 void Menu::FormaterAffichageSimilaires(doubleCollectionCapteurs & retourFonction)
 {
-	for(auto it : retourFonction){
-		sortieStandard << "Atmo Score " << distance(it, retourFonction.begin()) <<
-		DescriptionValeur(distance(it, retourFonction.begin())) << " :" << endl;
-		for(auto itFils : *it){
+	for(auto it = retourFonction.begin(); it != retourFonction.end(); ++it){
+		sortieStandard << "Atmo Score " << distance(it, retourFonction.begin());
+		int d = distance(it, retourFonction.begin());
+		sortieStandard << DescriptionValeur(d) << " :" << endl;
+		collectionCapteurs vector_courant = *it;
+		for (auto itFils = vector_courant.begin(); itFils != vector_courant.end(); ++itFils) {
 			sortieStandard << *itFils << endl;
 		}
 	}
@@ -90,11 +91,11 @@ void Menu::FormaterAffichageSimilaires(doubleCollectionCapteurs & retourFonction
 
 void Menu::FormaterAffichageDysfonctionnement(collectionCapteurs & retourFonction)
 {
-	if(collectionCapteurs.empty()){
+	if(retourFonction.empty()){
 		sortieStandard << "Aucun capteur en dysfonctionnement dans cet intervalle" << endl;
 	} else {
 		sortieStandard << "Capteurs considérés comme en dysfonctionnement :" <<endl;
-		for(auto it : retourFonction){
+		for(auto it = retourFonction.begin(); it != retourFonction.end(); ++it){
 			sortieStandard << *it << endl; //affichage de la raison dans une future version.
 		}
 	}
@@ -108,7 +109,7 @@ void Menu::FormaterAffichageQualite(int & scoreAtmo, conteneurMoyMesures & retou
 	if(retourFonction.empty()){
 		return;
 	} else {
-		for( auto it : retourFonction){
+		for(auto it = retourFonction.begin(); it != retourFonction.end(); ++it){
 			sortieStandard << it->first << ";" << it->second << endl;
 		}
 
@@ -137,7 +138,7 @@ Menu::~Menu()
 
 //------------------------------------------------------- Méthodes privées
 
- string DescriptionValeur(int & scoreAtmo){
+ string Menu::DescriptionValeur(int & scoreAtmo){
  	string descriptionValeur;
  	switch(scoreAtmo) {
  		case 1 :
