@@ -7,8 +7,12 @@
 #include "../ATMO/Capteur.h"
 #include "../ATMO/TypeMesure.h"
 #include "../ATMO/TraitementDonnees.h"
+#include "../ATMO/Zone.h"
+#include "../ATMO/CoordonneesGPS.h"
+#include "../ATMO/Analyse.h"
 #include "../ATMO/Date.h"
 #include <algorithm>
+#include <iterator>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -53,21 +57,24 @@ namespace UnitTest
 		{
 			//TraitementDonnees t = TraitementDonnees::GetInstance();
 			//multiset <Mesure> m;
-			Capteur c2(1, -38.3884286616875, -24.9593580676985, "");
-			Capteur c3(2, -44.5357010278551, -40.5272071485069, "");
-			Capteur c4(3, 18.9026808524051, -60.4696149986561, "");
+			Capteur c2(0, -19.4789835505555, -35.2425725968753, "");
+			Capteur c3(1, -38.3884286616875, -24.9593580676985, "");
+			Capteur c4(2, -44.5357010278551, -40.5272071485069, "");
 			collectionCapteurs v1;
 			v1.push_back(c2);
 			v1.push_back(c3);
 			v1.push_back(c4);
+			Assert::IsTrue(TraitementD.ParcoursMesures().size()>0);
 			collectionCapteurs v2 = TraitementD.ParcoursCapteurs(-38, -24, 2500);
 			Assert::IsTrue(v1.size() == v2.size());
 			std::sort(v1.begin(), v1.end(), CapteurSort);
 			std::sort(v2.begin(), v2.end(), CapteurSort);
 			int size = v1.size();
+			Assert::IsTrue(v1.size() == v2.size());
 			for (int i = 0; i < size; i++) {
 				Assert::IsTrue(v1[i].getId() == v2[i].getId());
 			}
+			
 		}
 		TEST_METHOD(CapteurRayonTest2)
 		{

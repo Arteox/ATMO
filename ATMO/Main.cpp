@@ -62,7 +62,7 @@ void executerCommandes(list<string> commandesAvecParams) {
 int main(int argc, char** argv) {
 	//TraitementD;
 
-	MenuInstance.InitialiserMenu();
+	/*MenuInstance.InitialiserMenu();
 
 
 	while (true) {
@@ -75,7 +75,7 @@ int main(int argc, char** argv) {
 		list<string> commandes = ParseurInstance.ParserCommande(entree);
 		executerCommandes(commandes);
 		
-	}
+	}*/
 	
 	
 
@@ -85,8 +85,8 @@ int main(int argc, char** argv) {
 	collectionCapteurs v = TraitementD.ParcoursCapteurs(18.902680, -60.469614);
 	cout << "taille : " << v.size() << endl;
 	cout << v[0].getId() << endl;*/
-	/*
-	collectionCapteurs v2 = TraitementD.ParcoursCapteurs(-38, -24, 2500);
+	
+	/*collectionCapteurs v2 = TraitementD.ParcoursCapteurs(-38, -24, 2500);
 	cout << "taille : " << v2.size() << endl;
 	for (collectionCapteurs::iterator it = v2.begin(); it != v2.end(); ++it) {
 		cout << it->getId() << " " << it->getLat() << " " << it->getLong() << endl;
@@ -113,8 +113,8 @@ int main(int argc, char** argv) {
 	cout << z.estDansZone(45.746857, 4.827419) << endl;*/
 
 	//TEST calcul distance GPS
-	//CoordonneesGPS cGPS;
-	//cout << cGPS.distanceEnKmEntreDeuxPoints(-19.4789835505555, -35.2425725968753, -38.3884286616875, -24.9593580676985) << endl;
+	/*CoordonneesGPS cGPS;
+	cout << cGPS.distanceEnKmEntreDeuxPoints(-38, -24, 18.9026808524051, -60.4696149986561) << endl;*/
 
 	//TEST ParcoursMesures avec parametres
 	/*
