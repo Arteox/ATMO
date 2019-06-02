@@ -66,7 +66,7 @@ list<string> Parseur::ParserCommande(string & entree) // mettre ici le paramètre
 					nbParametres--; // et on retire donc un au nombre de tours nécessaires.
 				}
 				else {
-					option = AttributionOption(parametreCourant);
+					option = to_string(AttributionOption(parametreCourant));
 				}
 				commandeParsee.push_back(option);
 			}
@@ -142,8 +142,8 @@ int Parseur::AttributionCommande(string & commande) {
 	return codeCommande;
 }
 
-double Parseur::AttributionOption(string & option) {
-	double codeOption(0);
+int Parseur::AttributionOption(string & option) {
+	int codeOption(0);
 	switch (trouverOption(option)) {
 		case d:
 			codeOption = 0;

@@ -25,54 +25,19 @@ using namespace std;
 #include "Menu.h"
 #include "Parseur.h"
 #include "Analyse.h"
-//------------------------------------------------------------- Constantes
 
-//---------------------------------------------------- Variables de classe
-
-//----------------------------------------------------------- Types privés
-
-
-//----------------------------------------------------------------- PUBLIC
-//-------------------------------------------------------- Fonctions amies
-
-//----------------------------------------------------- Méthodes publiques
 
 int main(int argc, char** argv) {
-	Menu menu;
-	Parseur parseur;
-	TraitementD;
-	Analyse analyse;
+	//TraitementD;
 
-	menu.InitialiserMenu();
+	MenuInstance.InitialiserMenu();
 
 	while (true) {
 		cout << endl << "Veuillez rentrer votre commande" << endl << endl;
-		string entree = menu.RecupererEntreeUtilisateur();
-		list<string> commandes = parseur.ParserCommande(entree);
+		string entree = MenuInstance.RecupererEntreeUtilisateur();
+		list<string> commandes = ParseurInstance.ParserCommande(entree);
 
-		//on convertit la liste en vector pour faciliter les accès par index
-		vector<string> commandesV{ make_move_iterator(begin(commandes)),std::make_move_iterator(end(commandes)) };
-
-		if (commandesV[0] == "4") {
-			menu.AfficherAide();
-		}
-		else if (commandesV[0] == "3") {
-			analyse.caracteristiquesPoint(stod(commandesV[2]),stod(commandesV[1]), Date(commandesV[3]), Date(commandesV[4]));
-			//print les resultats
-		}
-		else if (commandesV[0] == "2") {
-			analyse.dysfonctionnement(Date(commandesV[1]), Date(commandesV[2]));
-			//print les resultats
-		}
-		else if (commandesV[0] == "1") {
-			analyse.comportementSimilaire(Date(commandesV[1]), Date(commandesV[2]));
-			//print les resultats
-		}
-		else if (commandesV[0] == "0") {
-			//analyse.qualiteAir();
-			//print les resultats
-		}
-
+		
 	}
 
 	
@@ -142,15 +107,30 @@ int main(int argc, char** argv) {
 	return 0;
 }
 
-//------------------------------------------------- Surcharge d'opérateurs
+void executerCommandes(list<double> commandesAvecParams) {
 
-//-------------------------------------------- Constructeurs - destructeur
+	//on convertit la liste en vector pour faciliter les accès par index
+	vector<string> commandesV{ make_move_iterator(begin(commandesAvecParams)),std::make_move_iterator(end(commandesAvecParams)) };
 
-
-//------------------------------------------------------------------ PRIVE
-
-//----------------------------------------------------- Méthodes protégées
-
-//------------------------------------------------------- Méthodes privées
-
-
+	if (commandesV[0] == "4") {
+		MenuInstance.AfficherAide();
+	}
+	else if (commandesV[0] == "3") {
+		cout << stod(commandesV[3]) << " " << stod(commandesV[2]) << " " << Date(commandesV[4]) << " " << Date(commandesV[5]) << endl;
+		//AnalyseInstance.caracteristiquesPoint(stod(commandesV[3]), stod(commandesV[2]), Date(commandesV[4]), Date(commandesV[5]));
+		//print les resultats
+	}
+	else if (commandesV[0] == "2") {
+		cout << Date(commandesV[2]) << " " << Date(commandesV[3]) << endl;
+		//AnalyseInstance.dysfonctionnement(Date(commandesV[2]), Date(commandesV[3]));
+		//print les resultats
+	}
+	else if (commandesV[0] == "1") {
+		//AnalyseInstance.comportementSimilaire(Date(commandesV[2]), Date(commandesV[3]));
+		//print les resultats
+	}
+	else if (commandesV[0] == "0") {
+		//AnalyseInstance.qualiteAir(stod(commandesV[3]), stod(commandesV[2]), stod(commandesV[4]), Date(commandesV[5]), Date(commandesV[6])));
+		//print les resultats
+	}
+}

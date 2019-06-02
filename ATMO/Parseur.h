@@ -16,6 +16,7 @@ using namespace std;
 
 
 //------------------------------------------------------------- Constantes 
+#define ParseurInstance Parseur::GetInstance()
 enum Commandes {qm, sim, dysfonc, carac, help, commandeInvalide = -1};
 enum Options { d, optionAbsente = -2, optionInvalide = -1 };
 //------------------------------------------------------------------ Types 
@@ -31,6 +32,12 @@ class Parseur
 {
 	//----------------------------------------------------------------- PUBLIC
 public:
+
+	static Parseur & GetInstance()
+	{
+		static Parseur instance;
+		return instance;
+	}
 	//----------------------------------------------------- Méthodes publiques
 
 	list<string> ParserCommande(string & entree);
@@ -52,17 +59,7 @@ public:
 	// Contrat : Aucun
 	//
 	//-------------------------------------------- Constructeurs - destructeur
-	Parseur(const Parseur & unParseur);
-	// Mode d'emploi (constructeur de copie) :
-	// RAS
-	// Contrat : Aucun
-	//
-
-	Parseur();
-	// Mode d'emploi :
-	// Constructeur par défaut de la classe Parseur
-	// Contrat :
-	//
+	
 
 	virtual ~Parseur();
 	// Mode d'emploi : RAS, contenu vide
@@ -78,6 +75,17 @@ protected:
 	//----------------------------------------------------- Méthodes protégées
 
 private:
+	Parseur(const Parseur & unParseur);
+	// Mode d'emploi (constructeur de copie) :
+	// RAS
+	// Contrat : Aucun
+	//
+
+	Parseur();
+	// Mode d'emploi :
+	// Constructeur par défaut de la classe Parseur
+	// Contrat :
+	//
 	//------------------------------------------------------- Attributs privés
 
 	//------------------------------------------------------- Méthodes privées
@@ -90,7 +98,7 @@ private:
 	// Contrat : Aucun
 	//
 
-	double AttributionOption(string & option);
+	int AttributionOption(string & option);
 	// Mode d'emploi : Cette méthode permet de faire des vérifications quant ?
 	// la validit?de l'option tapée par l'utilisateur ainsi que d'attribuer
 	// cette dernière sa valeur numérique pour qu'elle puisse ensuite 

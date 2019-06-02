@@ -18,7 +18,8 @@
 #include "Capteur.h"
 #include "Date.h"
 
-//------------------------------------------------------------- Constantes 
+//------------------------------------------------------------- Constantes
+#define AnalyseInstance Analyse::GetInstance()
 
 //------------------------------------------------------------------ Types 
 typedef vector<vector<Capteur>> doubleCollectionCapteurs;
@@ -37,6 +38,13 @@ class Analyse
 	//----------------------------------------------------------------- PUBLIC
 
 public:
+
+	static Analyse & GetInstance()
+	{
+		static Analyse instance;
+		return instance;
+	}
+
 	//----------------------------------------------------- Méthodes publiques
 	conteneurMoyMesures caracteristiquesZone(bool d, double lat, double longi, double rayon, Date horodateDeb, Date horodateFin);
 	// Mode d'emploi :
@@ -63,7 +71,7 @@ public:
 
 	//-------------------------------------------- Constructeurs - destructeur
 
-	Analyse();
+	
 	// Mode d'emploi :
 	//
 	// Contrat :
@@ -75,6 +83,7 @@ protected:
 	//----------------------------------------------------- Méthodes protégées
 
 private:
+	Analyse();
 	//------------------------------------------------------- Méthodes privées
 
 protected:

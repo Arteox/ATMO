@@ -11,7 +11,8 @@ copyright            : (C) 2019 par Mengxing ZHANG, Louis UNG, Fabien GELUS et B
 
 //--------------------------------------------------- Interfaces utilisées
 #include <string>
-//------------------------------------------------------------- Constantes 
+//------------------------------------------------------------- Constantes
+#define ParseurInstance Parseur::GetInstance()
 #define sortieStandard cout // constantes pouvant être modifiée à l'avenir.
 #define sortieErreur cerr // si l'on souhaite travailler dans un fichier par ex.
 //------------------------------------------------------------------ Types 
