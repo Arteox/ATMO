@@ -68,15 +68,10 @@ string Menu::RecupererEntreeUtilisateur() {
 
 //-------------------------------------------- Constructeurs - destructeur
 
-Menu::Menu(const Menu & unMenu)
-{
-}
-
 Menu::Menu()
 {
 
 }
-
 
 Menu::~Menu()
 {
