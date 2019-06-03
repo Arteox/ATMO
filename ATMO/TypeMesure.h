@@ -41,6 +41,8 @@ public:
 	// Contrat : Aucun
 	//
 
+	friend ostream & operator << (ostream &out, const TypeMesure &typemesure);
+
 	
 	//-------------------------------------------- Constructeurs - destructeur
 	TypeMesure(const TypeMesure & unTypeMesure);

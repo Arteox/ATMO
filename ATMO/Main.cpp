@@ -25,18 +25,52 @@ using namespace std;
 #include "Menu.h"
 #include "Parseur.h"
 #include "Analyse.h"
+<<<<<<< HEAD
 //------------------------------------------------------------- Constantes
 //#define Menu Menu::GetInstance()
 //---------------------------------------------------- Variables de classe
+=======
 
-//----------------------------------------------------------- Types privés
+void executerCommandes(list<string> commandesAvecParams) {
+>>>>>>> 21a957d4caae72cf7249c342f4405c219f77feaa
 
+	//on convertit la liste en vector pour faciliter les accès par index
+	vector<string> commandesV{ make_move_iterator(begin(commandesAvecParams)),std::make_move_iterator(end(commandesAvecParams)) };
 
-//----------------------------------------------------------------- PUBLIC
-//-------------------------------------------------------- Fonctions amies
+	if (commandesV[0] == "4") {
+		MenuInstance.AfficherAide();
+	}
+	else if (commandesV[0] == "3") {
+		cout << stod(commandesV[2]) << " " << stod(commandesV[1]) << " " << Date(commandesV[3]) << " " << Date(commandesV[4]) << endl;
+		//AnalyseInstance.caracteristiquesPoint(stod(commandesV[2]), stod(commandesV[1]), Date(commandesV[3]), Date(commandesV[4]));
+		//print les resultats
+	}
+	else if (commandesV[0] == "2") {
+		cout << Date(commandesV[1]) << " " << Date(commandesV[2]) << endl;
+		//AnalyseInstance.dysfonctionnement(Date(commandesV[1]), Date(commandesV[2]));
+		//print les resultats
+	}
+	else if (commandesV[0] == "1") {
+		cout << commandesV[1] << " " << commandesV[2] << endl;
+		Date d(commandesV[1]);
+		cout << d << endl;
+		//AnalyseInstance.comportementSimilaire(Date(commandesV[1]), Date(commandesV[2]));
+		//print les resultats
+	}
+	else if (commandesV[0] == "0") {
+		cout << stod(commandesV[3]) << " " << stod(commandesV[2]) << " " << stod(commandesV[4]) << " " << Date(commandesV[5]) << " " << Date(commandesV[6]) << endl;
+		cout << "option : " << commandesV[1] << endl;
+		//AnalyseInstance.qualiteAir(stod(commandesV[3]), stod(commandesV[2]), stod(commandesV[4]), Date(commandesV[5]), Date(commandesV[6])));
+		//print les resultats
+	}
+}
 
-//----------------------------------------------------- Méthodes publiques
+int main(int argc, char** argv) {
+	//TraitementD;
 
+	/*MenuInstance.InitialiserMenu();
+
+<<<<<<< HEAD
 int main(int argc, char** argv) {
 	Menu menu =Menu::GetInstance();
 	Parseur parseur;
@@ -45,25 +79,17 @@ int main(int argc, char** argv) {
 
 	menu.InitialiserMenu();
 
+=======
+
+>>>>>>> 21a957d4caae72cf7249c342f4405c219f77feaa
 	while (true) {
 		cout << endl << "Veuillez rentrer votre commande" << endl << endl;
-		string entree = menu.RecupererEntreeUtilisateur();
-		list<string> commandes = parseur.ParserCommande(entree);
-
-		//on convertit la liste en vector pour faciliter les accès par index
-		vector<string> commandesV{ make_move_iterator(begin(commandes)),std::make_move_iterator(end(commandes)) };
-
-		if (commandesV[0] == "4") {
-			menu.AfficherAide();
+		string entree = MenuInstance.RecupererEntreeUtilisateur();
+		if (entree == "quitter") {
+			cout << "A bientôt !" << endl;
+			break;
 		}
-		else if (commandesV[0] == "3") {
-			analyse.caracteristiquesPoint(stod(commandesV[2]),stod(commandesV[1]), Date(commandesV[3]), Date(commandesV[4]));
-			//print les resultats
-		}
-		else if (commandesV[0] == "2") {
-			analyse.dysfonctionnement(Date(commandesV[1]), Date(commandesV[2]));
-			//print les resultats
-		}
+<<<<<<< HEAD
 		else if (commandesV[0] == "1") {
 			analyse.comportementSimilaire(Date(commandesV[1]), Date(commandesV[2]));
 			//print les resultats
@@ -74,6 +100,12 @@ int main(int argc, char** argv) {
 		}
 
 	}
+=======
+		list<string> commandes = ParseurInstance.ParserCommande(entree);
+		executerCommandes(commandes);
+		
+	}*/
+>>>>>>> 21a957d4caae72cf7249c342f4405c219f77feaa
 	
 	
 
@@ -82,9 +114,9 @@ int main(int argc, char** argv) {
 	/*
 	collectionCapteurs v = TraitementD.ParcoursCapteurs(18.902680, -60.469614);
 	cout << "taille : " << v.size() << endl;
-	cout << v[0].getId() << endl;
-	/*
-	collectionCapteurs v2 = TraitementD.ParcoursCapteurs(-38, -24, 2500);
+	cout << v[0].getId() << endl;*/
+	
+	/*collectionCapteurs v2 = TraitementD.ParcoursCapteurs(-38, -24, 2500);
 	cout << "taille : " << v2.size() << endl;
 	for (collectionCapteurs::iterator it = v2.begin(); it != v2.end(); ++it) {
 		cout << it->getId() << " " << it->getLat() << " " << it->getLong() << endl;
@@ -111,8 +143,8 @@ int main(int argc, char** argv) {
 	cout << z.estDansZone(45.746857, 4.827419) << endl;*/
 
 	//TEST calcul distance GPS
-	//CoordonneesGPS cGPS;
-	//cout << cGPS.distanceEnKmEntreDeuxPoints(-19.4789835505555, -35.2425725968753, -38.3884286616875, -24.9593580676985) << endl;
+	/*CoordonneesGPS cGPS;
+	cout << cGPS.distanceEnKmEntreDeuxPoints(-38, -24, 18.9026808524051, -60.4696149986561) << endl;*/
 
 	//TEST ParcoursMesures avec parametres
 	/*
@@ -139,18 +171,56 @@ int main(int argc, char** argv) {
 	for (collectionTypesMesure::iterator it = typeMesures.begin(); it != typeMesures.end(); ++it) {
 		it->afficher();
 	}*/
+
+
+
+	//Test Analyse caracteristiquesZone
+		/*
+		//on vise sensor5 avec une mesure
+		string deb = "2017-01-01T00:01:00.4550000";
+		string f = "2017-01-01T00:01:30.4570000";
+		Date debut(deb);
+		Date fin(f);
+		conteneurMoyMesures moy = AnalyseInstance.caracteristiquesZone(37.7525668836909, 68.271804628089, 1, debut, fin);
+
+		for (conteneurMoyMesures::iterator it = moy.begin(); it != moy.end(); ++it) {
+			cout << it->first << endl;
+			cout << it->second << endl;
+		}
+		//test ok
+		*/
+		/*
+		//on vise sensor5 avec 2 mesures
+		string deb = "2017-01-01T00:01:00.4550000";
+		string f = "2017-01-01T00:30:45.5270000";
+		Date debut(deb);
+		Date fin(f);
+		conteneurMoyMesures moy = AnalyseInstance.caracteristiquesZone(37.7525668836909, 68.271804628089, 1, debut, fin);
+
+		for (conteneurMoyMesures::iterator it = moy.begin(); it != moy.end(); ++it) {
+			cout << it->first << endl;
+			cout << it->second << endl;
+		}
+		//test ok
+		*/
+	
+	//Test Analyse caracteristiquesPoint
+		/*
+		//on vise sensor5 avec une mesure
+		string deb = "2017-01-01T00:01:00.4550000";
+		string f = "2017-01-01T00:01:30.4570000";
+		Date debut(deb);
+		Date fin(f);
+		conteneurMoyMesures moy = AnalyseInstance.caracteristiquesPoint(37.7525668836909, 68.271804628089, debut, fin);
+
+		for (conteneurMoyMesures::iterator it = moy.begin(); it != moy.end(); ++it) {
+			cout << it->first << endl;
+			cout << it->second << endl;
+		}
+		// ok
+		*/
+
 	return 0;
 }
-
-//------------------------------------------------- Surcharge d'opérateurs
-
-//-------------------------------------------- Constructeurs - destructeur
-
-
-//------------------------------------------------------------------ PRIVE
-
-//----------------------------------------------------- Méthodes protégées
-
-//------------------------------------------------------- Méthodes privées
 
 

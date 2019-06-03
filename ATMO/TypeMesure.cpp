@@ -58,6 +58,11 @@ TypeMesure & TypeMesure::operator=(const TypeMesure & unTypeMesure)
 	return *this;
 }
 
+ostream & operator<<(ostream & out, const TypeMesure & typemesure)
+{
+	out << typemesure.getAttributeId() << " " << typemesure.getDescription() << endl;
+	return out;
+}
 
 //-------------------------------------------- Constructeurs - destructeur
 

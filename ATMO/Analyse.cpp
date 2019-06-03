@@ -30,7 +30,7 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
-conteneurMoyMesures Analyse::caracteristiquesZone(bool d, double lat, double longi, double rayon, Date horodateDeb, Date horodateFin)
+conteneurMoyMesures Analyse::caracteristiquesZone( double lat, double longi, double rayon, Date horodateDeb, Date horodateFin)
 {
 	
 	conteneurMoyMesures moyMesures;
@@ -39,12 +39,22 @@ conteneurMoyMesures Analyse::caracteristiquesZone(bool d, double lat, double lon
 
 	capteurs = TraitementD.ParcoursCapteurs(lat, longi, rayon);
 
+	/*
+	cout << capteurs.size() << endl;
+	for (collectionCapteurs::iterator it = capteurs.begin(); it != capteurs.end(); ++it) {
+		cout << it->getLat() << " " << it->getLong() << endl;
+	}
+	*/
 	collectionMesures mesures;
 	mesures = TraitementD.ParcoursMesures(capteurs,horodateDeb, horodateFin);
 
 	//collectionTypesMesure types = TraitementD.ParcoursTypesMesure();
-
-
+	/*
+	cout << "taille mesures filtrées : " << mesures.size() << endl;
+	for (collectionMesures::iterator it = mesures.begin(); it != mesures.end(); ++it) {
+		cout << *it << endl;
+	}
+	*/
 
 	collectionMesures ::iterator it;  // declare an iterator to a vector of strings
 
@@ -238,7 +248,7 @@ collectionCapteurs Analyse::dysfonctionnement(Date horodateDeb, Date horodateFin
 	return capteursDysf;
 }
 
-conteneurMoyMesures Analyse::caracteristiquesPoint(double longi, double lat, Date horodateDeb, Date horodateFin)
+conteneurMoyMesures Analyse::caracteristiquesPoint(double lat, double longi, Date horodateDeb, Date horodateFin)
 {	
 	conteneurMoyMesures moyMesures;
 
