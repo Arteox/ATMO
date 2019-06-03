@@ -46,8 +46,9 @@ public:
 	}
 
 	//----------------------------------------------------- Méthodes publiques
-	conteneurMoyMesures caracteristiquesZone(bool d, double lat, double longi, double rayon, Date horodateDeb, Date horodateFin);
-	// Mode d'emploi :
+	conteneurMoyMesures caracteristiquesZone( double lat, double longi, double rayon, Date horodateDeb, Date horodateFin);
+	// Mode d'emploi : si option -d activée, appeler cette methode puis afficher les moyennes en sortie, puis appeler qualiteAir avec en parametre la sortie 
+	//sinon, appeler qualiteair avec en parametre la sortie de cette methode
 	//
 	// Contrat :
 	//
@@ -59,12 +60,17 @@ public:
 	//
 	collectionCapteurs dysfonctionnement(Date horodateDeb, Date horodateFin);
 
-	conteneurMoyMesures caracteristiquesPoint(double longi, double lat, Date horodateDeb, Date horodateFin);
+	conteneurMoyMesures caracteristiquesPoint(double lat, double longi, Date horodateDeb, Date horodateFin);
+	//appeler qualiteair avec en parametre la sortie de cette methode
+	//
+	// Contrat :
+	//
+
 
 	int qualiteAir(conteneurMoyMesures MoyMesures);
 	// Mode d'emploi :
 	// entrée : moyenne des mesures pour chaque type
-	// sortie : indice de qualit?de l'air de 1 ?10  ou -1 si données incohérentes
+	// sortie : indice de qualit?de l'air de 1 a 10  ou -1 si données incohérentes
 	// on choisit le plus grand des sous - indices calculés pour le dioxyde de soufre, le dioxyde d'azote, l'ozone et les particules fines;
 	// Contrat :
 	// 

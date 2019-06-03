@@ -141,6 +141,55 @@ int main(int argc, char** argv) {
 	for (collectionTypesMesure::iterator it = typeMesures.begin(); it != typeMesures.end(); ++it) {
 		it->afficher();
 	}*/
+
+
+
+	//Test Analyse caracteristiquesZone
+		/*
+		//on vise sensor5 avec une mesure
+		string deb = "2017-01-01T00:01:00.4550000";
+		string f = "2017-01-01T00:01:30.4570000";
+		Date debut(deb);
+		Date fin(f);
+		conteneurMoyMesures moy = AnalyseInstance.caracteristiquesZone(37.7525668836909, 68.271804628089, 1, debut, fin);
+
+		for (conteneurMoyMesures::iterator it = moy.begin(); it != moy.end(); ++it) {
+			cout << it->first << endl;
+			cout << it->second << endl;
+		}
+		//test ok
+		*/
+		/*
+		//on vise sensor5 avec 2 mesures
+		string deb = "2017-01-01T00:01:00.4550000";
+		string f = "2017-01-01T00:30:45.5270000";
+		Date debut(deb);
+		Date fin(f);
+		conteneurMoyMesures moy = AnalyseInstance.caracteristiquesZone(37.7525668836909, 68.271804628089, 1, debut, fin);
+
+		for (conteneurMoyMesures::iterator it = moy.begin(); it != moy.end(); ++it) {
+			cout << it->first << endl;
+			cout << it->second << endl;
+		}
+		//test ok
+		*/
+	
+	//Test Analyse caracteristiquesPoint
+		/*
+		//on vise sensor5 avec une mesure
+		string deb = "2017-01-01T00:01:00.4550000";
+		string f = "2017-01-01T00:01:30.4570000";
+		Date debut(deb);
+		Date fin(f);
+		conteneurMoyMesures moy = AnalyseInstance.caracteristiquesPoint(37.7525668836909, 68.271804628089, debut, fin);
+
+		for (conteneurMoyMesures::iterator it = moy.begin(); it != moy.end(); ++it) {
+			cout << it->first << endl;
+			cout << it->second << endl;
+		}
+		// ok
+		*/
+
 	return 0;
 }
 
