@@ -12,6 +12,7 @@
 #define _USE_MATH_DEFINES
 #include <cmath>
 #include <iostream>
+#include <string>
 using namespace std;
 
 //------------------------------------------------------ Include personnel
@@ -213,6 +214,14 @@ collectionCapteurs Analyse::dysfonctionnement(Date horodateDeb, Date horodateFin
 
 		//on parcourt toutes les mesures d'un capteur puis on vérifie :
 		collectionMesures::iterator it2;
+		
+		//valeurs predefine pour > 12 h
+		string types[] = { "O3","SO2","NO2","PM10" };
+		Date lastChanges[] = { horodateDeb ,horodateDeb,horodateDeb,horodateDeb};
+		double lastValeurs [] = {-1,-1,-1,-1};
+
+
+
 		for (it2 = mesures.begin(); it2 != mesures.end(); it2++)
 		{
 			//si il y a une valeur négative
@@ -220,13 +229,14 @@ collectionCapteurs Analyse::dysfonctionnement(Date horodateDeb, Date horodateFin
 			if (it2->getValeur() < 0) 
 			{
 				dysf = true;
-			}
-				
+				break;
+			}	
 			//si il y a des valeurs trop grandes (>=5000)
 
 			if (it2->getValeur() > 5000)
 			{
 				dysf = true;
+				break;
 			}
 			//si la fréquence de prise de mesures n'est pas respectée
 			//todo
@@ -235,7 +245,47 @@ collectionCapteurs Analyse::dysfonctionnement(Date horodateDeb, Date horodateFin
 			//todo
 
 			// si ses mesures restent constantes dans le temps sur une période trop longue (>12h)
-			//todo
+			// selon les different types
+			
+			for (int i = 0; i < 4; i++) {
+				if (it2->getTypeMesure().getAttributeId() == types[0]) {
+					if (it2->getValeur() != lastValeurs[i]) {
+						if (it2->getDate().getAnnee() != lastChanges[i].getAnnee()) {
+							dysf = true;
+							break;
+						}
+						else if (it2->getDate().getMois() != lastChanges[i].getMois()) {
+							dysf = true;
+							break;
+						}
+						else if (it2->getDate().getJour() != lastChanges[i].getJour()) {
+							if (abs(it2->getDate().getJour() > -lastChanges[i].getJour()) > 1) {
+								dysf = true;
+								break;
+							}
+							else if ((it2->getDate().getJour() - lastChanges[i].getJour())*(it2->getDate().getHeure() - lastChanges[i].getHeure()) < 0 &&
+								(it2->getDate().getJour() - lastChanges[i].getJour())*(it2->getDate().getHeure() - lastChanges[i].getHeure()) > -12)
+							{
+								dysf = true;
+								break;
+							}
+						}
+						else
+							//m¨ºme jour
+						{
+							if (abs(it2->getDate().getHeure() - lastChanges[i].getHeure())>12) {
+								dysf = true;
+								break;
+							}
+						}
+						lastValeurs[i] = it2->getValeur();
+						lastChanges[i] = it2->getDate();
+					}
+				}
+			}
+			
+			
+			
 		}
 
 		if (dysf)
@@ -342,32 +392,29 @@ conteneurMoyMesures Analyse::caracteristiquesPoint(double lat, double longi, Dat
 int Analyse::qualiteAir(conteneurMoyMesures MoyMesures)
 {
 	int indice = 0;
-
 	string types[4] = { "O3", "SO2", "NO2", "PM10" };
 	int atmo[4][9] = { (30,55,80,105,130,150,180,210,240), (40,80,120,160,200,250,300,400,500), (30,55,85,110,135,165,200,275,400), (7,14,21,28,35,42,50,65,80) };
-
 	for (int i = 0; i < 4; i++) {
-		double valeur = MoyMesures.find(types[i])->second;
-
-		if (valeur < 0)
-		{
-			return -1; // erreur 
-		}
-
-		for (int j = 0; j < 9; j++) {
-			if (valeur < atmo[i][j] && indice < j + 1)
+		//ajouter un if pour ¨¦viter il y a un type qui existe pas dans l'ensemble types
+		auto it=MoyMesures.find(types[i]);
+		if (it != MoyMesures.end()) {
+			double valeur = it->second;
+			if (valeur < 0)
 			{
-				indice = j + 1;
+				return -1; // erreur 
+			}
+			for (int j = 0; j < 9; j++) {
+				if (valeur < atmo[i][j] && indice < j + 1)
+				{
+					indice = j + 1;
+				}
+			}
+			if (valeur > atmo[i][8] && indice < 10)
+			{
+				indice = 10;
 			}
 		}
-
-		if (valeur > atmo[i][8] && indice < 10)
-		{
-			indice = 10;
-		}
-		
 	}
-	
 	return indice;
 }
 

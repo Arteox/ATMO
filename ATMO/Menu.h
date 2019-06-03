@@ -13,18 +13,12 @@ copyright            : (C) 2019 par Mengxing ZHANG, Louis UNG, Fabien GELUS et B
 #include <string>
 #include <list>
 #include <map>
-<<<<<<< HEAD
 #include "TypeMesure.h"
-=======
->>>>>>> 21a957d4caae72cf7249c342f4405c219f77feaa
 #include "Capteur.h"
 #include "Analyse.h"
 //------------------------------------------------------------- Constantes 
-<<<<<<< HEAD
-//#define Menu Menu::GetInstance()
-=======
+
 #define MenuInstance Menu::GetInstance()
->>>>>>> 21a957d4caae72cf7249c342f4405c219f77feaa
 #define sortieStandard cout // constantes pouvant être modifiée à l'avenir.
 #define sortieErreur cerr // si l'on souhaite travailler dans un fichier par ex.
 //------------------------------------------------------------------ Types 
@@ -84,44 +78,36 @@ public:
 	// Contrat : Aucun
 	//
 
-<<<<<<< HEAD
-	void FormaterAffichageCaracteristiques(map<TypeMesure,double> & retourFonction);
-=======
+
 	void FormaterAffichageCaracteristiques(int & scoreAtmo, conteneurMoyMesures & retourFonction);
->>>>>>> 21a957d4caae72cf7249c342f4405c219f77feaa
+
 	// Mode d'emploi : Cette méthode a pour but de permettre un affichage correct 
 	// et conforme aux spécifications de la méthode visant à trouver les 
 	// valeurs caractéristiques d'une zone en particulier
 	// Contrat : Aucun
 	//
 
-<<<<<<< HEAD
-	void FormaterAffichageSimilaires(list<list<Capteur>> & retourFonction);
-=======
+
 	void FormaterAffichageSimilaires(doubleCollectionCapteurs & retourFonction);
->>>>>>> 21a957d4caae72cf7249c342f4405c219f77feaa
+
 	// Mode d'emploi : Cette méthode a pour but de permettre un affichage correct 
 	// et conforme aux spécifications de la méthode visant à trouver les 
 	// capteurs ayant des comportements similaires.
 	// Contrat : Aucun
 	//
 
-<<<<<<< HEAD
-	void FormaterAffichageDysfonctionnement(list<Capteur> & retourFonction);
-=======
+
 	void FormaterAffichageDysfonctionnement(collectionCapteurs & retourFonction);
->>>>>>> 21a957d4caae72cf7249c342f4405c219f77feaa
+
 	// Mode d'emploi : Cette méthode a pour but de permettre un affichage correct 
 	// et conforme aux spécifications de la méthode visant à trouver les 
 	// capteurs étant potentiellement en situation de dysfonctionnement.
 	// Contrat : Aucun
 	//
 
-<<<<<<< HEAD
-	void FormaterAffichageQualite(list<double> & retourFonction);
-=======
+
 	void FormaterAffichageQualite(int & scoreAtmo, conteneurMoyMesures & retourFonction);
->>>>>>> 21a957d4caae72cf7249c342f4405c219f77feaa
+
 	// Mode d'emploi : Cette méthode a pour but de permettre un affichage correct 
 	// et conforme aux spécifications de la méthode visant à trouver la
 	// qualité de l'air dans une zone, via son score et les valeurs utilisées.
@@ -155,7 +141,6 @@ private:
 	// Contrat : Aucun
 	//
 	//------------------------------------------------------- Attributs privés
-	Menu();
 	//---------------------------------------------------------- Classes amies
 
 	//-------------------------------------------------------- Classes privées

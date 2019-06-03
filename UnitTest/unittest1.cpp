@@ -12,11 +12,8 @@
 #include "../ATMO/Analyse.h"
 #include "../ATMO/Date.h"
 #include <algorithm>
-<<<<<<< HEAD
 #include <codecvt>
-=======
-#include <iterator>
->>>>>>> 21a957d4caae72cf7249c342f4405c219f77feaa
+
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 

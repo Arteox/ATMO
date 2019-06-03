@@ -6,7 +6,7 @@
 *************************************************************************/
 
 //---------- Interface de la classe <Analyse> (fichier Analyse.h) ------
-#if ! defined ( ANALYSE_H )
+#if ! defined ANALYSE_H 
 #define ANALYSE_H
  
 //--------------------------------------------------- Interfaces utilisées
@@ -90,6 +90,7 @@ protected:
 
 private:
 	Analyse();
+	Analyse(const Analyse &);
 	//------------------------------------------------------- Méthodes privées
 
 protected:

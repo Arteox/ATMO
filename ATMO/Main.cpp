@@ -25,14 +25,12 @@ using namespace std;
 #include "Menu.h"
 #include "Parseur.h"
 #include "Analyse.h"
-<<<<<<< HEAD
+
 //------------------------------------------------------------- Constantes
 //#define Menu Menu::GetInstance()
 //---------------------------------------------------- Variables de classe
-=======
 
 void executerCommandes(list<string> commandesAvecParams) {
->>>>>>> 21a957d4caae72cf7249c342f4405c219f77feaa
 
 	//on convertit la liste en vector pour faciliter les accès par index
 	vector<string> commandesV{ make_move_iterator(begin(commandesAvecParams)),std::make_move_iterator(end(commandesAvecParams)) };
@@ -105,7 +103,6 @@ int main(int argc, char** argv) {
 		executerCommandes(commandes);
 		
 	}*/
->>>>>>> 21a957d4caae72cf7249c342f4405c219f77feaa
 	
 	
 
