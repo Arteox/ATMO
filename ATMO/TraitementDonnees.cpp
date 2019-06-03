@@ -32,9 +32,9 @@ using namespace std;
 //------------------------------------------------------------- Constantes
 
 //---------------------------------------------------- Variables de classe
-const string TraitementDonnees::fichierCapteurs = "DonneesCSV\\Sensors.csv";
-const string TraitementDonnees::fichierTypesMesure = "DonneesCSV\\AttributeType.csv";
-const string TraitementDonnees::fichierMesures = "DonneesCSV\\MesuresSample.csv";
+const string TraitementDonnees::fichierCapteurs = "C:\\Users\\untra\\OneDrive\\ÎÄµµ\\insa\\18-19 2\\GL UML\\ATMO\\ATMO\\Sensors.csv";
+const string TraitementDonnees::fichierTypesMesure = "C:\\Users\\untra\\OneDrive\\ÎÄµµ\\insa\\18-19 2\\GL UML\\ATMO\\ATMO\\DonneesCSV\\AttributeType.csv";
+const string TraitementDonnees::fichierMesures = "C:\\Users\\untra\\OneDrive\\ÎÄµµ\\insa\\18-19 2\\GL UML\\ATMO\\ATMO\\DonneesCSV\\MesuresSample.csv";
 //----------------------------------------------------------- Types privés
 
 

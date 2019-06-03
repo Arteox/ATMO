@@ -51,7 +51,7 @@ public:
 
 	collectionCapteurs ParcoursCapteurs(double lat, double longi);
 	// Mode d'emploi :
-	// L'utilisateur indique une zone dont le centre est indiqué en paramètre. Le rayon fait 10 km.
+	// L'utilisateur indique une zone dont le centre est indiqu?en paramètre. Le rayon fait 10 km.
 	// Cette méthode renvoie alors, s'il y en a, les 3 capteurs les plus proches présents dans cette zone.
 	// Contrat : Aucun
 	//

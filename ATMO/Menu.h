@@ -12,10 +12,11 @@ copyright            : (C) 2019 par Mengxing ZHANG, Louis UNG, Fabien GELUS et B
 //--------------------------------------------------- Interfaces utilisées
 #include <string>
 #include <list>
+#include <map>
 #include "TypeMesure.h"
 #include "Capteur.h"
 //------------------------------------------------------------- Constantes 
-#define Menu Menu::GetInstance()
+//#define Menu Menu::GetInstance()
 #define sortieStandard cout // constantes pouvant être modifiée à l'avenir.
 #define sortieErreur cerr // si l'on souhaite travailler dans un fichier par ex.
 //------------------------------------------------------------------ Types 
@@ -75,28 +76,28 @@ public:
 	// Contrat : Aucun
 	//
 
-	void FormaterAffichageCaracteristiques(Map<TypeMesure,double> & retourFonction);
+	void FormaterAffichageCaracteristiques(map<TypeMesure,double> & retourFonction);
 	// Mode d'emploi : Cette méthode a pour but de permettre un affichage correct 
 	// et conforme aux spécifications de la méthode visant à trouver les 
 	// valeurs caractéristiques d'une zone en particulier
 	// Contrat : Aucun
 	//
 
-	void FormaterAffichageSimilaires(List<List<Capteur>> & retourFonction);
+	void FormaterAffichageSimilaires(list<list<Capteur>> & retourFonction);
 	// Mode d'emploi : Cette méthode a pour but de permettre un affichage correct 
 	// et conforme aux spécifications de la méthode visant à trouver les 
 	// capteurs ayant des comportements similaires.
 	// Contrat : Aucun
 	//
 
-	void FormaterAffichageDysfonctionnement(List<Capteur> & retourFonction);
+	void FormaterAffichageDysfonctionnement(list<Capteur> & retourFonction);
 	// Mode d'emploi : Cette méthode a pour but de permettre un affichage correct 
 	// et conforme aux spécifications de la méthode visant à trouver les 
 	// capteurs étant potentiellement en situation de dysfonctionnement.
 	// Contrat : Aucun
 	//
 
-	void FormaterAffichageQualite(List<double> & retourFonction);
+	void FormaterAffichageQualite(list<double> & retourFonction);
 	// Mode d'emploi : Cette méthode a pour but de permettre un affichage correct 
 	// et conforme aux spécifications de la méthode visant à trouver la
 	// qualité de l'air dans une zone, via son score et les valeurs utilisées.
@@ -121,7 +122,7 @@ protected:
 
 private:
 	//------------------------------------------------------- Attributs privés
-
+	Menu();
 	//---------------------------------------------------------- Classes amies
 
 	//-------------------------------------------------------- Classes privées

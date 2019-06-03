@@ -63,6 +63,8 @@ TypeMesure & TypeMesure::operator=(const TypeMesure & unTypeMesure)
 
 TypeMesure::TypeMesure(const TypeMesure & unTypeMesure)
 {
+	//Je pense que l'on a acc¨¨s aux attributs de la classe si on est dans la m¨ºme classe
+	//Il me semble que l'on n'a pas besoin d'utiliser get -- Mengxin
 	this->attributeID = unTypeMesure.getAttributeId();
 	this->unite = unTypeMesure.getUnite();
 	this->description = unTypeMesure.getDescription();
