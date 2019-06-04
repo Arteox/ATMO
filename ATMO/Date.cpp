@@ -39,7 +39,7 @@ int Date::getMin() const
 	return min;
 }
 
-int Date::getSec() const
+double Date::getSec() const
 // Algorithme : RAS
 {
 	return sec;
@@ -66,27 +66,27 @@ int Date::getAnnee() const
 
 bool Date::operator<(const Date & unDate)
 {
-	if (annee != unDate.getAnnee()) {
-		return annee < unDate.getAnnee();
+	if (annee != unDate.annee) {
+		return annee < unDate.annee;
 	}
 	else{
-		if (mois != unDate.getMois()) {
-			return mois < unDate.getMois();
+		if (mois != unDate.mois) {
+			return mois < unDate.mois;
 		}
 		else {
-			if (jour != unDate.getJour()) {
-				return jour < unDate.getJour();
+			if (jour != unDate.jour) {
+				return jour < unDate.jour;
 			}
 			else {
-				if (heure != unDate.getHeure()) {
-					return heure < unDate.getHeure();
+				if (heure != unDate.heure) {
+					return heure < unDate.heure;
 				}
 				else {
-					if (min != unDate.getMin()) {
-						return min < unDate.getMin();
+					if (min != unDate.min) {
+						return min < unDate.min;
 					}
 					else {
-						return sec < unDate.getSec();
+						return sec < unDate.sec;
 					}
 				}
 			}
@@ -96,27 +96,27 @@ bool Date::operator<(const Date & unDate)
 
 bool Date::operator==(const Date & unDate)
 {
-	if (annee != unDate.getAnnee()) {
+	if (annee != unDate.annee) {
 		return false;
 	}
 	else {
-		if (mois != unDate.getMois()) {
+		if (mois != unDate.mois) {
 			return false;
 		}
 		else {
-			if (jour != unDate.getJour()) {
+			if (jour != unDate.jour) {
 				return false;
 			}
 			else {
-				if (heure != unDate.getHeure()) {
+				if (heure != unDate.heure) {
 					return false;
 				}
 				else {
-					if (min != unDate.getMin()) {
+					if (min != unDate.min) {
 						return false;
 					}
 					else {
-						return (sec == unDate.getSec());
+						return (sec == unDate.sec);
 					}
 				}
 			}
@@ -129,12 +129,12 @@ Date & Date::operator = (const Date & unDate)
 // Algorithme :
 // Même algorithme que l'opérateur par défaut
 {
-	sec = unDate.getSec();
-	min = unDate.getMin();
-	heure = unDate.getHeure();
-	jour = unDate.getJour();
-	mois = unDate.getMois();
-	annee = unDate.getAnnee();
+	sec = unDate.sec;
+	min = unDate.min;
+	heure = unDate.heure;
+	jour = unDate.jour;
+	mois = unDate.mois;
+	annee = unDate.annee;
 	return *this;
 } //----- Fin de operator =
 
@@ -142,8 +142,8 @@ Date & Date::operator = (const Date & unDate)
 
 ostream & operator << (ostream &out, const Date &date)
 {
-	out << date.getAnnee() << '-' << date.getMois() << '-' << date.getJour() << " ";
-	out << date.getHeure() << ':' << date.getMin() << ':' << date.getSec();
+	out << date.annee << '-' << date.mois << '-' << date.jour << " ";
+	out << date.heure << ':' << date.min << ':' << date.sec;
 	return out;
 }
 //-------------------------------------------- Constructeurs - destructeur
@@ -154,15 +154,15 @@ Date::Date(const Date & unDate)
 #ifdef MAP
 	cout << "Appel au constructeur de copie de <Date>" << endl;
 #endif
-	sec = unDate.getSec();
-	min = unDate.getMin();
-	heure = unDate.getHeure();
-	jour = unDate.getJour();
-	mois = unDate.getMois();
-	annee = unDate.getAnnee();
+	sec = unDate.sec;
+	min = unDate.min;
+	heure = unDate.heure;
+	jour = unDate.jour;
+	mois = unDate.mois;
+	annee = unDate.annee;
 } //----- Fin de Date (constructeur de copie)
 
-Date::Date(const int& annee, const int& mois, const int& jour, const int& heure, const int& min, const int& sec)
+Date::Date(const int& annee, const int& mois, const int& jour, const int& heure, const int& min, const double& sec)
 // Algorithme : RAS
 {
 	this->annee = annee;
@@ -180,7 +180,7 @@ Date::Date(string date_brute)
 	jour = stoi(date_brute.substr(8, 2));
 	heure = stoi(date_brute.substr(11, 2));
 	min = stoi(date_brute.substr(14, 2));
-	sec = stoi(date_brute.substr(17, 2));
+	sec = stod(date_brute.substr(17, 8));
 }
 
 Date::Date()

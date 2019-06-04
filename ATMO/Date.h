@@ -40,7 +40,7 @@ public:
 	// Renvoie l'attribut protég?min
 	// Contrat : Aucun
 
-	int getSec() const;
+	double getSec() const;
 	// Mode d'emploi : 
 	// Renvoie l'attribut protég?sec
 	// Contrat : Aucun
@@ -82,7 +82,7 @@ public:
 	// Contrat : Aucun
 	//
 
-	Date(const int& annee, const int& mois, const int& jour, const int& heure, const int& min, const int& sec);
+	Date(const int& annee, const int& mois, const int& jour, const int& heure, const int& min, const double& sec);
 
 	Date(string date_brute);
 
@@ -104,7 +104,7 @@ protected:
 	//----------------------------------------------------- Méthodes protégées
 
 	//----------------------------------------------------- Attributs protégés
-	int sec;
+	double sec;
 	int min;
 	int heure;
 	int jour;

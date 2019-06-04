@@ -60,18 +60,18 @@ void Capteur::setMesures(collectionMesures mesures)
 //------------------------------------------------- Surcharge d'opérateurs
 Capteur & Capteur::operator=(const Capteur & unCapteur)
 {
-	this->ID = unCapteur.getId();
-	this->lat = unCapteur.getLat();
-	this->longi = unCapteur.getLong();
-	this->description = unCapteur.getDescription();
-	this->mesures = unCapteur.getMesures();
+	this->ID = unCapteur.ID;
+	this->lat = unCapteur.lat;
+	this->longi = unCapteur.longi;
+	this->description = unCapteur.description;
+	this->mesures = unCapteur.mesures;
 	return *this;
 }
 
 ostream & operator<<(ostream & out, const Capteur & capteur)
 {
-	out << capteur.getId() << " " << capteur.getLat() << " " << capteur.getLong() << endl;
-	collectionMesures m = capteur.getMesures();
+	out << capteur.ID << " " << capteur.lat << " " << capteur.longi<< endl;
+	collectionMesures m = capteur.mesures;
 
 	for (collectionMesures::iterator itM = m.begin(); itM != m.end(); ++itM) {
 		out << *itM << " ";
@@ -85,11 +85,11 @@ ostream & operator<<(ostream & out, const Capteur & capteur)
 
 Capteur::Capteur(const Capteur & unCapteur)
 {
-	this->ID = unCapteur.getId();
-	this->lat = unCapteur.getLat();
-	this->longi = unCapteur.getLong();
-	this->description = unCapteur.getDescription();
-	this->mesures = unCapteur.getMesures();
+	this->ID = unCapteur.ID;
+	this->lat = unCapteur.lat;
+	this->longi = unCapteur.longi;
+	this->description = unCapteur.description;
+	this->mesures = unCapteur.mesures;
 }
 
 Capteur::Capteur(int ID, double lat, double longi, string description)

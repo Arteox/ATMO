@@ -1,21 +1,30 @@
-/*************************************************************************
+ï»¿/*************************************************************************
 Main  -  description
 -------------------
-début                : ${date}
+dÃ©but                : ${date}
 copyright            : (C) ${year} par ${user}
 *************************************************************************/
 
-//---------- Réalisation de la classe <Capteur> (fichier Capteur.h) --
+//---------- RÃ©alisation de la classe <Capteur> (fichier Capteur.h) --
 
 //---------------------------------------------------------------- INCLUDE
 
-//-------------------------------------------------------- Include système
+//-------------------------------------------------------- Include systÃ¨me
 #include <iostream>
 using namespace std;
 #include <vector>
 #include <list>
 #include <string>
 #include <iterator>
+#include <io.h>
+#include <fcntl.h>
+#include <cstdlib>
+#include <locale>
+#include <codecvt>
+#include <fstream>
+#include <sstream>
+#include <vector>
+
 //------------------------------------------------------ Include personnel
 #include "TraitementDonnees.h"
 #include "Date.h"
@@ -26,13 +35,14 @@ using namespace std;
 #include "Parseur.h"
 #include "Analyse.h"
 
+
 //------------------------------------------------------------- Constantes
-//#define Menu Menu::GetInstance()
+#pragma warning(disable : 4996)
 //---------------------------------------------------- Variables de classe
 
 void executerCommandes(list<string> commandesAvecParams) {
 
-	//on convertit la liste en vector pour faciliter les accès par index
+	//on convertit la liste en vector pour faciliter les accÃ¨s par index
 	vector<string> commandesV{ make_move_iterator(begin(commandesAvecParams)),std::make_move_iterator(end(commandesAvecParams)) };
 
 	if (commandesV[0] == "4") {
@@ -64,47 +74,22 @@ void executerCommandes(list<string> commandesAvecParams) {
 }
 
 int main(int argc, char** argv) {
-	//TraitementD;
 
 	/*MenuInstance.InitialiserMenu();
 
-<<<<<<< HEAD
-int main(int argc, char** argv) {
-	Menu menu =Menu::GetInstance();
-	Parseur parseur;
-	TraitementD;
-	Analyse analyse;
-
-	menu.InitialiserMenu();
-
-=======
-
->>>>>>> 21a957d4caae72cf7249c342f4405c219f77feaa
 	while (true) {
 		cout << endl << "Veuillez rentrer votre commande" << endl << endl;
 		string entree = MenuInstance.RecupererEntreeUtilisateur();
 		if (entree == "quitter") {
-			cout << "A bientôt !" << endl;
+			cout << "A bientÃ´t !" << endl;
 			break;
 		}
-<<<<<<< HEAD
-		else if (commandesV[0] == "1") {
-			analyse.comportementSimilaire(Date(commandesV[1]), Date(commandesV[2]));
-			//print les resultats
-		}
-		else if (commandesV[0] == "0") {
-			//analyse.qualiteAir();
-			//print les resultats
-		}
-
-	}
-=======
 		list<string> commandes = ParseurInstance.ParserCommande(entree);
 		executerCommandes(commandes);
 		
 	}*/
-	
-	
+
+
 
 
 
@@ -145,8 +130,8 @@ int main(int argc, char** argv) {
 
 	//TEST ParcoursMesures avec parametres
 	/*
-	string deb = "2017-01-01T00:00:10.0100000;";
-	string f = "2017-01-01T00:00:25.5880000;";
+	string deb = "2017-01-01T00:00:10.0000000;";
+	string f = "2017-01-01T00:00:10.0800000;";
 	Date debut(deb);
 	Date fin(f);
 
@@ -158,10 +143,10 @@ int main(int argc, char** argv) {
 
 	collectionMesures m = TraitementD.ParcoursMesures(capteurs, debut, fin);
 
-	cout << "taille mesures filtrées : " << m.size() << endl;
+	cout << "taille mesures filtrÃ©es : " << m.size() << endl;
 	for (collectionMesures::iterator it = m.begin(); it != m.end(); ++it) {
 		cout << *it << endl;
-	}*:
+	}*/
 
 	//TEST LECTURE TYPE MESURES
 	/*TraitementD.lectureTypesMesure();
