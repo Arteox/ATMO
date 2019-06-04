@@ -57,7 +57,7 @@ public:
 	//
 	
 
-	collectionMesures ParcoursMesures(collectionCapteurs capteurs, Date horodateDeb, Date horodateFin);
+	collectionMesures ParcoursMesures(const collectionCapteurs& capteurs, const Date& horodateDeb, const Date& horodateFin);
 	// Mode d'emploi :
 	// Renvoie toutes les mesures réalisées par les capteurs précisés en paramètre, et qui sont entre les
 	// 2 dates précisées.
@@ -70,7 +70,7 @@ public:
 	// Contrat : Aucun
 	//
 
-	collectionTypesMesure ParcoursTypeeMesure();
+	collectionTypesMesure ParcoursTypeMesure();
 	// Mode d'emploi :
 	// Renvoie toutes les types de mesures
 	// Contrat : Aucun

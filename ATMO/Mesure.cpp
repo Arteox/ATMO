@@ -80,7 +80,7 @@ Mesure::Mesure(const Mesure & unMesure)
 	this->sensorID = unMesure.sensorID;
 }
 
-Mesure::Mesure(Date horodate, double valeur, TypeMesure typeMesure, int sensorID)
+Mesure::Mesure(Date horodate, double valeur, const TypeMesure& typeMesure, int sensorID)
 {
 	this->horodate = horodate;
 	this->valeur = valeur;

@@ -217,13 +217,13 @@ collectionCapteurs TraitementDonnees::ParcoursCapteurs()
 	return donneesCapteurs;
 }
 
-collectionMesures TraitementDonnees::ParcoursMesures(collectionCapteurs capteurs, Date horodateDeb, Date horodateFin)
+collectionMesures TraitementDonnees::ParcoursMesures(const collectionCapteurs& capteurs, const Date& horodateDeb, const Date& horodateFin)
 //Les mesures doivent appartenir aux capteurs en paramètre, et être réalisées entre les 2 dates indiquées, borne supérieure excluse
 //Les capteurs devraient déjà avoir des mesures associées à elles-mêmes lors de l'appel de cette méthode 
 {
 	collectionMesures mesuresFiltrees;
 
-	for (collectionCapteurs::iterator itC = capteurs.begin(); itC != capteurs.end(); ++itC) {
+	for (collectionCapteurs::const_iterator itC = capteurs.begin(); itC != capteurs.end(); ++itC) {
 		collectionMesures mesuresCapteur = itC->getMesures();
 		for (collectionMesures::iterator it = mesuresCapteur.begin(); it != mesuresCapteur.end(); ++it) {
 			if ((!(it->getDate() < horodateDeb)) && it->getDate() < horodateFin) {
@@ -240,7 +240,7 @@ collectionMesures TraitementDonnees::ParcoursMesures()
 	return donneesMesures;
 }
 
-collectionTypesMesure TraitementDonnees::ParcoursTypeeMesure()
+collectionTypesMesure TraitementDonnees::ParcoursTypeMesure()
 {
 	return donneesTypesMesure;
 }

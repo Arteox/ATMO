@@ -54,7 +54,7 @@ public:
 	// Contrat : Aucun
 	//
 
-	Mesure(Date horodate, double valeur, TypeMesure typeMesure, int sensorID);
+	Mesure(Date horodate, double valeur, const TypeMesure& typeMesure, int sensorID);
 	// Mode d'emploi :
 	//
 	// Contrat :

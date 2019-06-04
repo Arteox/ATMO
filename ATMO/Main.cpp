@@ -60,7 +60,6 @@ void executerCommandes(list<string> commandesAvecParams) {
 	}
 	else if (commandesV[0] == "1") {
 		cout << commandesV[1] << " " << commandesV[2] << endl;
-		Date d(commandesV[1]);
 		cout << d << endl;
 		//AnalyseInstance.comportementSimilaire(Date(commandesV[1]), Date(commandesV[2]));
 		//print les resultats
@@ -75,7 +74,7 @@ void executerCommandes(list<string> commandesAvecParams) {
 
 int main(int argc, char** argv) {
 
-	/*MenuInstance.InitialiserMenu();
+	MenuInstance.InitialiserMenu();
 
 	while (true) {
 		cout << endl << "Veuillez rentrer votre commande" << endl << endl;
@@ -87,7 +86,7 @@ int main(int argc, char** argv) {
 		list<string> commandes = ParseurInstance.ParserCommande(entree);
 		executerCommandes(commandes);
 		
-	}*/
+	}
 
 
 

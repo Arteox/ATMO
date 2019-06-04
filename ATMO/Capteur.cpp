@@ -100,7 +100,7 @@ Capteur::Capteur(int ID, double lat, double longi, string description)
 	this->description = description;
 }
 
-Capteur::Capteur(int id, double lat, double longi, string description, collectionMesures mesures)
+Capteur::Capteur(int id, double lat, double longi, string description, const collectionMesures& mesures)
 {
 	this->ID = ID;
 	this->lat = lat;

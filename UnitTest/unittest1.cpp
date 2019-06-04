@@ -41,7 +41,7 @@ namespace UnitTest
 			TypeMesure t4("PM10", wunite, "concentration de particules fines");
 			//resultat expecte:
 			collectionTypesMesure v1{ t1,t2,t3,t4 };
-			collectionTypesMesure v2 = TraitementD.ParcoursTypeeMesure();
+			collectionTypesMesure v2 = TraitementD.ParcoursTypeMesure();
 			Assert::IsTrue(v2.size() == v1.size());
 			//std::sort(v1.begin(), v1.end(), TypeMesureSort);
 			//std::sort(v2.begin(), v2.end(), TypeMesureSort);
