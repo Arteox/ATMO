@@ -44,7 +44,7 @@ namespace UnitTest
 		}
 		TEST_METHOD(CaracteristiqueZoneTest2)
 		{
-			conteneurMoyMesures c = AnalyseInstance.caracteristiquesZone(-38.3884286616875, -24.9593580676985, 20,  Date(2017, 1, 1, 0, 0, 12),Date(2017, 1, 1, 0, 0, 0));
+			conteneurMoyMesures c = AnalyseInstanceTest.caracteristiquesZone(-38.3884286616875, -24.9593580676985, 20,  Date(2017, 1, 1, 0, 0, 12),Date(2017, 1, 1, 0, 0, 0));
 			Assert::IsTrue(c.size() == 0);
 		}
 		TEST_METHOD(CaracteristiqueZoneTest3)
