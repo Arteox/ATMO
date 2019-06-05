@@ -200,6 +200,23 @@ int main(int argc, char** argv) {
 		}
 		// ok
 		*/
+	//Test Analyse ZoneTest1
+		conteneurMoyMesures c = AnalyseInstance.caracteristiquesZone(18.902680, -60.469614, 20, Date(2017, 1, 1, 0, 0, 0), Date(2017, 1, 1, 0, 0, 12));
+		cout<<c.size() == 4<<endl;
+		for (auto it = c.begin(); it != c.end(); ++it) {
+			if (it->first == "O3") {
+				Assert::IsTrue(it->second == double(8.3227398357248535));
+			}
+			else if (it->first == "NO2") {
+				Assert::IsTrue(it->second == double(25.21910455671518));
+			}
+			else if (it->first == "SO2") {
+				Assert::IsTrue(it->second == double(9.56403873576716));
+			}
+			else if (it->first == "PM10") {
+				Assert::IsTrue(it->second == double(0.00888436901712503165));
+			}
+		}
 
 	return 0;
 }

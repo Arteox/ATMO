@@ -40,9 +40,9 @@ const string TraitementDonnees::fichierTypesMesure = "C:\\Users\\Louis Ung\\Docu
 const string TraitementDonnees::fichierMesures = "C:\\Users\\Louis Ung\\Documents\\Insa 3a\\Semestre 2\\Genie_logiciel\\TP\\ATMO\\ATMO\\DonneesCSV\\MesuresSample.csv";
 */
 
-const string TraitementDonnees::fichierCapteurs = "DonneesCSV\\Sensors.csv";
-const string TraitementDonnees::fichierTypesMesure = "DonneesCSV\\AttributeType.csv";
-const string TraitementDonnees::fichierMesures = "DonneesCSV\\MesuresSample.csv";
+const string TraitementDonnees::fichierCapteurs = "C:\\Users\\fgelus\\source\\repos\\ATMO\\ATMO\\DonneesCSV\\Sensors.csv";
+const string TraitementDonnees::fichierTypesMesure = "C:\\Users\\fgelus\\source\\repos\\ATMO\\ATMO\\DonneesCSV\\AttributeType.csv";
+const string TraitementDonnees::fichierMesures = "C:\\Users\\fgelus\\source\\repos\\ATMO\\ATMO\\DonneesCSV\\MesuresSample.csv";
 
 //----------------------------------------------------------- Types privés
 
