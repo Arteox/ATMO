@@ -17,16 +17,16 @@ using namespace std;
 
 //------------------------------------------------------------- Constantes 
 #define ParseurInstance Parseur::GetInstance()
-enum Commandes {qm, sim, dysfonc, carac, help, commandeInvalide = -1};
-enum Options { d, optionAbsente = -2, optionInvalide = -1 };
+
 //------------------------------------------------------------------ Types 
 
 //------------------------------------------------------------------------ 
 // Rôle de la classe <Parseur>
-// Le rôle de la classe Parseur est de permettre ?la partie Modèle d'obtenir
+// Le rôle de la classe Parseur est de permettre  à la partie Modèle d'obtenir
 // les informations entrées par l'utilisateur dans le menu en mode commande.
 // Pour cela il utilise une méthode principale qui va factoriser toutes ces 
-// informations.
+// informations. Il est implémenté sous la forme d'un Singleton afin
+// d'empêcher de multiples instancions de ce dernier.
 //------------------------------------------------------------------------ 
 class Parseur
 {
@@ -40,7 +40,7 @@ public:
 	}
 	//----------------------------------------------------- Méthodes publiques
 
-	list<string> ParserCommande(string & entree);
+	vector<string> ParserCommande(string & entree);
 	// Mode d'emploi :
 	//  Cette fonction renvoie une suite de valeurs commençant par le code de 
 	//  la commande suivie de toutes ses options et paramètres.
@@ -59,7 +59,7 @@ public:
 	// Contrat : Aucun
 	//
 	//-------------------------------------------- Constructeurs - destructeur
-	
+
 
 	virtual ~Parseur();
 	// Mode d'emploi : RAS, contenu vide
@@ -89,25 +89,21 @@ private:
 	//------------------------------------------------------- Attributs privés
 
 	//------------------------------------------------------- Méthodes privées
-	int AttributionCommande(string & commande);
+	bool AttributionCommande(string & commande);
 	// Mode d'emploi : Cette méthode permet de faire des vérifications quant ?
-	// la validit?de la commande tapée par l'utilisateur ainsi que d'attribuer
-	// cette dernière sa valeur numérique pour qu'elle puisse ensuite 
-	// être utilisée par le système.
+	// la validit?de la commande tapée par l'utilisateur
 	// string & commande : nom de la commande tapée par l'utilisateur.
 	// Contrat : Aucun
 	//
 
-	int AttributionOption(string & option);
+	bool AttributionOption(string & option);
 	// Mode d'emploi : Cette méthode permet de faire des vérifications quant ?
-	// la validit?de l'option tapée par l'utilisateur ainsi que d'attribuer
-	// cette dernière sa valeur numérique pour qu'elle puisse ensuite 
-	// être utilisée par le système.
+	// la validit?de l'option tapée par l'utilisateur 
 	// string & option : nom de l'option tapée par l'utilisateur.
 	// Contrat : Aucun
 	//
 
-	unsigned NombreDeParametresCommande(string & commande);
+	unsigned NombreDeParametresCommande(string commande);
 	// Mode d'emploi : Cette méthode permet de savoir le nombre de paramètres
 	// dont dispose une commande et donc combien d'attributs nous sommes 
 	// supposés attendre (utilisée pour la gestion d'erreurs).
@@ -130,21 +126,6 @@ private:
 	// Contrat : Aucun
 	//
 
-	Commandes trouverCommande(string & commande);
-	// Mode d'emploi : Cette méthode est uniquement utlisée dans la méthode
-	// AttributionCommande pour avoir un comportement des plus maintenables
-	// possibles, elle permet simplement d'associer une des valeurs de l'énum
-	// ?sa valeur en chaîne de caractères.
-	// Contrat : Aucun
-	//
-
-	Options trouverOption(string & option);
-	// Mode d'emploi : Dans le même but que la précédente méthode, cette méthode
-	// est uniquement utlisée dans la méthode AttributionOption pour avoir un
-	// comportement des plus maintenables possibles, elle permet simplement 
-	// d'associer une des valeurs de l'énum ?sa valeur en chaîne de caractères.
-	// Contrat : Aucun
-	//
 };
 
 //----------------------------------------- Types dépendants de <Parseur>

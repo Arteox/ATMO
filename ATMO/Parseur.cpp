@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 /*************************************************************************
 Parseur  -  description
 -------------------
@@ -14,7 +15,8 @@ copyright            : (C) ${year} par ${user}
 #include <list>
 #include <sstream>
 #include <regex>
-#include <string>
+#include <string.h>
+#include <algorithm>
 using namespace std;
 
 //------------------------------------------------------ Include personnel
@@ -32,63 +34,55 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-list<string> Parseur::ParserCommande(string & entree) // mettre ici le paramètre entrée
+vector<string> Parseur::ParserCommande(string & entree) // mettre ici le paramètre entrée
 {
-    //Initialisation des différentes variables utilisées.
-	list<string> commandeParsee;
-    string parametreCourant;
-    unsigned nbParametres (0);
-    bool aDesOptions = false;
-	string option = "-1";
-    //L'utilisateur entre sa commande (à mettre dans le menu à terme)
-    //string entree;
-    //getline(cin,entree);
-    //jusqu'ici
-    istringstream fluxEntree (entree);
-    getline(fluxEntree, parametreCourant,' ');
-	
-    if(AttributionCommande(parametreCourant) == commandeInvalide){
-        //faire l'affichage menu de l'erreur cerr
+	//Initialisation des différentes variables utilisées.
+	vector<string> commandeParsee;
+	vector<string> commandeErreur({ "-1" });
+	unsigned nbParametres(0);
+	bool aDesOptions = false;
+	char chaineEntree[100];
+
+	strcpy(chaineEntree, entree.c_str());
+	char * pointeurCourant = strtok(chaineEntree, " ");
+	while (pointeurCourant) {
+		commandeParsee.push_back(string(pointeurCourant));
+		pointeurCourant = strtok(NULL, " ");
+	}
+	if (!AttributionCommande(commandeParsee[0])) {
+		//faire l'affichage menu de l'erreur cerr
 		cout << "Commande invalide" << endl;
+		return commandeErreur;
 	} else {
-		commandeParsee.push_back(to_string(AttributionCommande(parametreCourant)));
-		nbParametres = NombreDeParametresCommande(parametreCourant);
-		aDesOptions = PossedeDesOptionsCommande(parametreCourant);
-		if(nbParametres > 1){
+		nbParametres = NombreDeParametresCommande(commandeParsee[0]);
+		aDesOptions = PossedeDesOptionsCommande(commandeParsee[0]);
+		if (aDesOptions) nbParametres++;
+		if (commandeParsee.size() >= nbParametres ) { // les paramètres attendus + la commande elle même sont dans commandeParsee
 			if (aDesOptions) { // on récupère la dite option
-                getline(fluxEntree, parametreCourant,' ');
-				if(AttributionOption(parametreCourant) == optionInvalide) {
-					cout << "Option invalide" << endl;
+				if (!AttributionOption(commandeParsee[1])) {
+					if (!verificationParametre(commandeParsee[1])) {
+						cout << "Option invalide" << endl;
+						return commandeErreur;
+					}
 				}
-				else if (AttributionOption(parametreCourant) == optionAbsente) {
-					commandeParsee.push_back(to_string(optionAbsente)); // on envoie le fait qu'il n'y ait pas d'options
-					option = parametreCourant; // l'option n'étant pas présente, on pousse le premier paramètre.
-					nbParametres--; // et on retire donc un au nombre de tours nécessaires.
+			for (int i(1); i < commandeParsee.size(); i++) {
+				if (!verificationParametre(commandeParsee[i])) {
+					cout << "Paramètre invalide" << endl;
+					return commandeErreur;
 				}
-				else {
-					option = to_string(AttributionOption(parametreCourant));
+				else
+					cout << "ok";
 				}
-				commandeParsee.push_back(option);
 			}
-			for (unsigned i(0); i< nbParametres; i++) {
-				getline(fluxEntree, parametreCourant, ' ');
-				if (!verificationParametre(parametreCourant)) {
-					//faire l'affichage menu de l'erreur cerr
-					cout << "Paramètre vide" << endl;
-				}
-				else {
-					commandeParsee.push_back(parametreCourant);
-				}
-            }      
-        }
-    }
+	
+		}
+		else {
+			cout << "Pas assez de paramètres" << endl;
+			return commandeErreur;
+		}
+	}
 
-	/*cout << "Resultat" << endl;
-	for (auto v : commandeParsee) {
-		cout << "Valeur : " << v << endl;
-	}*/
-
-    return commandeParsee;
+	return commandeParsee;
 }
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -117,119 +111,50 @@ Parseur::~Parseur()
 //----------------------------------------------------- Méthodes protégées
 
 //------------------------------------------------------- Méthodes privées
-int Parseur::AttributionCommande(string & commande) {
-	int codeCommande (0);
-	switch (trouverCommande(commande)) {
-		case qm:
-			codeCommande = 0;
-			break;
-		case sim:
-			codeCommande = 1;
-			break;
-		case dysfonc:
-			codeCommande = 2;
-			break;
-		case carac:
-			codeCommande = 3;
-			break;
-		case help:
-			codeCommande = 4;
-			break;
-		case commandeInvalide:
-			codeCommande = -1;
-			break;		
+bool Parseur::AttributionCommande(string & commande) {
+	//Vous trouvez ci-dessous la liste des commandes gérées par le système. 
+	list<string> commandes({ "qm", "sim", "dysfonc", "carac", "help", "quitter" });
+	if (find(commandes.begin(), commandes.end(), commande) != commandes.end()) {
+		return true;
 	}
-	return codeCommande;
+	return false;
 }
 
-int Parseur::AttributionOption(string & option) {
-	int codeOption(0);
-	switch (trouverOption(option)) {
-		case d:
-			codeOption = 0;
-			break;
-		case optionAbsente:
-			codeOption = -2;
-			break;
-		case optionInvalide:
-			codeOption = -1;
-			break;
+bool Parseur::AttributionOption(string & option) {
+	//Vous trouvez ci-dessous la liste des options gérées par le système. 
+	list<string> options({ "-d" });
+	if (find(options.begin(), options.end(), option) != options.end()) {
+		return true;
 	}
-	return codeOption;
+	regex const patternOption{ "-\." };
+	if (regex_match(option, patternOption)) return false; // si l'option n'est pas gérée
+	else return false;
 }
 
-unsigned Parseur::NombreDeParametresCommande(string & commande) {
+unsigned Parseur::NombreDeParametresCommande(string commande) {
 	unsigned nbParametres(0);
-	switch (trouverCommande(commande)) {
-		case qm:
-			nbParametres = 5;
-			break;
-		case sim:
-			nbParametres = 2;
-			break;
-		case dysfonc:
-			nbParametres = 2;
-			break;
-		case carac:
-			nbParametres = 4;
-			break;
-		case help:
-			nbParametres = 0;
-			break;
-		case commandeInvalide:
-			nbParametres = -1;
-			break;
-	}
+	if (commande == "qm") nbParametres = 4;
+	if (commande == "sim") nbParametres = 2;
+	if (commande == "dysfonc") nbParametres = 2;
+	if (commande == "carac") nbParametres = 4;
+	if (commande == "help") nbParametres = 0;
 	return nbParametres;
 }
 
 bool Parseur::PossedeDesOptionsCommande(string & commande) {
-	bool possedeDesOptions = false;
-	switch (trouverCommande(commande)) {
-		case qm:
-			possedeDesOptions = true;
-			break;
-		case sim:
-			possedeDesOptions = false;
-			break;
-		case dysfonc:
-			possedeDesOptions = false;
-			break;
-		case carac:
-			possedeDesOptions = false;
-			break;
-		case help:
-			possedeDesOptions = false;
-			break;
-		case commandeInvalide:
-			possedeDesOptions = false;
-			break;
-		}
-	return possedeDesOptions;
+	//Vous trouvez ci-dessous la liste des commandes AVEC OPTION gérées par le système. 
+	list<string> commandesAvecOptions({ "qm" });
+	if (find(commandesAvecOptions.begin(), commandesAvecOptions.end(), commande) != commandesAvecOptions.end()) {
+		return true;
+	}
+	return false;
 }
+
 
 bool Parseur::verificationParametre(string & parametre) {
-	bool parametreOk = false;
-	if (parametre.empty()) parametreOk = false;
-	if (!parametre.empty()) parametreOk = true;
-	return parametreOk;
-}
-
-
-Commandes Parseur::trouverCommande(string & commande) {
-	if (commande == "qm") return qm;
-	if (commande == "sim") return sim;
-	if (commande == "dysfonc") return dysfonc;
-	if (commande == "carac") return carac;
-	if (commande == "help") return help;
-	return commandeInvalide;
-}
-
-Options Parseur::trouverOption(string & option) {
-	if (option == "-d") return d;
-	regex const patternOption{ "-\." };
 	regex const patternDouble{ "[0-9]+(\.[0-9]+)?" };
-	if (regex_match(option, patternOption)) return optionInvalide;
-	if (regex_match(option, patternDouble)) return optionAbsente;
-	return optionInvalide;
+	if (regex_match(parametre, patternDouble)) return true;
+	else if (parametre.size() >=2) return true;
+	else return false;
 }
+

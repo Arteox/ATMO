@@ -39,7 +39,7 @@ using namespace std;
 //------------------------------------------------------------- Constantes
 //---------------------------------------------------- Variables de classe
 
-void executerCommandes(list<string> commandesAvecParams) {
+void executerCommandes(vector<string> commandesAvecParams) {
 
 	//on convertit la liste en vector pour faciliter les accès par index
 	vector<string> commandesV{ make_move_iterator(begin(commandesAvecParams)),std::make_move_iterator(end(commandesAvecParams)) };
@@ -59,7 +59,6 @@ void executerCommandes(list<string> commandesAvecParams) {
 	}
 	else if (commandesV[0] == "1") {
 		cout << commandesV[1] << " " << commandesV[2] << endl;
-		cout << d << endl;
 		//AnalyseInstance.comportementSimilaire(Date(commandesV[1]), Date(commandesV[2]));
 		//print les resultats
 	}
@@ -83,7 +82,7 @@ int main(int argc, char** argv) {
 			cout << "A bientôt !" << endl;
 			break;
 		}
-		list<string> commandes = ParseurInstance.ParserCommande(entree);
+		vector<string> commandes = ParseurInstance.ParserCommande(entree);
 		executerCommandes(commandes);
 		
 	}

@@ -41,23 +41,23 @@ void Menu::AffichageSortieErreur(string & sortieFonction) const {
 
 void Menu::InitialiserMenu() const {
 	sortieStandard << "Bienvenue sur ATMO ! " << endl
-	 << " Les commandes dont vous disposez sont :" << endl
-	 << " qm : Pour connaitre la qualite moyenne de l'air " << endl
-	 << " sim : Afin de trouver des zones ayant des caractéristiques similaires " << endl
-	 << " dysfonc : Afin d'essayer de repérer les capteurs qui sont en dysfonctionnement " << endl
-	 << " carac : Pour connaître les caractéristiques spécifiques d'une point précis " << endl
-	 << " help : pour obtenir plus d'informations sur les parametres des commandes " << endl
-	 << " quitter : pour obtenir plus d'informations sur les parametres des commandes " << endl;
+	 << "Les commandes dont vous disposez sont :" << endl
+	 << "qm : Pour connaitre la qualite moyenne de l'air " << endl
+	 << "sim : Afin de trouver des zones ayant des caractéristiques similaires " << endl
+	 << "dysfonc : Afin d'essayer de repérer les capteurs qui sont en dysfonctionnement " << endl
+	 << "carac : Pour connaître les caractéristiques spécifiques d'une point précis " << endl
+	 << "help : pour obtenir plus d'informations sur les parametres des commandes " << endl
+	 << "quitter : pour obtenir plus d'informations sur les parametres des commandes " << endl;
 }
 
 void Menu::AfficherAide() const {
 	sortieStandard << "Commandes détaillées :" << endl
-		<< " Qualite moyenne : qm [-d] 'lat' 'long' 'rayon' 'horodateDeb' 'horodateFin'" << endl
-		<< " Capteurs similaires : sim 'horodateDeb' 'horodateFin'" << endl
-		<< " Capteurs dysfonctionnants : dysfonc 'horodateDeb' 'horodateFin'" << endl
-		<< " Valeurs caractéristiques d'un point : carac 'long' 'lat' 'horodateDeb' 'horodateFin' " << endl << endl
-		<< " Entrez les dates sous le format suivant : annee-mois-jourTheure:minute:seconde " << endl
-		<< " et sans oublier les 0 pour le mois, le jour et l'heure, par exemple : 2017-01-01T00:01:20 " << endl;
+		<< "  Qualite moyenne : qm [-d] 'lat' 'long' 'rayon' 'horodateDeb' 'horodateFin'" << endl
+		<< "  Capteurs similaires : sim 'horodateDeb' 'horodateFin'" << endl
+		<< "  Capteurs dysfonctionnants : dysfonc 'horodateDeb' 'horodateFin'" << endl
+		<< "  Valeurs caractéristiques d'un point : carac 'long' 'lat' 'horodateDeb' 'horodateFin' " << endl << endl
+		<< "  Entrez les dates sous le format suivant : annee-mois-jourTheure:minute:seconde " << endl
+		<< "  et sans oublier les 0 pour le mois, le jour et l'heure, par exemple : 2017-01-01T00:01:20 " << endl;
 }
 
 string Menu::RecupererEntreeUtilisateur() {
