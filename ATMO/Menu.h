@@ -40,7 +40,7 @@ public:
 		return instance;
 	}
 	//----------------------------------------------------- Méthodes publiques
-	void AffichageSortieStandard(string & sortieFonction) const;
+	void AffichageSortieStandard(string sortieFonction) const;
 	// Mode d'emploi : Cette méthode permet au main de gérer la partie vue en
 	// affichant à l'écran l'information passé en paramètre à la méthode.
 	// string & ligne : c'est cette chaîne de caractère qui sera affichée sur la 
@@ -48,7 +48,7 @@ public:
 	// Contrat : Aucun
 	//
 
-	void AffichageSortieErreur(string & sortieFonction) const;
+	void AffichageSortieErreur(string sortieFonction) const;
 	// Mode d'emploi : Cette méthode permet au main de gérer la partie vue en
 	// affichant à l'écran des messages d'erreur, en effet, la ligne passée en 
 	// paramètre sera envoyée sur la sortie d'erreur.
