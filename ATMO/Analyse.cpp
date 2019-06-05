@@ -41,7 +41,14 @@ conteneurMoyMesures Analyse::caracteristiquesZone( double lat, double longi, dou
 	conteneurMoyMesures moyMesures;
 	
 	collectionCapteurs capteurs;
-
+	{
+		if (csvNames[0] != "")
+			TraitementD.setFichierTypesMesure(csvNames[0]);
+		if (csvNames[1] != "")
+			TraitementD.setFichierCapteurs(csvNames[1]);
+		if (csvNames[2] != "")
+			TraitementD.setFichierMesures(csvNames[2]);
+	}
 	capteurs = TraitementD.ParcoursCapteurs(lat, longi, rayon);
 
 	/*
@@ -122,7 +129,14 @@ doubleCollectionCapteurs Analyse::comportementSimilaire(Date horodateDeb, Date h
 	doubleCollectionCapteurs capteursIdentiques(10);
 
 	collectionCapteurs capteurs;
-
+	{
+		if (csvNames[0] != "")
+			TraitementD.setFichierTypesMesure(csvNames[0]);
+		if (csvNames[1] != "")
+			TraitementD.setFichierCapteurs(csvNames[1]);
+		if (csvNames[2] != "")
+			TraitementD.setFichierMesures(csvNames[2]);
+	}
 	capteurs = TraitementD.ParcoursCapteurs();
 
 	collectionCapteurs::iterator it;
@@ -198,7 +212,14 @@ collectionCapteurs Analyse::dysfonctionnement(Date horodateDeb, Date horodateFin
 	collectionCapteurs capteursDysf;
 
 	collectionCapteurs capteurs;
-
+	{
+		if (csvNames[0] != "")
+			TraitementD.setFichierTypesMesure(csvNames[0]);
+		if (csvNames[1] != "")
+			TraitementD.setFichierCapteurs(csvNames[1]);
+		if (csvNames[2] != "")
+			TraitementD.setFichierMesures(csvNames[2]);
+	}
 	capteurs = TraitementD.ParcoursCapteurs();
 
 	collectionCapteurs::iterator it;
@@ -348,7 +369,14 @@ conteneurMoyMesures Analyse::caracteristiquesPoint(double lat, double longi, Dat
 	conteneurMoyMesures moyMesures;
 
 	collectionCapteurs capteurs;
-
+	{
+		if (csvNames[0] != "")
+			TraitementD.setFichierTypesMesure(csvNames[0]);
+		if (csvNames[1] != "")
+			TraitementD.setFichierCapteurs(csvNames[1]);
+		if (csvNames[2] != "")
+			TraitementD.setFichierMesures(csvNames[2]);
+	}
 	capteurs = TraitementD.ParcoursCapteurs(lat, longi);
 	//on a que des capteurs dont distance < 10km
 
@@ -438,6 +466,14 @@ conteneurMoyMesures Analyse::caracteristiquesPoint(double lat, double longi, Dat
 
 int Analyse::qualiteAir(conteneurMoyMesures MoyMesures)
 {
+	{
+		if(csvNames[0]!="")
+			TraitementD.setFichierTypesMesure(csvNames[0]);
+		if (csvNames[1] != "")
+			TraitementD.setFichierCapteurs(csvNames[1]);
+		if (csvNames[2] != "")
+			TraitementD.setFichierMesures(csvNames[2]);
+	}
 	int indice = 0;
 	string types[4] = { "O3", "SO2", "NO2", "PM10" };
 	int atmo[4][9] = { (30,55,80,105,130,150,180,210,240), (40,80,120,160,200,250,300,400,500), (30,55,85,110,135,165,200,275,400), (7,14,21,28,35,42,50,65,80) };
@@ -469,6 +505,12 @@ int Analyse::qualiteAir(conteneurMoyMesures MoyMesures)
 
 Analyse::Analyse()
 {
+}
+
+Analyse::Analyse(string types, string capteurs, string mesures) {
+	csvNames[0]=types;
+	csvNames[1] = capteurs;
+	csvNames[2] = mesures;
 }
 
 //------------------------------------------------- Surcharge d'opérateurs
