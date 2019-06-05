@@ -202,7 +202,7 @@ int main(int argc, char** argv) {
 		*/
 	//Test Analyse ZoneTest1
 /*
-		conteneurMoyMesures c = AnalyseInstance.caracteristiquesZone(18.902680, -60.469614, 20, Date(2017, 1, 1, 0, 0, 0), Date(2017, 1, 1, 0, 0, 12));
+		conteneurMoyMesures c = AnalyseInstance.caracteristiquesZone(18.902680, -60.469614, 20, Date(2017, 1, 1, 0, 0, 0), Date(2017, 1, 1, 0, 1, 0));
 		cout<<"start"<<c.size()<<4<<endl;
 
 		for (conteneurMoyMesures::iterator it = c.begin(); it != c.end(); ++it) {
@@ -224,8 +224,8 @@ int main(int argc, char** argv) {
 				cout << it->second <<double(0.00888436901712503165)<<endl;
 			}
 		}
+		
 		*/
-
 	return 0;
 }
 
