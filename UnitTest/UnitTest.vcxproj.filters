@@ -21,6 +21,36 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="..\ATMO\Analyse.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ATMO\Capteur.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ATMO\CoordonneesGPS.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ATMO\Date.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ATMO\Menu.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ATMO\Mesure.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ATMO\Parseur.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ATMO\TraitementDonnees.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ATMO\TypeMesure.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ATMO\Zone.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -32,5 +62,49 @@
     <ClCompile Include="unittest2.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="..\ATMO\Analyse.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ATMO\Capteur.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ATMO\CoordonneesGPS.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ATMO\Date.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ATMO\Main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ATMO\Menu.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ATMO\Mesure.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ATMO\Parseur.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ATMO\TraitementDonnees.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ATMO\TypeMesure.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ATMO\Zone.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\ATMO\DonneesCSV\AttributeType.csv">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="..\ATMO\DonneesCSV\MesuresSample.csv">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="..\ATMO\DonneesCSV\Sensors.csv">
+      <Filter>资源文件</Filter>
+    </None>
   </ItemGroup>
 </Project>
