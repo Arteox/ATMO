@@ -17,6 +17,7 @@
 #include "TypeMesure.h"
 #include "Capteur.h"
 #include "Date.h"
+#include "CoordonneesGPS.h"
 
 //------------------------------------------------------------- Constantes
 #define AnalyseInstance Analyse::GetInstance()

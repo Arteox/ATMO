@@ -20,8 +20,11 @@ using namespace std;
 #include "TraitementDonnees.h"
 #include "Mesure.h"
 
+
 //------------------------------------------------------------- Constantes
 #define RAYON_TERRE 6371
+#define FREQUENCE_CAPTEUR 45 // exprim¨¦ en minutes
+
 //---------------------------------------------------- Variables de classe
 
 //----------------------------------------------------------- Types privés
@@ -181,6 +184,7 @@ doubleCollectionCapteurs Analyse::comportementSimilaire(Date horodateDeb, Date h
 		int indice = qualiteAir(moyMesures);
 		if (indice >= 0) {
 			capteursIdentiques[indice].push_back(*it);
+			//score: capteurs accoci¨¦s
 		}
 		
 	}
@@ -200,6 +204,7 @@ collectionCapteurs Analyse::dysfonctionnement(Date horodateDeb, Date horodateFin
 
 	bool dysf; //indique si le capteur dysfonctionne
 
+	//pour chaque capteur
 	for (it = capteurs.begin(); it != capteurs.end(); it++)
 	{
 		dysf = false;
@@ -215,11 +220,18 @@ collectionCapteurs Analyse::dysfonctionnement(Date horodateDeb, Date horodateFin
 		//on parcourt toutes les mesures d'un capteur puis on vérifie :
 		collectionMesures::iterator it2;
 		
-		//valeurs predefine pour > 12 h
+		/*
+		valeurs predefinies pour > 12 h
+		*/
 		string types[] = { "O3","SO2","NO2","PM10" };
+		//dernier moment o¨´ il y a un changement de valeurs pour 4 diff¨¦rents types
 		Date lastChanges[] = { horodateDeb ,horodateDeb,horodateDeb,horodateDeb};
 		double lastValeurs [] = {-1,-1,-1,-1};
-
+		
+		/*
+		valeurs predefinies pour frequence 
+		*/
+		Date lastMoment = horodateDeb;
 
 
 		for (it2 = mesures.begin(); it2 != mesures.end(); it2++)
@@ -238,15 +250,46 @@ collectionCapteurs Analyse::dysfonctionnement(Date horodateDeb, Date horodateFin
 				dysf = true;
 				break;
 			}
-			//si la fréquence de prise de mesures n'est pas respectée
-			//todo
+			//si la fr¨¦quence de prise de mesures n'est pas respectée
+			if (distance(it2, mesures.begin()) == 0) {
+				//initialisation
+				lastMoment = it2->getDate();
+			}
+			else {
+				if (it2->getDate().getAnnee() != lastMoment.getAnnee()) {
+					dysf = true;
+					break;
+				}
+				else if (it2->getDate().getMois() != lastMoment.getMois()) {
+					dysf = true;
+					break;
+				}
+				else if (it2->getDate().getJour() != lastMoment.getJour()) {
+					dysf = true;
+					break;
+				}
+				else if (it2->getDate().getHeure != lastMoment.getHeure()) {
+					if (abs(it2->getDate().getHeure() - lastMoment.getHeure() )> 1) {
+						dysf = true;
+						break;
+					}
+					else {
+						if (((it2->getDate().getHeure() - lastMoment.getHeure())*(it2->getDate().getMin() - lastMoment.getMin())) > -15) {
+							dysf = true;
+							break;
+				}
+				//meme heure
+				else if (abs(it2->getDate().getMin() - lastMoment.getMin()) > FREQUENCE_CAPTEUR) {
+					dysf = true;
+					break;
+				}
+			}
 			
 			// si valeurs incoherentes
 			//todo
 
 			// si ses mesures restent constantes dans le temps sur une période trop longue (>12h)
 			// selon les different types
-			
 			for (int i = 0; i < 4; i++) {
 				if (it2->getTypeMesure().getAttributeId() == types[0]) {
 					if (it2->getValeur() != lastValeurs[i]) {
@@ -263,8 +306,7 @@ collectionCapteurs Analyse::dysfonctionnement(Date horodateDeb, Date horodateFin
 								dysf = true;
 								break;
 							}
-							else if ((it2->getDate().getJour() - lastChanges[i].getJour())*(it2->getDate().getHeure() - lastChanges[i].getHeure()) < 0 &&
-								(it2->getDate().getJour() - lastChanges[i].getJour())*(it2->getDate().getHeure() - lastChanges[i].getHeure()) > -12)
+							else if ((it2->getDate().getJour() - lastChanges[i].getJour())*(it2->getDate().getHeure() - lastChanges[i].getHeure()) > -12)
 							{
 								dysf = true;
 								break;
@@ -283,7 +325,6 @@ collectionCapteurs Analyse::dysfonctionnement(Date horodateDeb, Date horodateFin
 					}
 				}
 			}
-			
 			
 			
 		}
@@ -305,6 +346,7 @@ conteneurMoyMesures Analyse::caracteristiquesPoint(double lat, double longi, Dat
 	collectionCapteurs capteurs;
 
 	capteurs = TraitementD.ParcoursCapteurs(lat, longi);
+	//on a que des capteurs dont distance < 10km
 
 	double moyO3total = 0;
 	double moySO2total = 0;
@@ -361,12 +403,12 @@ conteneurMoyMesures Analyse::caracteristiquesPoint(double lat, double longi, Dat
 		
 
 		// calcul distance
-		double latCapteur = (*it).getLat();
-		double longiCapteur = (*it).getLong();
-		double c = sin(lat)*sin(latCapteur)*cos(lat - latCapteur) + cos(lat)*cos(latCapteur);
-		double dist = RAYON_TERRE * acos(c)*M_PI / 180.0;
-
-		double coef = 10.0 - dist;
+		CoordonneesGPS cGPS;
+		double dist = cGPS.distanceEnKmEntreDeuxPoints(it->getLat(), it->getLong(), lat, longi);
+		double coef = 0;
+		if (dist <= 10) {
+			coef = 10 - dist;
+		}
 		sommecoef += coef;
 
 		moyO3total = coef * moyO3 / cptO3;

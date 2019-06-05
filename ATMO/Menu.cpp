@@ -79,7 +79,7 @@ void Menu::FormaterAffichageCaracteristiques(int & scoreAtmo, conteneurMoyMesure
 void Menu::FormaterAffichageSimilaires(doubleCollectionCapteurs & retourFonction)
 {
 	for(auto it = retourFonction.begin(); it != retourFonction.end(); ++it){
-		sortieStandard << "Atmo Score " << distance(it, retourFonction.begin());
+		sortieStandard << "Atmo Score " << distance(it, retourFonction.begin());//indice
 		int d = distance(it, retourFonction.begin());
 		sortieStandard << DescriptionValeur(d) << " :" << endl;
 		collectionCapteurs vector_courant = *it;
