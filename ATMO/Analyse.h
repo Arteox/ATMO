@@ -60,7 +60,7 @@ public:
 	// Contrat :
 	//
 
-	doubleCollectionCapteurs comportementSimilaire(Date horodateDeb, Date horodateFin);
+	conteneurIndiceCapteurs comportementSimilaire(Date horodateDeb, Date horodateFin);
 	// Mode d'emploi :
 	//
 	// Contrat :

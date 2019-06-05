@@ -116,10 +116,10 @@ conteneurMoyMesures Analyse::caracteristiquesZone( double lat, double longi, dou
 //{
 //} //----- Fin de Méthode
 
-doubleCollectionCapteurs Analyse::comportementSimilaire(Date horodateDeb, Date horodateFin)
+conteneurIndiceCapteurs Analyse::comportementSimilaire(Date horodateDeb, Date horodateFin)
 {
 	
-	doubleCollectionCapteurs capteursIdentiques(10);
+	conteneurIndiceCapteurs capteursIdentiques;
 
 	collectionCapteurs capteurs;
 
@@ -184,8 +184,15 @@ doubleCollectionCapteurs Analyse::comportementSimilaire(Date horodateDeb, Date h
 
 		int indice = qualiteAir(moyMesures);
 		if (indice >= 0) {
-			capteursIdentiques[indice].push_back(*it);
 			//score: capteurs accoci¨¦s
+			if (capteursIdentiques.find(indice) != capteursIdentiques.end()) {
+				capteursIdentiques[indice].push_back(*it);
+			}
+			else {
+				collectionCapteurs c;
+				c.push_back(*it);
+				capteursIdentiques.insert(make_pair(indice, c));
+			}
 		}
 		
 	}

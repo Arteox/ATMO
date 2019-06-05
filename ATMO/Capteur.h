@@ -14,6 +14,7 @@ copyright            : (C) 2019 par Mengxing ZHANG, Louis UNG, Fabien GELUS et B
 #include <set>
 #include <algorithm>
 #include <vector>
+#include <map>
 #include "Mesure.h"
 
 //------------------------------------------------------------- Constantes 
@@ -96,6 +97,6 @@ private:
 };
 
 //----------------------------------------- Types dépendants de <Capteur>
-typedef vector<vector<Capteur>> doubleCollectionCapteurs;
 typedef vector<Capteur> collectionCapteurs;
+typedef map<int, collectionCapteurs> conteneurIndiceCapteurs;
 #endif //_CAPTEUR_H
