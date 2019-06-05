@@ -45,7 +45,6 @@ public:
 		static Analyse instance;
 		return instance;
 	}
-	//version sp¨¦ciale pour le test
 
 
 	//----------------------------------------------------- Méthodes publiques

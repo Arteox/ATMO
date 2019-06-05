@@ -100,7 +100,7 @@ namespace UnitTest
 		TEST_METHOD(QualiteAirTest1)
 		{
 			setFichierName();
-			conteneurMoyMesures c = AnalyseInstance.caracteristiquesZone(18.902680, -60.469614, 20, Date(2017, 1, 1, 0, 0, 0), Date(2017, 1, 1, 0, 0, 12));
+			conteneurMoyMesures c = AnalyseInstance.caracteristiquesZone(-38.3884286616875, -24.9593580676985, 20, Date(2017, 1, 1, 0, 0, 0), Date(2017, 1, 1, 0, 0, 12));
 			int indice = AnalyseInstance.qualiteAir(c);
 			Assert::IsTrue(indice == 1);
 		}

@@ -72,11 +72,11 @@ void executerCommandes(list<string> commandesAvecParams) {
 
 int main(int argc, char** argv) {
 
-	conteneurIndiceCapteurs capteursSim;
-	capteursSim = AnalyseInstance.comportementSimilaire(Date("2017-01-01T00:00:10.0100000"), Date("2018-01-01T00:00:10.0100000"));
+	//conteneurIndiceCapteurs capteursSim;
+	//capteursSim = AnalyseInstance.comportementSimilaire(Date("2017-01-01T00:00:10.0100000"), Date("2018-01-01T00:00:10.0100000"));
 	
 	
-	for (auto it1 = capteursSim.begin(); it1 != capteursSim.end(); ++it1) {
+	/*for (auto it1 = capteursSim.begin(); it1 != capteursSim.end(); ++it1) {
 		cout << "score atmo : " << it1->first << endl;
 		for (auto it2 = it1->second.begin(); it2 != it1->second.end(); ++it2) {
 			cout << *it2 << endl;

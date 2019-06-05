@@ -359,9 +359,7 @@ collectionCapteurs Analyse::dysfonctionnement(Date & horodateDeb, Date & horodat
 conteneurMoyMesures Analyse::caracteristiquesPoint(double lat, double longi, Date & horodateDeb, Date & horodateFin)
 {	
 	conteneurMoyMesures moyMesures;
-
 	collectionCapteurs capteurs;
-
 	capteurs = TraitementD.ParcoursCapteurs(lat, longi);
 	//on a que des capteurs dont distance < 10km
 
