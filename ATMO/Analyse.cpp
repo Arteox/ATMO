@@ -473,7 +473,7 @@ int Analyse::qualiteAir(conteneurMoyMesures & MoyMesures)
 
 	int indice = 0;
 	string types[4] = { "O3", "SO2", "NO2", "PM10" };
-	int atmo[4][9] = { (30,55,80,105,130,150,180,210,240), (40,80,120,160,200,250,300,400,500), (30,55,85,110,135,165,200,275,400), (7,14,21,28,35,42,50,65,80) };
+	int atmo[4][9] = { {30,55,80,105,130,150,180,210,240}, {40,80,120,160,200,250,300,400,500}, {30,55,85,110,135,165,200,275,400}, {7,14,21,28,35,42,50,65,80} };
 	for (int i = 0; i < 4; i++) {
 		//ajouter un if pour ¨¦viter il y a un type qui existe pas dans l'ensemble types
 		auto it=MoyMesures.find(types[i]);
@@ -484,9 +484,10 @@ int Analyse::qualiteAir(conteneurMoyMesures & MoyMesures)
 				return -1; // erreur 
 			}
 			for (int j = 0; j < 9; j++) {
-				if (valeur < atmo[i][j] && indice < j + 1)
+				if (valeur < atmo[i][j] && indice <= j + 1)
 				{
 					indice = j + 1;
+					break;
 				}
 			}
 			if (valeur > atmo[i][8] && indice < 10)

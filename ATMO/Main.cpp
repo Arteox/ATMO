@@ -72,10 +72,10 @@ void executerCommandes(list<string> commandesAvecParams) {
 
 int main(int argc, char** argv) {
 
-<<<<<<< HEAD
+
 	//conteneurIndiceCapteurs capteursSim;
 	//capteursSim = AnalyseInstance.comportementSimilaire(Date("2017-01-01T00:00:10.0100000"), Date("2018-01-01T00:00:10.0100000"));
-=======
+
 	/*
 	conteneurIndiceCapteurs capteursSim;
 	capteursSim = AnalyseInstance.comportementSimilaire(Date("2017-01-01T00:00:10.0100000"), Date("2018-01-01T00:00:10.0100000"));

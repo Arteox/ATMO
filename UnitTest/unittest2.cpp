@@ -67,21 +67,21 @@ namespace UnitTest
 		TEST_METHOD(CaracteristiquePointTest1)
 		{
 			setFichierName();
-			conteneurMoyMesures c = AnalyseInstance.caracteristiquesPoint(18.902680, -60.469614, Date(2017, 1, 1, 0, 0, 0), Date(2017, 1, 1, 0, 0, 12));
+			conteneurMoyMesures c = AnalyseInstance.caracteristiquesPoint(-38.3884286616875, -24.9593580676985, Date(2017, 1, 1, 0, 0, 0), Date(2017, 1, 1, 0, 0, 12));
 			//dans rayon 10 km il y a qu'un seul capteur, ?a doit ¨ºtre le m¨ºme que caracteristiqueZone
 			Assert::IsTrue(c.size() == 4);
 			for (auto it = c.begin(); it != c.end(); ++it) {
 				if (it->first == "O3") {
-					Assert::IsTrue(it->second == double(8.3227398357248535));
+					Assert::IsTrue(it->second == 20);
 				}
 				else if (it->first == "NO2") {
-					Assert::IsTrue(it->second == double(25.21910455671518));
+					Assert::IsTrue(it->second == 28);
 				}
 				else if (it->first == "SO2") {
-					Assert::IsTrue(it->second == double(9.56403873576716));
+					Assert::IsTrue(it->second == 35);
 				}
 				else if (it->first == "PM10") {
-					Assert::IsTrue(it->second == double(0.00888436901712503165));
+					Assert::IsTrue(it->second == 4);
 				}
 			}
 		}
