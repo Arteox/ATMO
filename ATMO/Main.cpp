@@ -59,7 +59,6 @@ void executerCommandes(list<string> commandesAvecParams) {
 	}
 	else if (commandesV[0] == "1") {
 		cout << commandesV[1] << " " << commandesV[2] << endl;
-		cout << d << endl;
 		//AnalyseInstance.comportementSimilaire(Date(commandesV[1]), Date(commandesV[2]));
 		//print les resultats
 	}
@@ -76,18 +75,19 @@ int main(int argc, char** argv) {
 	conteneurIndiceCapteurs capteursSim;
 	capteursSim = AnalyseInstance.comportementSimilaire(Date("2017-01-01T00:00:10.0100000"), Date("2018-01-01T00:00:10.0100000"));
 	
-	/*
+	
 	for (auto it1 = capteursSim.begin(); it1 != capteursSim.end(); ++it1) {
-		for (auto it2 = it1->begin(); it2 != it1->end(); ++it2) {
+		cout << "score atmo : " << it1->first << endl;
+		for (auto it2 = it1->second.begin(); it2 != it1->second.end(); ++it2) {
 			cout << *it2 << endl;
 		}
-	}*/
+	}
 
 	/*
 	MenuInstance.InitialiserMenu();
 
 	while (true) {
-		cout << endl << "Veuillez rentrer votre commande" << endl << endl;
+		MenuInstance.AffichageSortieStandard("Veuillez rentrer votre commande");
 		string entree = MenuInstance.RecupererEntreeUtilisateur();
 		if (entree == "quitter") {
 			cout << "A bientôt !" << endl;

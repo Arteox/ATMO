@@ -49,28 +49,28 @@ public:
 
 
 	//----------------------------------------------------- Méthodes publiques
-	conteneurMoyMesures caracteristiquesZone( double lat, double longi, double rayon, Date horodateDeb, Date horodateFin);
+	conteneurMoyMesures caracteristiquesZone( double lat, double longi, double rayon, Date & horodateDeb, Date & horodateFin);
 	// Mode d'emploi : si option -d activée, appeler cette methode puis afficher les moyennes en sortie, puis appeler qualiteAir avec en parametre la sortie 
 	//sinon, appeler qualiteair avec en parametre la sortie de cette methode
 	//
 	// Contrat :
 	//
 
-	conteneurIndiceCapteurs comportementSimilaire(Date horodateDeb, Date horodateFin);
+	conteneurIndiceCapteurs comportementSimilaire(Date & horodateDeb, Date & horodateFin);
 	// Mode d'emploi :
 	//
 	// Contrat :
 	//
-	collectionCapteurs dysfonctionnement(Date horodateDeb, Date horodateFin);
+	collectionCapteurs dysfonctionnement(Date & horodateDeb, Date & horodateFin);
 
-	conteneurMoyMesures caracteristiquesPoint(double lat, double longi, Date horodateDeb, Date horodateFin);
+	conteneurMoyMesures caracteristiquesPoint(double lat, double longi, Date & horodateDeb, Date & horodateFin);
 	//appeler qualiteair avec en parametre la sortie de cette methode
 	//
 	// Contrat :
 	//
 
 
-	int qualiteAir(conteneurMoyMesures MoyMesures);
+	int qualiteAir(conteneurMoyMesures & MoyMesures);
 	// Mode d'emploi :
 	// entrée : moyenne des mesures pour chaque type
 	// sortie : indice de qualit?de l'air de 1 a 10  ou -1 si données incohérentes

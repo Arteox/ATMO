@@ -20,7 +20,7 @@ using namespace std;
 #include "TraitementDonnees.h"
 #include "Mesure.h"
 #include "CoordonneesGPS.h"
-
+#include "Menu.h"
 
 //------------------------------------------------------------- Constantes
 #define RAYON_TERRE 6371
@@ -35,7 +35,7 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
-conteneurMoyMesures Analyse::caracteristiquesZone( double lat, double longi, double rayon, Date horodateDeb, Date horodateFin)
+conteneurMoyMesures Analyse::caracteristiquesZone( double lat, double longi, double rayon, Date & horodateDeb, Date & horodateFin)
 {
 	
 	conteneurMoyMesures moyMesures;
@@ -43,7 +43,10 @@ conteneurMoyMesures Analyse::caracteristiquesZone( double lat, double longi, dou
 	collectionCapteurs capteurs;
 
 	capteurs = TraitementD.ParcoursCapteurs(lat, longi, rayon);
-
+	if (capteurs.size() == 0) {
+		MenuInstance.AffichageSortieErreur("Pas de capteurs sur cette zone");
+		return moyMesures;
+	}
 	/*
 	cout << capteurs.size() << endl;
 	for (collectionCapteurs::iterator it = capteurs.begin(); it != capteurs.end(); ++it) {
@@ -52,7 +55,10 @@ conteneurMoyMesures Analyse::caracteristiquesZone( double lat, double longi, dou
 	*/
 	collectionMesures mesures;
 	mesures = TraitementD.ParcoursMesures(capteurs,horodateDeb, horodateFin);
-
+	if (capteurs.size() == 0) {
+		MenuInstance.AffichageSortieErreur("Pas de mesures sur cette plage horaire");
+		return moyMesures;
+	}
 	//collectionTypesMesure types = TraitementD.ParcoursTypesMesure();
 	/*
 	cout << "taille mesures filtrées : " << mesures.size() << endl;
@@ -116,7 +122,7 @@ conteneurMoyMesures Analyse::caracteristiquesZone( double lat, double longi, dou
 //{
 //} //----- Fin de Méthode
 
-conteneurIndiceCapteurs Analyse::comportementSimilaire(Date horodateDeb, Date horodateFin)
+conteneurIndiceCapteurs Analyse::comportementSimilaire(Date & horodateDeb, Date & horodateFin)
 {
 	
 	conteneurIndiceCapteurs capteursIdentiques;
@@ -200,7 +206,7 @@ conteneurIndiceCapteurs Analyse::comportementSimilaire(Date horodateDeb, Date ho
 	return capteursIdentiques;
 }
 
-collectionCapteurs Analyse::dysfonctionnement(Date horodateDeb, Date horodateFin)
+collectionCapteurs Analyse::dysfonctionnement(Date & horodateDeb, Date & horodateFin)
 {
 	collectionCapteurs capteursDysf;
 
@@ -350,7 +356,7 @@ collectionCapteurs Analyse::dysfonctionnement(Date horodateDeb, Date horodateFin
 	return capteursDysf;
 }
 
-conteneurMoyMesures Analyse::caracteristiquesPoint(double lat, double longi, Date horodateDeb, Date horodateFin)
+conteneurMoyMesures Analyse::caracteristiquesPoint(double lat, double longi, Date & horodateDeb, Date & horodateFin)
 {	
 	conteneurMoyMesures moyMesures;
 
@@ -443,7 +449,7 @@ conteneurMoyMesures Analyse::caracteristiquesPoint(double lat, double longi, Dat
 	return moyMesures;
 }
 
-int Analyse::qualiteAir(conteneurMoyMesures MoyMesures)
+int Analyse::qualiteAir(conteneurMoyMesures & MoyMesures)
 {
 
 	int indice = 0;
