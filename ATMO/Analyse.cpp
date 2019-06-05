@@ -19,6 +19,7 @@ using namespace std;
 #include "Analyse.h"
 #include "TraitementDonnees.h"
 #include "Mesure.h"
+#include "CoordonneesGPS.h"
 
 
 //------------------------------------------------------------- Constantes
@@ -401,14 +402,15 @@ conteneurMoyMesures Analyse::caracteristiquesPoint(double lat, double longi, Dat
 		}
 
 		
-
+		CoordonneesGPS c;
 		// calcul distance
-		CoordonneesGPS cGPS;
-		double dist = cGPS.distanceEnKmEntreDeuxPoints(it->getLat(), it->getLong(), lat, longi);
-		double coef = 0;
-		if (dist <= 10) {
-			coef = 10 - dist;
-		}
+
+		double latCapteur = (*it).getLat();
+		double longiCapteur = (*it).getLong();
+		double dist = c.distanceEnKmEntreDeuxPoints(latCapteur, longiCapteur, lat, longi);
+
+		double coef = 10.0 - dist;
+
 		sommecoef += coef;
 
 		moyO3total = coef * moyO3 / cptO3;

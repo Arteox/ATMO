@@ -59,7 +59,7 @@ public:
 	// Contrat :
 	//
 
-	Capteur(int ID, double lat, double longi, string description, collectionMesures mesures);
+	Capteur(int ID, double lat, double longi, string description, const collectionMesures &mesures);
 	// Mode d'emploi :
 	//
 	// Contrat :

@@ -57,7 +57,7 @@ public:
 	//
 	
 
-	collectionMesures ParcoursMesures(collectionCapteurs capteurs, Date horodateDeb, Date horodateFin);
+	collectionMesures ParcoursMesures(const collectionCapteurs& capteurs, const Date& horodateDeb, const Date& horodateFin);
 	// Mode d'emploi :
 	// Renvoie toutes les mesures réalisées par les capteurs précisés en paramètre, et qui sont entre les
 	// 2 dates précisées.
@@ -70,7 +70,7 @@ public:
 	// Contrat : Aucun
 	//
 
-	collectionTypesMesure ParcoursTypeeMesure();
+	collectionTypesMesure ParcoursTypeMesure();
 	// Mode d'emploi :
 	// Renvoie toutes les types de mesures
 	// Contrat : Aucun
@@ -81,6 +81,12 @@ public:
 	// Renvoie tous les capteurs
 	// Contrat : Aucun
 	//
+
+	void setFichierCapteurs(string capteurCSV);
+
+	void setFichierTypesMesure(string typemesureCSV);
+
+	void setFichierMesures(string mesuresCSV);
 
 	//-------------------------------------------- Constructeurs - destructeur
 
@@ -114,9 +120,9 @@ private:
 	TraitementDonnees(const TraitementDonnees &);              
 
 	//------------------------------------------------------- Attributs privés
-	static const string fichierTypesMesure;
-	static const string fichierCapteurs;
-	static const string fichierMesures;
+	string fichierTypesMesure;
+	string fichierCapteurs;
+	string fichierMesures;
 	collectionCapteurs donneesCapteurs;
 	collectionTypesMesure donneesTypesMesure;
 	collectionMesures donneesMesures;

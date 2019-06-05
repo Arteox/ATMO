@@ -32,7 +32,6 @@ public:
 	string getAttributeId() const;
 	wstring getUnite() const;
 	string getDescription() const;
-	void afficher() const;
 
 	//------------------------------------------------- Surcharge d'opérateurs
 	TypeMesure & operator = (const TypeMesure & unTypeMesure);
@@ -41,7 +40,7 @@ public:
 	// Contrat : Aucun
 	//
 
-	friend ostream & operator << (ostream &out, const TypeMesure &typemesure);
+	friend wostream & operator << (wostream &out, const TypeMesure &typemesure);
 
 	
 	//-------------------------------------------- Constructeurs - destructeur

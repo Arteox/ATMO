@@ -1,21 +1,30 @@
-/*************************************************************************
+ï»¿/*************************************************************************
 Main  -  description
 -------------------
-début                : ${date}
+dÃ©but                : ${date}
 copyright            : (C) ${year} par ${user}
 *************************************************************************/
 
-//---------- Réalisation de la classe <Capteur> (fichier Capteur.h) --
+//---------- RÃ©alisation de la classe <Capteur> (fichier Capteur.h) --
 
 //---------------------------------------------------------------- INCLUDE
 
-//-------------------------------------------------------- Include système
+//-------------------------------------------------------- Include systÃ¨me
 #include <iostream>
 using namespace std;
 #include <vector>
 #include <list>
 #include <string>
 #include <iterator>
+#include <io.h>
+#include <fcntl.h>
+#include <cstdlib>
+#include <locale>
+#include <codecvt>
+#include <fstream>
+#include <sstream>
+#include <vector>
+
 //------------------------------------------------------ Include personnel
 #include "TraitementDonnees.h"
 #include "Date.h"
@@ -26,13 +35,13 @@ using namespace std;
 #include "Parseur.h"
 #include "Analyse.h"
 
+
 //------------------------------------------------------------- Constantes
-//#define Menu Menu::GetInstance()
 //---------------------------------------------------- Variables de classe
 
 void executerCommandes(list<string> commandesAvecParams) {
 
-	//on convertit la liste en vector pour faciliter les accès par index
+	//on convertit la liste en vector pour faciliter les accÃ¨s par index
 	vector<string> commandesV{ make_move_iterator(begin(commandesAvecParams)),std::make_move_iterator(end(commandesAvecParams)) };
 
 	if (commandesV[0] == "4") {
@@ -50,7 +59,6 @@ void executerCommandes(list<string> commandesAvecParams) {
 	}
 	else if (commandesV[0] == "1") {
 		cout << commandesV[1] << " " << commandesV[2] << endl;
-		Date d(commandesV[1]);
 		cout << d << endl;
 		//AnalyseInstance.comportementSimilaire(Date(commandesV[1]), Date(commandesV[2]));
 		//print les resultats
@@ -64,47 +72,23 @@ void executerCommandes(list<string> commandesAvecParams) {
 }
 
 int main(int argc, char** argv) {
-	//TraitementD;
 
-	/*MenuInstance.InitialiserMenu();
 
-<<<<<<< HEAD
-int main(int argc, char** argv) {
-	Menu menu =Menu::GetInstance();
-	Parseur parseur;
-	TraitementD;
-	Analyse analyse;
+	MenuInstance.InitialiserMenu();
 
-	menu.InitialiserMenu();
-
-=======
-
->>>>>>> 21a957d4caae72cf7249c342f4405c219f77feaa
 	while (true) {
 		cout << endl << "Veuillez rentrer votre commande" << endl << endl;
 		string entree = MenuInstance.RecupererEntreeUtilisateur();
 		if (entree == "quitter") {
-			cout << "A bientôt !" << endl;
+			cout << "A bientÃ´t !" << endl;
 			break;
 		}
-<<<<<<< HEAD
-		else if (commandesV[0] == "1") {
-			analyse.comportementSimilaire(Date(commandesV[1]), Date(commandesV[2]));
-			//print les resultats
-		}
-		else if (commandesV[0] == "0") {
-			//analyse.qualiteAir();
-			//print les resultats
-		}
-
-	}
-=======
 		list<string> commandes = ParseurInstance.ParserCommande(entree);
 		executerCommandes(commandes);
 		
-	}*/
-	
-	
+	}
+
+
 
 
 
@@ -145,8 +129,8 @@ int main(int argc, char** argv) {
 
 	//TEST ParcoursMesures avec parametres
 	/*
-	string deb = "2017-01-01T00:00:10.0100000;";
-	string f = "2017-01-01T00:00:25.5880000;";
+	string deb = "2017-01-01T00:00:10.0000000;";
+	string f = "2017-01-01T00:00:10.0800000;";
 	Date debut(deb);
 	Date fin(f);
 
@@ -158,10 +142,10 @@ int main(int argc, char** argv) {
 
 	collectionMesures m = TraitementD.ParcoursMesures(capteurs, debut, fin);
 
-	cout << "taille mesures filtrées : " << m.size() << endl;
+	cout << "taille mesures filtrÃ©es : " << m.size() << endl;
 	for (collectionMesures::iterator it = m.begin(); it != m.end(); ++it) {
 		cout << *it << endl;
-	}*:
+	}*/
 
 	//TEST LECTURE TYPE MESURES
 	/*TraitementD.lectureTypesMesure();
@@ -215,6 +199,31 @@ int main(int argc, char** argv) {
 			cout << it->second << endl;
 		}
 		// ok
+		*/
+	//Test Analyse ZoneTest1
+/*
+		conteneurMoyMesures c = AnalyseInstance.caracteristiquesZone(18.902680, -60.469614, 20, Date(2017, 1, 1, 0, 0, 0), Date(2017, 1, 1, 0, 0, 12));
+		cout<<"start"<<c.size()<<4<<endl;
+
+		for (conteneurMoyMesures::iterator it = c.begin(); it != c.end(); ++it) {
+			cout << it->first << endl;
+			cout << it->second << endl;
+		}
+
+		for (conteneurMoyMesures::iterator it = c.begin(); it != c.end(); ++it) {
+			if (it->first == "O3") {
+				cout<<it->second<< double(8.3227398357248535)<<endl;
+			}
+			else if (it->first == "NO2") {
+				cout << it->second << double(25.21910455671518)<<endl;
+			}
+			else if (it->first == "SO2") {
+				cout << it->second << double(9.56403873576716)<<endl;
+			}
+			else if (it->first == "PM10") {
+				cout << it->second <<double(0.00888436901712503165)<<endl;
+			}
+		}
 		*/
 
 	return 0;

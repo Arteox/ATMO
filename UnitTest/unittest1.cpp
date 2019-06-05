@@ -13,6 +13,9 @@
 #include "../ATMO/Date.h"
 #include <algorithm>
 #include <codecvt>
+#include <io.h>
+#include <fcntl.h>
+#include <cstdlib>
 
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -38,7 +41,7 @@ namespace UnitTest
 			TypeMesure t4("PM10", wunite, "concentration de particules fines");
 			//resultat expecte:
 			collectionTypesMesure v1{ t1,t2,t3,t4 };
-			collectionTypesMesure v2 = TraitementD.ParcoursTypeeMesure();
+			collectionTypesMesure v2 = TraitementD.ParcoursTypeMesure();
 			Assert::IsTrue(v2.size() == v1.size());
 			//std::sort(v1.begin(), v1.end(), TypeMesureSort);
 			//std::sort(v2.begin(), v2.end(), TypeMesureSort);
@@ -156,8 +159,7 @@ namespace UnitTest
 		}
 		TEST_METHOD(MesureTest4)
 		{	
-			std::string unite = "µg/m3";
-			std::wstring wunite(unite.begin(), unite.end());
+			std::wstring wunite(L"µg/m3");
 			Date d(2017, 1, 1, 0, 30, 39);
 			Mesure m1(d, 36.7797600526823, TypeMesure("O3", wunite, "concentration d'ozone"),0);
 			Mesure m2(d, 80.2280346451481, TypeMesure("SO2", wunite, "concentration de dioxyde de soufre"), 0);
@@ -166,10 +168,10 @@ namespace UnitTest
 			collectionMesures v1 = { m1,m2,m3,m4 };
 			
 			collectionCapteurs capteurs;
-			Capteur c1(0, -19.4789835505555, -35.2425725968753, "");
+			Capteur c1(0, -19.4789835505555, -35.2425725968753, "", v1);
 			capteurs.push_back(c1);
-			Date dateFin(2017, 1, 1, 0, 0, 0);
-			Date dateDebut(2017, 1, 1, 0, 59, 00);
+			Date dateDebut(2017, 1, 1, 0, 0, 0);
+			Date dateFin(2017, 1, 1, 0, 59, 00);
 			collectionMesures v2 = TraitementD.ParcoursMesures(capteurs,  dateDebut, dateFin);
 			Assert::IsTrue(v1.size() == v2.size());
 			auto it1 = v1.begin();

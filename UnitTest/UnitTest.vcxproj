@@ -23,7 +23,7 @@
     <ProjectGuid>{817A1FEB-DC86-44F1-BDE6-FC0C8A1DA9A4}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>UnitTest</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
     <ProjectSubType>NativeUnitTestProject</ProjectSubType>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -103,7 +103,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -152,10 +152,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\ATMO\Analyse.h" />
+    <ClInclude Include="..\ATMO\Capteur.h" />
+    <ClInclude Include="..\ATMO\CoordonneesGPS.h" />
+    <ClInclude Include="..\ATMO\Date.h" />
+    <ClInclude Include="..\ATMO\Menu.h" />
+    <ClInclude Include="..\ATMO\Mesure.h" />
+    <ClInclude Include="..\ATMO\Parseur.h" />
+    <ClInclude Include="..\ATMO\TraitementDonnees.h" />
+    <ClInclude Include="..\ATMO\TypeMesure.h" />
+    <ClInclude Include="..\ATMO\Zone.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\ATMO\Analyse.cpp" />
+    <ClCompile Include="..\ATMO\Capteur.cpp" />
+    <ClCompile Include="..\ATMO\CoordonneesGPS.cpp" />
+    <ClCompile Include="..\ATMO\Date.cpp" />
+    <ClCompile Include="..\ATMO\Main.cpp" />
+    <ClCompile Include="..\ATMO\Menu.cpp" />
+    <ClCompile Include="..\ATMO\Mesure.cpp" />
+    <ClCompile Include="..\ATMO\Parseur.cpp" />
+    <ClCompile Include="..\ATMO\TraitementDonnees.cpp" />
+    <ClCompile Include="..\ATMO\TypeMesure.cpp" />
+    <ClCompile Include="..\ATMO\Zone.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -169,6 +190,11 @@
     <ProjectReference Include="..\ATMO\ATMO.vcxproj">
       <Project>{f77d89ea-3cb5-4b10-9127-0d50745fdc75}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\ATMO\DonneesCSV\AttributeType.csv" />
+    <None Include="..\ATMO\DonneesCSV\MesuresSample.csv" />
+    <None Include="..\ATMO\DonneesCSV\Sensors.csv" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

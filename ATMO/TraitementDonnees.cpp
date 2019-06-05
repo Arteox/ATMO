@@ -11,16 +11,18 @@ copyright            : (C) ${year} par ${user}
 
 //-------------------------------------------------------- Include système
 #include <iostream>
-#include <iomanip>
 using namespace std;
-#include <locale>
-#include <codecvt>
 #include <fstream>
 #include <sstream>
 #include <vector>
 #include <algorithm>
 #include <set>
 #include <map>
+#include <io.h>
+#include <fcntl.h>
+#include <cstdlib>
+#include <locale>
+#include <codecvt>
 
 //------------------------------------------------------ Include personnel
 #include "TraitementDonnees.h"
@@ -33,14 +35,6 @@ using namespace std;
 
 //---------------------------------------------------- Variables de classe
 
-/*const string TraitementDonnees::fichierCapteurs = "C:\\Users\\Louis Ung\\Documents\\Insa 3a\\Semestre 2\\Genie_logiciel\\TP\\ATMO\\ATMO\\DonneesCSV\\Sensors.csv";
-const string TraitementDonnees::fichierTypesMesure = "C:\\Users\\Louis Ung\\Documents\\Insa 3a\\Semestre 2\\Genie_logiciel\\TP\\ATMO\\ATMO\\DonneesCSV\\AttributeType.csv";
-const string TraitementDonnees::fichierMesures = "C:\\Users\\Louis Ung\\Documents\\Insa 3a\\Semestre 2\\Genie_logiciel\\TP\\ATMO\\ATMO\\DonneesCSV\\MesuresSample.csv";
-*/
-
-const string TraitementDonnees::fichierCapteurs = "DonneesCSV\\Sensors.csv";
-const string TraitementDonnees::fichierTypesMesure = "DonneesCSV\\AttributeType.csv";
-const string TraitementDonnees::fichierMesures = "DonneesCSV\\MesuresSample.csv";
 
 //----------------------------------------------------------- Types privés
 
@@ -215,12 +209,28 @@ collectionCapteurs TraitementDonnees::ParcoursCapteurs()
 	return donneesCapteurs;
 }
 
-collectionMesures TraitementDonnees::ParcoursMesures(collectionCapteurs capteurs, Date horodateDeb, Date horodateFin)
+void TraitementDonnees::setFichierCapteurs(string capteurCSV)
+{
+	fichierCapteurs = capteurCSV;
+}
+
+void TraitementDonnees::setFichierTypesMesure(string typemesureCSV)
+{
+	fichierTypesMesure = typemesureCSV;
+}
+
+void TraitementDonnees::setFichierMesures(string mesuresCSV)
+{
+	fichierMesures = mesuresCSV;
+}
+
+collectionMesures TraitementDonnees::ParcoursMesures(const collectionCapteurs& capteurs, const Date& horodateDeb, const Date& horodateFin)
 //Les mesures doivent appartenir aux capteurs en paramètre, et être réalisées entre les 2 dates indiquées, borne supérieure excluse
+//Les capteurs devraient déjà avoir des mesures associées à elles-mêmes lors de l'appel de cette méthode 
 {
 	collectionMesures mesuresFiltrees;
 
-	for (collectionCapteurs::iterator itC = capteurs.begin(); itC != capteurs.end(); ++itC) {
+	for (collectionCapteurs::const_iterator itC = capteurs.begin(); itC != capteurs.end(); ++itC) {
 		collectionMesures mesuresCapteur = itC->getMesures();
 		for (collectionMesures::iterator it = mesuresCapteur.begin(); it != mesuresCapteur.end(); ++it) {
 			if ((!(it->getDate() < horodateDeb)) && it->getDate() < horodateFin) {
@@ -237,32 +247,41 @@ collectionMesures TraitementDonnees::ParcoursMesures()
 	return donneesMesures;
 }
 
-collectionTypesMesure TraitementDonnees::ParcoursTypeeMesure()
+collectionTypesMesure TraitementDonnees::ParcoursTypeMesure()
 {
 	return donneesTypesMesure;
 }
 
 void TraitementDonnees::lectureTypesMesure()
 {
-	ifstream fic;
-	string lectLigne;
+	wifstream fic;
+	wstring lectLigne;
 	fic.open(fichierTypesMesure);
 	if (fic) {
 		for (lectLigne; getline(fic, lectLigne); ) {
-			istringstream iss(lectLigne);
-			if (lectLigne != "AttributeID;Unit;Description;") {
-				string attribut;
-				vector<string> attributs;
-				while (getline(iss, attribut, ';'))
+			wistringstream iss(lectLigne);
+			if (lectLigne != L"AttributeID;Unit;Description;") {
+				wstring attribut;
+				vector<wstring> attributs;
+				while (getline(iss, attribut, L';'))
 				{
 					attributs.push_back(attribut);
 				}
-				string attributID = attributs[0];
 
-				wstring_convert<codecvt_utf8_utf16<wchar_t>> converter;
-				wstring unite = converter.from_bytes(attributs[1]); //encodage de la lettre grecque mu ne marche pas
+				wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+				string narrow = converter.to_bytes(L"hello");
 
-				string description = attributs[2];
+				string attributID = converter.to_bytes(attributs[0]);
+				wstring unite;
+				if (attributs[1].size() > 5) {
+					//il y a un caractere en plus si on a un caractere special dans l'unite
+					unite = attributs[1].substr(1);
+				}
+				else {
+					unite = attributs[1];
+				}
+
+				string description = converter.to_bytes(attributs[2]);
 				TypeMesure type(attributID, unite, description);
 				donneesTypesMesure.push_back(type);
 			}
@@ -282,6 +301,15 @@ TraitementDonnees::TraitementDonnees(const TraitementDonnees & unTraitementDonne
 
 TraitementDonnees::TraitementDonnees()
 {
+	/*
+	fichierCapteurs = "C:\\Users\\Louis Ung\\Documents\\Insa 3a\\Semestre 2\\Genie_logiciel\\TP\\ATMO\\ATMO\\DonneesCSV\\Sensors.csv";
+	fichierTypesMesure = "C:\\Users\\Louis Ung\\Documents\\Insa 3a\\Semestre 2\\Genie_logiciel\\TP\\ATMO\\ATMO\\DonneesCSV\\AttributeType.csv";
+	fichierMesures = "C:\\Users\\Louis Ung\\Documents\\Insa 3a\\Semestre 2\\Genie_logiciel\\TP\\ATMO\\ATMO\\DonneesCSV\\MesuresSample.csv";
+	*/
+
+	fichierCapteurs = "DonneesCSV\\Sensors.csv";
+	fichierTypesMesure = "DonneesCSV\\AttributeType.csv";
+	fichierMesures = "DonneesCSV\\MesuresSample.csv";
 	lectureTypesMesure();
 	lectureMesures();
 	lectureCapteurs();
