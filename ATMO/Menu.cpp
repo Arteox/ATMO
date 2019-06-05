@@ -31,11 +31,11 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-void Menu::AffichageSortieStandard(string & sortieFonction) const {
+void Menu::AffichageSortieStandard(string sortieFonction) const {
 	sortieStandard << sortieFonction << endl;
 }
 
-void Menu::AffichageSortieErreur(string & sortieFonction) const {
+void Menu::AffichageSortieErreur(string sortieFonction) const {
 	sortieErreur << sortieFonction << endl;
 }
 

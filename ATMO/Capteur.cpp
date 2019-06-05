@@ -70,9 +70,10 @@ Capteur & Capteur::operator=(const Capteur & unCapteur)
 
 ostream & operator<<(ostream & out, const Capteur & capteur)
 {
-	out << capteur.ID << " " << capteur.lat << " " << capteur.longi<< endl;
+	out << "Capteur" << capteur.ID << endl << "Coordonnées : " << capteur.lat << " " << capteur.longi<< endl;
+	
+	out << "Mesures : " << endl;
 	collectionMesures m = capteur.mesures;
-
 	for (collectionMesures::iterator itM = m.begin(); itM != m.end(); ++itM) {
 		out << *itM << " ";
 	}
