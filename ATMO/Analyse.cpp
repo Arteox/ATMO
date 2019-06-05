@@ -20,7 +20,7 @@ using namespace std;
 #include "TraitementDonnees.h"
 #include "Mesure.h"
 #include "CoordonneesGPS.h"
-
+#include "Menu.h"
 
 //------------------------------------------------------------- Constantes
 #define RAYON_TERRE 6371
@@ -35,7 +35,7 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
-conteneurMoyMesures Analyse::caracteristiquesZone( double lat, double longi, double rayon, Date horodateDeb, Date horodateFin)
+conteneurMoyMesures Analyse::caracteristiquesZone( double lat, double longi, double rayon, Date & horodateDeb, Date & horodateFin)
 {
 	
 	conteneurMoyMesures moyMesures;
@@ -43,7 +43,10 @@ conteneurMoyMesures Analyse::caracteristiquesZone( double lat, double longi, dou
 	collectionCapteurs capteurs;
 
 	capteurs = TraitementD.ParcoursCapteurs(lat, longi, rayon);
-
+	if (capteurs.size() == 0) {
+		MenuInstance.AffichageSortieErreur("Pas de capteurs sur cette zone");
+		return moyMesures;
+	}
 	/*
 	cout << capteurs.size() << endl;
 	for (collectionCapteurs::iterator it = capteurs.begin(); it != capteurs.end(); ++it) {
@@ -52,7 +55,10 @@ conteneurMoyMesures Analyse::caracteristiquesZone( double lat, double longi, dou
 	*/
 	collectionMesures mesures;
 	mesures = TraitementD.ParcoursMesures(capteurs,horodateDeb, horodateFin);
-
+	if (mesures.size() == 0) {
+		MenuInstance.AffichageSortieErreur("Pas de mesures sur cette plage horaire");
+		return moyMesures;
+	}
 	//collectionTypesMesure types = TraitementD.ParcoursTypesMesure();
 	/*
 	cout << "taille mesures filtrées : " << mesures.size() << endl;
@@ -116,14 +122,19 @@ conteneurMoyMesures Analyse::caracteristiquesZone( double lat, double longi, dou
 //{
 //} //----- Fin de Méthode
 
-doubleCollectionCapteurs Analyse::comportementSimilaire(Date horodateDeb, Date horodateFin)
+conteneurIndiceCapteurs Analyse::comportementSimilaire(Date & horodateDeb, Date & horodateFin)
 {
 	
-	doubleCollectionCapteurs capteursIdentiques(10);
+	conteneurIndiceCapteurs capteursIdentiques;
 
 	collectionCapteurs capteurs;
 
 	capteurs = TraitementD.ParcoursCapteurs();
+
+	if (capteurs.size() == 0) {
+		MenuInstance.AffichageSortieErreur("Pas de capteurs");
+		return capteursIdentiques;
+	}
 
 	collectionCapteurs::iterator it;
 
@@ -136,56 +147,66 @@ doubleCollectionCapteurs Analyse::comportementSimilaire(Date horodateDeb, Date h
 		collectionMesures mesures;
 		mesures = TraitementD.ParcoursMesures(capteur, horodateDeb, horodateFin);
 
-		conteneurMoyMesures moyMesures;
+		if (mesures.size() != 0) {
 
-		double moyO3 = 0;
-		double moySO2 = 0;
-		double moyNO2 = 0;
-		double moyPM10 = 0;
+			conteneurMoyMesures moyMesures;
 
-		int cptO3 = 0;
-		int cptSO2 = 0;
-		int cptNO2 = 0;
-		int cptPM10 = 0;
+			double moyO3 = 0;
+			double moySO2 = 0;
+			double moyNO2 = 0;
+			double moyPM10 = 0;
 
-		collectionMesures::iterator it2; 
-		for (it2 = mesures.begin(); it2 != mesures.end(); it2++)
-		{
+			int cptO3 = 0;
+			int cptSO2 = 0;
+			int cptNO2 = 0;
+			int cptPM10 = 0;
 
-			string type = it2->getTypeMesure().getAttributeId();
-			double valeur = it2->getValeur();
-			if (type == "O3") {
-				moyO3 += valeur;
-				cptO3++;
+			collectionMesures::iterator it2;
+			for (it2 = mesures.begin(); it2 != mesures.end(); it2++)
+			{
+
+				string type = it2->getTypeMesure().getAttributeId();
+				double valeur = it2->getValeur();
+				if (type == "O3") {
+					moyO3 += valeur;
+					cptO3++;
+				}
+				else if (type == "SO2") {
+					moySO2 += valeur;
+					cptSO2++;
+				}
+				else if (type == "NO2") {
+					moyNO2 += valeur;
+					cptNO2++;
+				}
+				else if (type == "PM10") {
+					moyPM10 += valeur;
+					cptPM10++;
+				}
 			}
-			else if (type == "SO2") {
-				moySO2 += valeur;
-				cptSO2++;
-			}
-			else if (type == "NO2") {
-				moyNO2 += valeur;
-				cptNO2++;
-			}
-			else if (type == "PM10") {
-				moyPM10 += valeur;
-				cptPM10++;
-			}
-		}
 
-		paireMoyMesures paire;
-		paire = paireMoyMesures("O3", moyO3 / cptO3);
-		moyMesures.insert(paire);
-		paire = paireMoyMesures("SO2", moySO2 / cptSO2);
-		moyMesures.insert(paire);
-		paire = paireMoyMesures("NO2", moyNO2 / cptNO2);
-		moyMesures.insert(paire);
-		paire = paireMoyMesures("PM10", moyPM10 / cptPM10);
-		moyMesures.insert(paire);
+			paireMoyMesures paire;
+			paire = paireMoyMesures("O3", moyO3 / cptO3);
+			moyMesures.insert(paire);
+			paire = paireMoyMesures("SO2", moySO2 / cptSO2);
+			moyMesures.insert(paire);
+			paire = paireMoyMesures("NO2", moyNO2 / cptNO2);
+			moyMesures.insert(paire);
+			paire = paireMoyMesures("PM10", moyPM10 / cptPM10);
+			moyMesures.insert(paire);
 
-		int indice = qualiteAir(moyMesures);
-		if (indice >= 0) {
-			capteursIdentiques[indice].push_back(*it);
-			//score: capteurs accoci¨¦s
+			int indice = qualiteAir(moyMesures);
+			if (indice >= 0) {
+				//score: capteurs accoci¨¦s
+				if (capteursIdentiques.find(indice) != capteursIdentiques.end()) {
+					capteursIdentiques[indice].push_back(*it);
+				}
+				else {
+					collectionCapteurs c;
+					c.push_back(*it);
+					capteursIdentiques.insert(make_pair(indice, c));
+				}
+			}
 		}
 		
 	}
@@ -193,13 +214,18 @@ doubleCollectionCapteurs Analyse::comportementSimilaire(Date horodateDeb, Date h
 	return capteursIdentiques;
 }
 
-collectionCapteurs Analyse::dysfonctionnement(Date horodateDeb, Date horodateFin)
+collectionCapteurs Analyse::dysfonctionnement(Date & horodateDeb, Date & horodateFin)
 {
 	collectionCapteurs capteursDysf;
 
 	collectionCapteurs capteurs;
 
 	capteurs = TraitementD.ParcoursCapteurs();
+
+	if (capteurs.size() == 0) {
+		MenuInstance.AffichageSortieErreur("Pas de capteurs");
+		return capteursDysf;
+	}
 
 	collectionCapteurs::iterator it;
 
@@ -343,14 +369,16 @@ collectionCapteurs Analyse::dysfonctionnement(Date horodateDeb, Date horodateFin
 	return capteursDysf;
 }
 
-conteneurMoyMesures Analyse::caracteristiquesPoint(double lat, double longi, Date horodateDeb, Date horodateFin)
+conteneurMoyMesures Analyse::caracteristiquesPoint(double lat, double longi, Date & horodateDeb, Date & horodateFin)
 {	
 	conteneurMoyMesures moyMesures;
-
 	collectionCapteurs capteurs;
-
 	capteurs = TraitementD.ParcoursCapteurs(lat, longi);
 	//on a que des capteurs dont distance < 10km
+	if (capteurs.size() == 0) {
+		MenuInstance.AffichageSortieErreur("Pas de capteurs sur cette zone");
+		return moyMesures;
+	}
 
 	double moyO3total = 0;
 	double moySO2total = 0;
@@ -369,58 +397,59 @@ conteneurMoyMesures Analyse::caracteristiquesPoint(double lat, double longi, Dat
 		collectionMesures mesures;
 		mesures = TraitementD.ParcoursMesures(capteur, horodateDeb, horodateFin);
 
+		if (mesures.size() != 0) {
 
-		double moyO3 = 0;
-		double moySO2 = 0;
-		double moyNO2 = 0;
-		double moyPM10 = 0;
+			double moyO3 = 0;
+			double moySO2 = 0;
+			double moyNO2 = 0;
+			double moyPM10 = 0;
 
-		int cptO3 = 0;
-		int cptSO2 = 0;
-		int cptNO2 = 0;
-		int cptPM10 = 0;
+			int cptO3 = 0;
+			int cptSO2 = 0;
+			int cptNO2 = 0;
+			int cptPM10 = 0;
 
-		collectionMesures::iterator it2;
-		for (it2 = mesures.begin(); it2 != mesures.end(); it2++)
-		{
+			collectionMesures::iterator it2;
+			for (it2 = mesures.begin(); it2 != mesures.end(); it2++)
+			{
 
-			string type = it2->getTypeMesure().getAttributeId();
-			double valeur = it2->getValeur();
-			if (type == "O3") {
-				moyO3 += valeur;
-				cptO3++;
+				string type = it2->getTypeMesure().getAttributeId();
+				double valeur = it2->getValeur();
+				if (type == "O3") {
+					moyO3 += valeur;
+					cptO3++;
+				}
+				else if (type == "SO2") {
+					moySO2 += valeur;
+					cptSO2++;
+				}
+				else if (type == "NO2") {
+					moyNO2 += valeur;
+					cptNO2++;
+				}
+				else if (type == "PM10") {
+					moyPM10 += valeur;
+					cptPM10++;
+				}
 			}
-			else if (type == "SO2") {
-				moySO2 += valeur;
-				cptSO2++;
-			}
-			else if (type == "NO2") {
-				moyNO2 += valeur;
-				cptNO2++;
-			}
-			else if (type == "PM10") {
-				moyPM10 += valeur;
-				cptPM10++;
-			}
+
+
+			CoordonneesGPS c;
+			// calcul distance
+
+			double latCapteur = (*it).getLat();
+			double longiCapteur = (*it).getLong();
+			double dist = c.distanceEnKmEntreDeuxPoints(latCapteur, longiCapteur, lat, longi);
+
+			double coef = 10.0 - dist;
+
+			sommecoef += coef;
+
+			moyO3total += coef * moyO3 / cptO3;
+			moySO2total += coef * moySO2 / cptSO2;
+			moyNO2total += coef * moyNO2 / cptNO2;
+			moyPM10total += coef * moyPM10 / cptPM10;
 		}
-
-		
-		CoordonneesGPS c;
-		// calcul distance
-
-		double latCapteur = (*it).getLat();
-		double longiCapteur = (*it).getLong();
-		double dist = c.distanceEnKmEntreDeuxPoints(latCapteur, longiCapteur, lat, longi);
-
-		double coef = 10.0 - dist;
-
-		sommecoef += coef;
-
-		moyO3total = coef * moyO3 / cptO3;
-		moySO2total = coef * moySO2 / cptSO2;
-		moyNO2total = coef * moyNO2 / cptNO2;
-		moyPM10total = coef * moyPM10 / cptPM10;
-
 	}
 
 	paireMoyMesures paire;
@@ -436,8 +465,12 @@ conteneurMoyMesures Analyse::caracteristiquesPoint(double lat, double longi, Dat
 	return moyMesures;
 }
 
-int Analyse::qualiteAir(conteneurMoyMesures MoyMesures)
+int Analyse::qualiteAir(conteneurMoyMesures & MoyMesures)
 {
+	if (MoyMesures.size() == 0) {
+		return -1;
+	}
+
 	int indice = 0;
 	string types[4] = { "O3", "SO2", "NO2", "PM10" };
 	int atmo[4][9] = { (30,55,80,105,130,150,180,210,240), (40,80,120,160,200,250,300,400,500), (30,55,85,110,135,165,200,275,400), (7,14,21,28,35,42,50,65,80) };
@@ -470,6 +503,8 @@ int Analyse::qualiteAir(conteneurMoyMesures MoyMesures)
 Analyse::Analyse()
 {
 }
+
+
 
 //------------------------------------------------- Surcharge d'opérateurs
 

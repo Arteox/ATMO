@@ -57,10 +57,6 @@ collectionCapteurs TraitementDonnees::ParcoursCapteurs(double lat, double longi,
 		}
 	}
 
-	if (capteurs.size() == 0) {
-		cout << "pas de capteurs aux alentours de ce point" << endl;
-	}
-
 	return capteurs;
 }
 
@@ -78,9 +74,6 @@ collectionCapteurs TraitementDonnees::ParcoursCapteurs(double lat, double longi)
 	}
 
 	if (capteurs.size() <= 3) {
-		if (capteurs.size() == 0) {
-			cout << "pas de capteurs aux alentours de ce point" << endl;
-		}
 
 		return capteurs;
 	}
@@ -108,6 +101,9 @@ void TraitementDonnees::lectureMesures()
 
 	if (donneesTypesMesure.empty()) {
 		lectureTypesMesure();
+	}
+	if (!donneesMesures.empty()) {
+		donneesMesures.clear();
 	}
 
 	fic.open(fichierMesures);
@@ -157,6 +153,9 @@ void TraitementDonnees::lectureCapteurs()
 {
 	if (donneesMesures.empty()) {
 		lectureMesures();
+	}
+	if (!donneesCapteurs.empty()) {
+		donneesCapteurs.clear();
 	}
 
 	ifstream fic;
@@ -212,16 +211,19 @@ collectionCapteurs TraitementDonnees::ParcoursCapteurs()
 void TraitementDonnees::setFichierCapteurs(string capteurCSV)
 {
 	fichierCapteurs = capteurCSV;
+	lectureCapteurs();
 }
 
 void TraitementDonnees::setFichierTypesMesure(string typemesureCSV)
 {
 	fichierTypesMesure = typemesureCSV;
+	lectureTypesMesure();
 }
 
 void TraitementDonnees::setFichierMesures(string mesuresCSV)
 {
 	fichierMesures = mesuresCSV;
+	lectureMesures();
 }
 
 collectionMesures TraitementDonnees::ParcoursMesures(const collectionCapteurs& capteurs, const Date& horodateDeb, const Date& horodateFin)
@@ -257,6 +259,9 @@ void TraitementDonnees::lectureTypesMesure()
 	wifstream fic;
 	wstring lectLigne;
 	fic.open(fichierTypesMesure);
+	if (!donneesTypesMesure.empty()) {
+		donneesTypesMesure.clear();
+	}
 	if (fic) {
 		for (lectLigne; getline(fic, lectLigne); ) {
 			wistringstream iss(lectLigne);
@@ -307,9 +312,14 @@ TraitementDonnees::TraitementDonnees()
 	fichierMesures = "C:\\Users\\Louis Ung\\Documents\\Insa 3a\\Semestre 2\\Genie_logiciel\\TP\\ATMO\\ATMO\\DonneesCSV\\MesuresSample.csv";
 	*/
 
+	fichierCapteurs = "C:\\Users\\untra\\OneDrive\\ÎÄµµ\\insa\\18-19 2\\GL UML\\ATMO\\ATMO\\DonneesCSV\\Sensors.csv";
+	fichierTypesMesure = "C:\\Users\\untra\\OneDrive\\ÎÄµµ\\insa\\18-19 2\\GL UML\\ATMO\\ATMO\\DonneesCSV\\AttributeType.csv";
+	fichierMesures = "C:\\Users\\untra\\OneDrive\\ÎÄµµ\\insa\\18-19 2\\GL UML\\ATMO\\ATMO\\DonneesCSV\\MesuresSample.csv";
+	/**
 	fichierCapteurs = "DonneesCSV\\Sensors.csv";
 	fichierTypesMesure = "DonneesCSV\\AttributeType.csv";
 	fichierMesures = "DonneesCSV\\MesuresSample.csv";
+	*/
 	lectureTypesMesure();
 	lectureMesures();
 	lectureCapteurs();

@@ -72,11 +72,28 @@ void executerCommandes(vector<string> commandesAvecParams) {
 
 int main(int argc, char** argv) {
 
-
+<<<<<<< HEAD
+	//conteneurIndiceCapteurs capteursSim;
+	//capteursSim = AnalyseInstance.comportementSimilaire(Date("2017-01-01T00:00:10.0100000"), Date("2018-01-01T00:00:10.0100000"));
+=======
+	/*
+	conteneurIndiceCapteurs capteursSim;
+	capteursSim = AnalyseInstance.comportementSimilaire(Date("2017-01-01T00:00:10.0100000"), Date("2018-01-01T00:00:10.0100000"));
+>>>>>>> ab96e1102752a5b6c54b38e08b6dc5c0d4d7d540
+	
+	
+	/*for (auto it1 = capteursSim.begin(); it1 != capteursSim.end(); ++it1) {
+		cout << "score atmo : " << it1->first << endl;
+		for (auto it2 = it1->second.begin(); it2 != it1->second.end(); ++it2) {
+			cout << *it2 << endl;
+		}
+	}
+	*/
+	/*
 	MenuInstance.InitialiserMenu();
 
 	while (true) {
-		cout << endl << "Veuillez rentrer votre commande" << endl << endl;
+		MenuInstance.AffichageSortieStandard("Veuillez rentrer votre commande");
 		string entree = MenuInstance.RecupererEntreeUtilisateur();
 		if (entree == "quitter") {
 			cout << "A bientôt !" << endl;
@@ -85,7 +102,7 @@ int main(int argc, char** argv) {
 		vector<string> commandes = ParseurInstance.ParserCommande(entree);
 		executerCommandes(commandes);
 		
-	}
+	}*/
 
 
 
