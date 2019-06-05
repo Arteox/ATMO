@@ -74,7 +74,7 @@ void executerCommandes(list<string> commandesAvecParams) {
 int main(int argc, char** argv) {
 
 
-	/*MenuInstance.InitialiserMenu();
+	MenuInstance.InitialiserMenu();
 
 	while (true) {
 		cout << endl << "Veuillez rentrer votre commande" << endl << endl;
@@ -86,7 +86,7 @@ int main(int argc, char** argv) {
 		list<string> commandes = ParseurInstance.ParserCommande(entree);
 		executerCommandes(commandes);
 		
-	}*/
+	}
 
 
 
