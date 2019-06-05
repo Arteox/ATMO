@@ -73,7 +73,17 @@ void executerCommandes(list<string> commandesAvecParams) {
 
 int main(int argc, char** argv) {
 
+	conteneurIndiceCapteurs capteursSim;
+	capteursSim = AnalyseInstance.comportementSimilaire(Date("2017-01-01T00:00:10.0100000"), Date("2018-01-01T00:00:10.0100000"));
+	
+	/*
+	for (auto it1 = capteursSim.begin(); it1 != capteursSim.end(); ++it1) {
+		for (auto it2 = it1->begin(); it2 != it1->end(); ++it2) {
+			cout << *it2 << endl;
+		}
+	}*/
 
+	/*
 	MenuInstance.InitialiserMenu();
 
 	while (true) {
@@ -86,7 +96,7 @@ int main(int argc, char** argv) {
 		list<string> commandes = ParseurInstance.ParserCommande(entree);
 		executerCommandes(commandes);
 		
-	}
+	}*/
 
 
 
