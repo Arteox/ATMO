@@ -19,6 +19,7 @@ using namespace std;
 #include "Analyse.h"
 #include "TraitementDonnees.h"
 #include "Mesure.h"
+#include "CoordonneesGPS.h"
 
 //------------------------------------------------------------- Constantes
 #define RAYON_TERRE 6371
@@ -359,12 +360,11 @@ conteneurMoyMesures Analyse::caracteristiquesPoint(double lat, double longi, Dat
 		}
 
 		
-
+		CoordonneesGPS c;
 		// calcul distance
 		double latCapteur = (*it).getLat();
 		double longiCapteur = (*it).getLong();
-		double c = sin(lat)*sin(latCapteur)*cos(lat - latCapteur) + cos(lat)*cos(latCapteur);
-		double dist = RAYON_TERRE * acos(c)*M_PI / 180.0;
+		double dist = c.distanceEnKmEntreDeuxPoints(latCapteur, longiCapteur, lat, longi);
 
 		double coef = 10.0 - dist;
 		sommecoef += coef;

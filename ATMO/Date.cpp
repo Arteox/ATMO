@@ -180,9 +180,7 @@ Date::Date(string date_brute)
 	jour = stoi(date_brute.substr(8, 2));
 	heure = stoi(date_brute.substr(11, 2));
 	min = stoi(date_brute.substr(14, 2));
-	cout << date_brute.substr(17) << endl;
 	sec = stod(date_brute.substr(17));
-	cout << sec << endl;
 }
 
 Date::Date()
