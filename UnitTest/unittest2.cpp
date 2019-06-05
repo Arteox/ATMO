@@ -14,6 +14,7 @@
 #include "../ATMO/Analyse.h"
 #include <algorithm>
 
+#define AnalyseInstanceTest Analyse::GetInstance("C:\\Users\\untra\\OneDrive\\ÎÄµµ\\insa\\18-19 2\\GL UML\\ATMO\\ATMO\\DonneesCSV\\AttributeType.csv","C:\\Users\\untra\\OneDrive\\ÎÄµµ\\insa\\18-19 2\\GL UML\\ATMO\\ATMO\\DonneesCSV\\Sensors.csv","C:\\Users\\untra\\OneDrive\\ÎÄµµ\\insa\\18-19 2\\GL UML\\ATMO\\ATMO\\DonneesCSV\\Test.csv")
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace UnitTest
@@ -22,27 +23,28 @@ namespace UnitTest
 	{
 	public:
 		TEST_METHOD(CaracteristiqueZoneTest1)
-		{
-			conteneurMoyMesures c=AnalyseInstance.caracteristiquesZone(18.902680, -60.469614,20,Date(2017,1,1,0,0,0),Date(2017,1,1,0,0,12));
+		{	
+			
+			conteneurMoyMesures c= AnalyseInstanceTest.caracteristiquesZone(-38.3884286616875, -24.9593580676985,20,Date(2017,1,1,0,0,0.00),Date(2017,1,1,0,0,12));
 			Assert::IsTrue(c.size() == 4);
 			for (auto it = c.begin(); it != c.end(); ++it) {
 				if (it->first == "O3") {
-					Assert::IsTrue(it->second == double(8.3227398357248535));
+					Assert::IsTrue(it->second == 20);
 				}
 				else if (it->first == "NO2") {
-					Assert::IsTrue(it->second == double(25.21910455671518));
+					Assert::IsTrue(it->second == 28);
 				}
 				else if (it->first == "SO2") {
-					Assert::IsTrue(it->second == double(9.56403873576716));
+					Assert::IsTrue(it->second == 35);
 				}
 				else if (it->first == "PM10") {
-					Assert::IsTrue(it->second == double(0.00888436901712503165));
+					Assert::IsTrue(it->second == 4);
 				}
 			}
 		}
 		TEST_METHOD(CaracteristiqueZoneTest2)
 		{
-			conteneurMoyMesures c = AnalyseInstance.caracteristiquesZone(18.902680, -60.469614, 20,  Date(2017, 1, 1, 0, 0, 12),Date(2017, 1, 1, 0, 0, 0));
+			conteneurMoyMesures c = AnalyseInstanceTest.caracteristiquesZone(-38.3884286616875, -24.9593580676985, 20,  Date(2017, 1, 1, 0, 0, 12),Date(2017, 1, 1, 0, 0, 0));
 			Assert::IsTrue(c.size() == 0);
 		}
 		TEST_METHOD(CaracteristiqueZoneTest3)
