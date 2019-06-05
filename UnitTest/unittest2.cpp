@@ -129,9 +129,9 @@ namespace UnitTest
 			//verifier si cette methode prend bien le plus haut
 			conteneurMoyMesures c;
 			c["O3"] = 35;
-			c["O3"] = 85;
-			c["O3"] = 500;
-			c["O3"] = 5;
+			c["SO2"] = 85;
+			c["NO2"] = 500;
+			c["PM10"] = 5;
 			int indice = AnalyseInstance.qualiteAir(c);
 			Assert::IsTrue(indice == 10);
 		}
