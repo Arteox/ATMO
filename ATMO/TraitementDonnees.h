@@ -82,6 +82,12 @@ public:
 	// Contrat : Aucun
 	//
 
+	void setFichierCapteurs(string capteurCSV);
+
+	void setFichierTypesMesure(string typemesureCSV);
+
+	void setFichierMesures(string mesuresCSV);
+
 	//-------------------------------------------- Constructeurs - destructeur
 
 	virtual ~TraitementDonnees();
@@ -114,9 +120,9 @@ private:
 	TraitementDonnees(const TraitementDonnees &);              
 
 	//------------------------------------------------------- Attributs privés
-	static const string fichierTypesMesure;
-	static const string fichierCapteurs;
-	static const string fichierMesures;
+	string fichierTypesMesure;
+	string fichierCapteurs;
+	string fichierMesures;
 	collectionCapteurs donneesCapteurs;
 	collectionTypesMesure donneesTypesMesure;
 	collectionMesures donneesMesures;
