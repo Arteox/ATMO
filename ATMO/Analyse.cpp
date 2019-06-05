@@ -44,10 +44,11 @@ conteneurMoyMesures Analyse::caracteristiquesZone( double lat, double longi, dou
 	{
 		if (csvNames[0] != "")
 			TraitementD.setFichierTypesMesure(csvNames[0]);
-		if (csvNames[1] != "")
-			TraitementD.setFichierCapteurs(csvNames[1]);
 		if (csvNames[2] != "")
 			TraitementD.setFichierMesures(csvNames[2]);
+		if (csvNames[1] != "")
+			TraitementD.setFichierCapteurs(csvNames[1]);
+		
 	}
 	capteurs = TraitementD.ParcoursCapteurs(lat, longi, rayon);
 
@@ -132,10 +133,10 @@ doubleCollectionCapteurs Analyse::comportementSimilaire(Date horodateDeb, Date h
 	{
 		if (csvNames[0] != "")
 			TraitementD.setFichierTypesMesure(csvNames[0]);
-		if (csvNames[1] != "")
-			TraitementD.setFichierCapteurs(csvNames[1]);
 		if (csvNames[2] != "")
 			TraitementD.setFichierMesures(csvNames[2]);
+		if (csvNames[1] != "")
+			TraitementD.setFichierCapteurs(csvNames[1]);
 	}
 	capteurs = TraitementD.ParcoursCapteurs();
 
@@ -215,10 +216,10 @@ collectionCapteurs Analyse::dysfonctionnement(Date horodateDeb, Date horodateFin
 	{
 		if (csvNames[0] != "")
 			TraitementD.setFichierTypesMesure(csvNames[0]);
-		if (csvNames[1] != "")
-			TraitementD.setFichierCapteurs(csvNames[1]);
 		if (csvNames[2] != "")
 			TraitementD.setFichierMesures(csvNames[2]);
+		if (csvNames[1] != "")
+			TraitementD.setFichierCapteurs(csvNames[1]);
 	}
 	capteurs = TraitementD.ParcoursCapteurs();
 
@@ -372,10 +373,10 @@ conteneurMoyMesures Analyse::caracteristiquesPoint(double lat, double longi, Dat
 	{
 		if (csvNames[0] != "")
 			TraitementD.setFichierTypesMesure(csvNames[0]);
-		if (csvNames[1] != "")
-			TraitementD.setFichierCapteurs(csvNames[1]);
 		if (csvNames[2] != "")
 			TraitementD.setFichierMesures(csvNames[2]);
+		if (csvNames[1] != "")
+			TraitementD.setFichierCapteurs(csvNames[1]);
 	}
 	capteurs = TraitementD.ParcoursCapteurs(lat, longi);
 	//on a que des capteurs dont distance < 10km
@@ -467,12 +468,12 @@ conteneurMoyMesures Analyse::caracteristiquesPoint(double lat, double longi, Dat
 int Analyse::qualiteAir(conteneurMoyMesures MoyMesures)
 {
 	{
-		if(csvNames[0]!="")
+		if (csvNames[0] != "")
 			TraitementD.setFichierTypesMesure(csvNames[0]);
-		if (csvNames[1] != "")
-			TraitementD.setFichierCapteurs(csvNames[1]);
 		if (csvNames[2] != "")
 			TraitementD.setFichierMesures(csvNames[2]);
+		if (csvNames[1] != "")
+			TraitementD.setFichierCapteurs(csvNames[1]);
 	}
 	int indice = 0;
 	string types[4] = { "O3", "SO2", "NO2", "PM10" };

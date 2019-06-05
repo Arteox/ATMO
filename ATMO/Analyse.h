@@ -45,6 +45,12 @@ public:
 		static Analyse instance;
 		return instance;
 	}
+	//version sp¨¦ciale pour le test
+	static Analyse & GetInstance(string types,string capteurs,string mesures)
+	{
+		static Analyse instance(types,capteurs,mesures);
+		return instance;
+	}
 
 	//----------------------------------------------------- Méthodes publiques
 	conteneurMoyMesures caracteristiquesZone( double lat, double longi, double rayon, Date horodateDeb, Date horodateFin);
@@ -91,6 +97,7 @@ protected:
 
 private:
 	Analyse();
+	Analyse(string,string,string);
 	Analyse(const Analyse &);
 	//------------------------------------------------------- Méthodes privées
 
@@ -99,7 +106,7 @@ protected:
 
 private:
 	//------------------------------------------------------- Attributs privés
-
+	string csvNames[3] = {""};
 	//---------------------------------------------------------- Classes amies
 
 	//-------------------------------------------------------- Classes privées
