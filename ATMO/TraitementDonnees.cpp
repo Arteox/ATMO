@@ -226,7 +226,7 @@ void TraitementDonnees::setFichierMesures(string mesuresCSV)
 
 collectionMesures TraitementDonnees::ParcoursMesures(const collectionCapteurs& capteurs, const Date& horodateDeb, const Date& horodateFin)
 //Les mesures doivent appartenir aux capteurs en paramètre, et être réalisées entre les 2 dates indiquées, borne supérieure excluse
-//Les capteurs devraient déjà avoir des mesures associées à elles-mêmes lors de l'appel de cette méthode 
+//Les capteurs devraient déj?avoir des mesures associées ?elles-mêmes lors de l'appel de cette méthode 
 {
 	collectionMesures mesuresFiltrees;
 

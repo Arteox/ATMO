@@ -238,12 +238,12 @@ collectionCapteurs Analyse::dysfonctionnement(Date horodateDeb, Date horodateFin
 		for (it2 = mesures.begin(); it2 != mesures.end(); it2++)
 		{
 			//si il y a une valeur négative
-				
-			if (it2->getValeur() < 0) 
+
+			if (it2->getValeur() < 0)
 			{
 				dysf = true;
 				break;
-			}	
+			}
 			//si il y a des valeurs trop grandes (>=5000)
 
 			if (it2->getValeur() > 5000)
@@ -269,8 +269,8 @@ collectionCapteurs Analyse::dysfonctionnement(Date horodateDeb, Date horodateFin
 					dysf = true;
 					break;
 				}
-				else if (it2->getDate().getHeure != lastMoment.getHeure()) {
-					if (abs(it2->getDate().getHeure() - lastMoment.getHeure() )> 1) {
+				else if (it2->getDate().getHeure() != lastMoment.getHeure()) {
+					if (abs(it2->getDate().getHeure() - lastMoment.getHeure()) > 1) {
 						dysf = true;
 						break;
 					}
@@ -278,57 +278,60 @@ collectionCapteurs Analyse::dysfonctionnement(Date horodateDeb, Date horodateFin
 						if (((it2->getDate().getHeure() - lastMoment.getHeure())*(it2->getDate().getMin() - lastMoment.getMin())) > -15) {
 							dysf = true;
 							break;
-				}
-				//meme heure
-				else if (abs(it2->getDate().getMin() - lastMoment.getMin()) > FREQUENCE_CAPTEUR) {
-					dysf = true;
-					break;
-				}
-			}
-			
-			// si valeurs incoherentes
-			//todo
+						}
+						//meme heure
+						else if (abs(it2->getDate().getMin() - lastMoment.getMin()) > FREQUENCE_CAPTEUR) {
+							dysf = true;
+							break;
+						}
+					}
 
-			// si ses mesures restent constantes dans le temps sur une période trop longue (>12h)
-			// selon les different types
-			for (int i = 0; i < 4; i++) {
-				if (it2->getTypeMesure().getAttributeId() == types[0]) {
-					if (it2->getValeur() != lastValeurs[i]) {
-						if (it2->getDate().getAnnee() != lastChanges[i].getAnnee()) {
-							dysf = true;
-							break;
-						}
-						else if (it2->getDate().getMois() != lastChanges[i].getMois()) {
-							dysf = true;
-							break;
-						}
-						else if (it2->getDate().getJour() != lastChanges[i].getJour()) {
-							if (abs(it2->getDate().getJour() > -lastChanges[i].getJour()) > 1) {
-								dysf = true;
-								break;
+					// si valeurs incoherentes
+					//todo
+
+					// si ses mesures restent constantes dans le temps sur une période trop longue (>12h)
+					// selon les different types
+					for (int i = 0; i < 4; i++) {
+						if (it2->getTypeMesure().getAttributeId() == types[0]) {
+							if (it2->getValeur() != lastValeurs[i]) {
+								if (it2->getDate().getAnnee() != lastChanges[i].getAnnee()) {
+									dysf = true;
+									break;
+								}
+								else if (it2->getDate().getMois() != lastChanges[i].getMois()) {
+									dysf = true;
+									break;
+								}
+								else if (it2->getDate().getJour() != lastChanges[i].getJour()) {
+									if (abs(it2->getDate().getJour() > -lastChanges[i].getJour()) > 1) {
+										dysf = true;
+										break;
+									}
+									else if ((it2->getDate().getJour() - lastChanges[i].getJour())*(it2->getDate().getHeure() - lastChanges[i].getHeure()) > -12)
+									{
+										dysf = true;
+										break;
+									}
+								}
+								else
+									//m¨ºme jour
+								{
+									if (abs(it2->getDate().getHeure() - lastChanges[i].getHeure()) > 12) {
+										dysf = true;
+										break;
+									}
+								}
+								lastValeurs[i] = it2->getValeur();
+								lastChanges[i] = it2->getDate();
 							}
-							else if ((it2->getDate().getJour() - lastChanges[i].getJour())*(it2->getDate().getHeure() - lastChanges[i].getHeure()) > -12)
-							{
-								dysf = true;
-								break;
-							}
 						}
-						else
-							//m¨ºme jour
-						{
-							if (abs(it2->getDate().getHeure() - lastChanges[i].getHeure())>12) {
-								dysf = true;
-								break;
-							}
-						}
-						lastValeurs[i] = it2->getValeur();
-						lastChanges[i] = it2->getDate();
 					}
 				}
 			}
-			
-			
 		}
+			
+			
+		
 
 		if (dysf)
 		{
