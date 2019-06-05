@@ -14,7 +14,7 @@
 #include "../ATMO/Analyse.h"
 #include <algorithm>
 
-#define AnalyseInstanceTest Analyse::GetInstance("C:\\Users\\untra\\OneDrive\\文档\\insa\\18-19 2\\GL UML\\ATMO\\ATMO\\DonneesCSV\\AttributeType.csv","C:\\Users\\untra\\OneDrive\\文档\\insa\\18-19 2\\GL UML\\ATMO\\ATMO\\DonneesCSV\\Sensors.csv","C:\\Users\\untra\\OneDrive\\文档\\insa\\18-19 2\\GL UML\\ATMO\\ATMO\\DonneesCSV\\Test.csv")
+
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace UnitTest
@@ -22,10 +22,14 @@ namespace UnitTest
 	TEST_CLASS(AnalyseTest)
 	{
 	public:
+		static void setFichierName() {
+			TraitementD.setFichierMesures("C:\\Users\\untra\\OneDrive\\文档\\insa\\18-19 2\\GL UML\\ATMO\\ATMO\\DonneesCSV\\Test.csv");
+			TraitementD.setFichierCapteurs("C:\\Users\\untra\\OneDrive\\文档\\insa\\18-19 2\\GL UML\\ATMO\\ATMO\\DonneesCSV\\Sensors.csv");
+		}
 		TEST_METHOD(CaracteristiqueZoneTest1)
 		{	
-			
-			conteneurMoyMesures c= AnalyseInstanceTest.caracteristiquesZone(-38.3884286616875, -24.9593580676985,20,Date(2017,1,1,0,0,0.00),Date(2017,1,1,0,0,12));
+			setFichierName();
+			conteneurMoyMesures c= AnalyseInstance.caracteristiquesZone(-38.3884286616875, -24.9593580676985,20,Date(2017,1,1,0,0,0.00),Date(2017,1,1,0,0,12));
 			Assert::IsTrue(c.size() == 4);
 			for (auto it = c.begin(); it != c.end(); ++it) {
 				if (it->first == "O3") {
@@ -44,21 +48,25 @@ namespace UnitTest
 		}
 		TEST_METHOD(CaracteristiqueZoneTest2)
 		{
-			conteneurMoyMesures c = AnalyseInstanceTest.caracteristiquesZone(-38.3884286616875, -24.9593580676985, 20,  Date(2017, 1, 1, 0, 0, 12),Date(2017, 1, 1, 0, 0, 0));
+			setFichierName();
+			conteneurMoyMesures c = AnalyseInstance.caracteristiquesZone(-38.3884286616875, -24.9593580676985, 20,  Date(2017, 1, 1, 0, 0, 12),Date(2017, 1, 1, 0, 0, 0));
 			Assert::IsTrue(c.size() == 0);
 		}
 		TEST_METHOD(CaracteristiqueZoneTest3)
 		{
+			setFichierName();
 			conteneurMoyMesures c = AnalyseInstance.caracteristiquesZone(18.902680, -60.469614, -20, Date(2017, 1, 1, 0, 0, 0), Date(2017, 1, 1, 0, 0, 12));
 			Assert::IsTrue(c.size() == 0);
 		}
 		TEST_METHOD(CaracteristiqueZoneTest4)
 		{
+			setFichierName();
 			conteneurMoyMesures c = AnalyseInstance.caracteristiquesZone(750, 500, 20, Date(2017, 1, 1, 0, 0, 0), Date(2017, 1, 1, 0, 0, 12));
 			Assert::IsTrue(c.size() == 0);
 		}
 		TEST_METHOD(CaracteristiquePointTest1)
 		{
+			setFichierName();
 			conteneurMoyMesures c = AnalyseInstance.caracteristiquesPoint(18.902680, -60.469614, Date(2017, 1, 1, 0, 0, 0), Date(2017, 1, 1, 0, 0, 12));
 			//dans rayon 10 km il y a qu'un seul capteur, ?a doit être le même que caracteristiqueZone
 			Assert::IsTrue(c.size() == 4);
@@ -79,22 +87,27 @@ namespace UnitTest
 		}
 		TEST_METHOD(CaracteristiquePointTest2)
 		{
+			setFichierName();
 			conteneurMoyMesures c = AnalyseInstance.caracteristiquesPoint(18.902680, -60.469614, Date(2017, 1, 1, 0, 0, 12), Date(2017, 1, 1, 0, 0, 0));
 			Assert::IsTrue(c.size() == 0);
 		}
 		TEST_METHOD(CaracteristiquePointTest3)
 		{
+			setFichierName();
 			conteneurMoyMesures c = AnalyseInstance.caracteristiquesPoint(750, 500, Date(2017, 1, 1, 0, 0, 0), Date(2017, 1, 1, 0, 0, 12));
 			Assert::IsTrue(c.size() == 0);
 		}
 		TEST_METHOD(QualiteAirTest1)
 		{
+			setFichierName();
 			conteneurMoyMesures c = AnalyseInstance.caracteristiquesZone(18.902680, -60.469614, 20, Date(2017, 1, 1, 0, 0, 0), Date(2017, 1, 1, 0, 0, 12));
 			int indice = AnalyseInstance.qualiteAir(c);
 			Assert::IsTrue(indice == 1);
 		}
 		TEST_METHOD(QualiteAirTest2)
 		{
+			setFichierName();
+			//renvoi -1 si une valeur negative
 			conteneurMoyMesures c ;
 			c["O3"] = 5;
 			c["SO2"] = -5;
@@ -103,6 +116,8 @@ namespace UnitTest
 		}
 		TEST_METHOD(QualiteAirTest3)
 		{
+			setFichierName();
+			//valeurs recu non contenue dans l'ensemble prevues
 			conteneurMoyMesures c;
 			c["O2"] = 5;
 			int indice = AnalyseInstance.qualiteAir(c);
@@ -110,6 +125,8 @@ namespace UnitTest
 		}
 		TEST_METHOD(QualiteAirTest4)
 		{
+			setFichierName();
+			//verifier si cette methode prend bien le plus haut
 			conteneurMoyMesures c;
 			c["O3"] = 35;
 			c["O3"] = 85;
