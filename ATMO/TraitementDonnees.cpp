@@ -57,10 +57,6 @@ collectionCapteurs TraitementDonnees::ParcoursCapteurs(double lat, double longi,
 		}
 	}
 
-	if (capteurs.size() == 0) {
-		cout << "pas de capteurs aux alentours de ce point" << endl;
-	}
-
 	return capteurs;
 }
 
@@ -78,9 +74,6 @@ collectionCapteurs TraitementDonnees::ParcoursCapteurs(double lat, double longi)
 	}
 
 	if (capteurs.size() <= 3) {
-		if (capteurs.size() == 0) {
-			cout << "pas de capteurs aux alentours de ce point" << endl;
-		}
 
 		return capteurs;
 	}
