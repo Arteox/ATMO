@@ -452,6 +452,11 @@ conteneurMoyMesures Analyse::caracteristiquesPoint(double lat, double longi, Dat
 		}
 	}
 
+	if (sommecoef == 0)
+	{
+		return moyMesures;
+	}
+
 	paireMoyMesures paire;
 	paire = paireMoyMesures("O3", moyO3total / sommecoef);
 	moyMesures.insert(paire);

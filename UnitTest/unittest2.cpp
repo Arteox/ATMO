@@ -22,9 +22,15 @@ namespace UnitTest
 	TEST_CLASS(AnalyseTest)
 	{
 	public:
-		static void setFichierName() {
-			TraitementD.setFichierMesures("C:\\Users\\untra\\OneDrive\\ÎÄµµ\\insa\\18-19 2\\GL UML\\ATMO\\ATMO\\DonneesCSV\\Test.csv");
+		/*
+					TraitementD.setFichierMesures("C:\\Users\\untra\\OneDrive\\ÎÄµµ\\insa\\18-19 2\\GL UML\\ATMO\\ATMO\\DonneesCSV\\Test.csv");
 			TraitementD.setFichierCapteurs("C:\\Users\\untra\\OneDrive\\ÎÄµµ\\insa\\18-19 2\\GL UML\\ATMO\\ATMO\\DonneesCSV\\Sensors.csv");
+		
+		*/
+		static void setFichierName() {
+		
+			TraitementD.setFichierMesures("C:\\Users\\Fabien GELUS\\Documents\\MEGAsync\\Cours\\GL UML\\Projet\\ATMOPortable\\ATMO\\DonneesCSV\\Test.csv");
+			TraitementD.setFichierCapteurs("C:\\Users\\Fabien GELUS\\Documents\\MEGAsync\\Cours\\GL UML\\Projet\\ATMOPortable\\ATMO\\DonneesCSV\\Sensors.csv");
 		}
 		TEST_METHOD(CaracteristiqueZoneTest1)
 		{	
