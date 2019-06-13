@@ -232,7 +232,7 @@ collectionCapteurs Analyse::dysfonctionnement(Date & horodateDeb, Date & horodat
 	bool dysf; //indique si le capteur dysfonctionne
 
 	//pour chaque capteur
-	for (it = capteurs.begin(); it != capteurs.end(); it++)
+	for (it = capteurs.begin(); it != capteurs.end(); ++it)
 	{
 		dysf = false;
 
@@ -261,7 +261,7 @@ collectionCapteurs Analyse::dysfonctionnement(Date & horodateDeb, Date & horodat
 		Date lastMoment = horodateDeb;
 
 
-		for (it2 = mesures.begin(); it2 != mesures.end(); it2++)
+		for (it2 = mesures.begin(); it2 != mesures.end(); ++it2)
 		{
 			//si il y a une valeur négative
 
@@ -278,7 +278,7 @@ collectionCapteurs Analyse::dysfonctionnement(Date & horodateDeb, Date & horodat
 				break;
 			}
 			//si la fr¨¦quence de prise de mesures n'est pas respectée
-			if (distance(it2, mesures.begin()) == 0) {
+			if (distance(mesures.begin(), it2) == 0) {
 				//initialisation
 				lastMoment = it2->getDate();
 			}
@@ -365,6 +365,7 @@ collectionCapteurs Analyse::dysfonctionnement(Date & horodateDeb, Date & horodat
 		}
 
 	}
+
 
 	return capteursDysf;
 }

@@ -44,6 +44,7 @@ void executerCommandes(vector<string> commandesAvecParams) {
 	if (commandesAvecParams[0] == "help") {
 		MenuInstance.AfficherAide();
 	}
+
 	else if (commandesAvecParams[0] == "carac") {
 		Date debut(commandesAvecParams[3]);
 		Date fin(commandesAvecParams[4]);
@@ -51,28 +52,26 @@ void executerCommandes(vector<string> commandesAvecParams) {
 		int scoreAtmo = AnalyseInstance.qualiteAir(moyMesures);
 		MenuInstance.FormaterAffichageCaracteristiques(scoreAtmo, moyMesures);
 	}
+
 	else if (commandesAvecParams[0] == "dysfonc") {
-		//cout << Date(commandesAvecParams[1]) << " " << Date(commandesAvecParams[2]) << endl;
 		Date debut(commandesAvecParams[1]);
 		Date fin(commandesAvecParams[2]);
-		//collectionCapteurs capteursDysf = AnalyseInstance.dysfonctionnement(debut, fin); //marche pas
-		//MenuInstance.FormaterAffichageDysfonctionnement(capteursDysf); 
-		//print les resultats
+		collectionCapteurs capteursDysf = AnalyseInstance.dysfonctionnement(debut, fin); //marche pas
+		MenuInstance.FormaterAffichageDysfonctionnement(capteursDysf); 
 	}
+
 	else if (commandesAvecParams[0] == "sim") {
-		//cout << commandesAvecParams[1] << " " << commandesAvecParams[2] << endl;
 		Date debut(commandesAvecParams[1]);
 		Date fin(commandesAvecParams[2]);
 		conteneurIndiceCapteurs capteursSim = AnalyseInstance.comportementSimilaire(debut, fin);
 		MenuInstance.FormaterAffichageSimilaires(capteursSim);
-		//print les resultats
+
 	}
 	else if (commandesAvecParams[0] == "qm") {
 		bool option = false;
 		if (commandesAvecParams[1].find("-") != string::npos) {
 			option = true;
 		}
-
 		Date debut(commandesAvecParams[4 + option]);
 		Date fin(commandesAvecParams[5 + option]);
 		conteneurMoyMesures moyMesures = AnalyseInstance.caracteristiquesZone(stod(commandesAvecParams[1+option]), stod(commandesAvecParams[2+option]), stod(commandesAvecParams[3 + option]), debut, fin);
