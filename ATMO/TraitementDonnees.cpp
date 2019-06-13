@@ -317,15 +317,16 @@ TraitementDonnees::TraitementDonnees()
 	fichierMesures = "C:\\Users\\untra\\OneDrive\\ÎÄµµ\\insa\\18-19 2\\GL UML\\ATMO\\ATMO\\DonneesCSV\\MesuresSample.csv";
 	
 	*/
+	/*
 	fichierCapteurs = "C:\\Users\\Fabien GELUS\\Documents\\MEGAsync\\Cours\\GL UML\\Projet\\ATMOPortable\\ATMO\\DonneesCSV\\Sensors.csv";
 	fichierTypesMesure = "C:\\Users\\Fabien GELUS\\Documents\\MEGAsync\\Cours\\GL UML\\Projet\\ATMOPortable\\ATMO\\DonneesCSV\\AttributeType.csv";
 	fichierMesures = "C:\\Users\\Fabien GELUS\\Documents\\MEGAsync\\Cours\\GL UML\\Projet\\ATMOPortable\\ATMO\\DonneesCSV\\MesuresSample.csv";
+	*/
 	
-	/*
 	fichierCapteurs = "DonneesCSV\\Sensors.csv";
 	fichierTypesMesure = "DonneesCSV\\AttributeType.csv";
 	fichierMesures = "DonneesCSV\\MesuresSample.csv";
-	*/
+	
 	lectureTypesMesure();
 	lectureMesures();
 	lectureCapteurs();

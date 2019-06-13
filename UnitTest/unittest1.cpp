@@ -22,6 +22,17 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace UnitTest
 {		
+	static void setFichierName() {
+
+		TraitementD.setFichierTypesMesure("C:\\Users\\Louis Ung\\Documents\\Insa 3a\\Semestre 2\\Genie_logiciel\\TP\\ATMO\\ATMO\\DonneesCSV\\AttributeType.csv");
+		TraitementD.setFichierMesures("C:\\Users\\Louis Ung\\Documents\\Insa 3a\\Semestre 2\\Genie_logiciel\\TP\\ATMO\\ATMO\\DonneesCSV\\Test.csv");
+		TraitementD.setFichierCapteurs("C:\\Users\\Louis Ung\\Documents\\Insa 3a\\Semestre 2\\Genie_logiciel\\TP\\ATMO\\ATMO\\DonneesCSV\\Sensors.csv");
+		/*
+		TraitementD.setFichierMesures("C:\\Users\\Fabien GELUS\\Documents\\MEGAsync\\Cours\\GL UML\\Projet\\ATMOPortable\\ATMO\\DonneesCSV\\Test.csv");
+		TraitementD.setFichierCapteurs("C:\\Users\\Fabien GELUS\\Documents\\MEGAsync\\Cours\\GL UML\\Projet\\ATMOPortable\\ATMO\\DonneesCSV\\Sensors.csv");
+		*/
+	}
+
 	TEST_CLASS(RecupereationDesDonnees)
 	{
 	public:
@@ -33,6 +44,7 @@ namespace UnitTest
 		}
 		TEST_METHOD(TypeCapteurTest)
 		{
+			setFichierName();
 			std::string unite = "µg/m3";
 			std::wstring wunite(unite.begin(), unite.end());
 			TypeMesure t1("O3", wunite, "concentration d'ozone");
@@ -55,6 +67,7 @@ namespace UnitTest
 			rayon 10km
 			*/
 		{
+			setFichierName();
 			//resultat expecte:
 			Capteur c(3 , 18.9026808524051, -60.4696149986561,"");
 			collectionCapteurs v = TraitementD.ParcoursCapteurs(18.902680, -60.469614);
@@ -80,6 +93,7 @@ namespace UnitTest
 		{
 			//TraitementDonnees t = TraitementDonnees::GetInstance();
 			//multiset <Mesure> m;
+			setFichierName();
 			Capteur c2(0, -19.4789835505555, -35.2425725968753, "");
 			Capteur c3(1, -38.3884286616875, -24.9593580676985, "");
 			Capteur c4(2, -44.5357010278551, -40.5272071485069, "");
