@@ -52,12 +52,6 @@ public:
 	// Contrat : Aucun
 	//
 
-	//------------------------------------------------- Surcharge d'opérateurs
-	Parseur & operator = (const Parseur & unParseur);
-	// Mode d'emploi :
-	// RAS
-	// Contrat : Aucun
-	//
 	//-------------------------------------------- Constructeurs - destructeur
 
 

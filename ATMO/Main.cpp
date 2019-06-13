@@ -41,36 +41,67 @@ using namespace std;
 
 void executerCommandes(vector<string> commandesAvecParams) {
 
-	//on convertit la liste en vector pour faciliter les accès par index
-	vector<string> commandesV{ make_move_iterator(begin(commandesAvecParams)),std::make_move_iterator(end(commandesAvecParams)) };
-
-	if (commandesV[0] == "4") {
+	if (commandesAvecParams[0] == "help") {
 		MenuInstance.AfficherAide();
 	}
-	else if (commandesV[0] == "3") {
-		cout << stod(commandesV[2]) << " " << stod(commandesV[1]) << " " << Date(commandesV[3]) << " " << Date(commandesV[4]) << endl;
-		//AnalyseInstance.caracteristiquesPoint(stod(commandesV[2]), stod(commandesV[1]), Date(commandesV[3]), Date(commandesV[4]));
+	else if (commandesAvecParams[0] == "carac") {
+		Date debut(commandesAvecParams[3]);
+		Date fin(commandesAvecParams[4]);
+		conteneurMoyMesures moyMesures = AnalyseInstance.caracteristiquesPoint(stod(commandesAvecParams[1]), stod(commandesAvecParams[2]), debut, fin);
+		int scoreAtmo = AnalyseInstance.qualiteAir(moyMesures);
+		MenuInstance.FormaterAffichageCaracteristiques(scoreAtmo, moyMesures);
+	}
+	else if (commandesAvecParams[0] == "dysfonc") {
+		//cout << Date(commandesAvecParams[1]) << " " << Date(commandesAvecParams[2]) << endl;
+		Date debut(commandesAvecParams[1]);
+		Date fin(commandesAvecParams[2]);
+		//collectionCapteurs capteursDysf = AnalyseInstance.dysfonctionnement(debut, fin); //marche pas
+		//MenuInstance.FormaterAffichageDysfonctionnement(capteursDysf); 
 		//print les resultats
 	}
-	else if (commandesV[0] == "2") {
-		cout << Date(commandesV[1]) << " " << Date(commandesV[2]) << endl;
-		//AnalyseInstance.dysfonctionnement(Date(commandesV[1]), Date(commandesV[2]));
+	else if (commandesAvecParams[0] == "sim") {
+		//cout << commandesAvecParams[1] << " " << commandesAvecParams[2] << endl;
+		Date debut(commandesAvecParams[1]);
+		Date fin(commandesAvecParams[2]);
+		conteneurIndiceCapteurs capteursSim = AnalyseInstance.comportementSimilaire(debut, fin);
+		MenuInstance.FormaterAffichageSimilaires(capteursSim);
 		//print les resultats
 	}
-	else if (commandesV[0] == "1") {
-		cout << commandesV[1] << " " << commandesV[2] << endl;
-		//AnalyseInstance.comportementSimilaire(Date(commandesV[1]), Date(commandesV[2]));
-		//print les resultats
-	}
-	else if (commandesV[0] == "0") {
-		cout << stod(commandesV[3]) << " " << stod(commandesV[2]) << " " << stod(commandesV[4]) << " " << Date(commandesV[5]) << " " << Date(commandesV[6]) << endl;
-		cout << "option : " << commandesV[1] << endl;
-		//AnalyseInstance.qualiteAir(stod(commandesV[3]), stod(commandesV[2]), stod(commandesV[4]), Date(commandesV[5]), Date(commandesV[6])));
-		//print les resultats
+	else if (commandesAvecParams[0] == "qm") {
+		bool option = false;
+		if (commandesAvecParams[1].find("-") != string::npos) {
+			option = true;
+		}
+
+		Date debut(commandesAvecParams[4 + option]);
+		Date fin(commandesAvecParams[5 + option]);
+		conteneurMoyMesures moyMesures = AnalyseInstance.caracteristiquesZone(stod(commandesAvecParams[1+option]), stod(commandesAvecParams[2+option]), stod(commandesAvecParams[3 + option]), debut, fin);
+		int scoreAtmo = AnalyseInstance.qualiteAir(moyMesures);
+		
+		MenuInstance.FormaterAffichageQualite(scoreAtmo, moyMesures, option);
 	}
 }
 
 int main(int argc, char** argv) {
+
+	MenuInstance.InitialiserMenu();
+	
+	while (true) {
+		MenuInstance.AffichageSortieStandard("\nVeuillez rentrer votre commande\n");
+		string entree = MenuInstance.RecupererEntreeUtilisateur();
+		if (entree == "quitter") {
+			cout << "A bientôt !" << endl;
+			break;
+		}
+		vector<string> commandes = ParseurInstance.ParserCommande(entree);
+		executerCommandes(commandes);
+
+	}
+
+
+
+
+
 
 
 	//conteneurIndiceCapteurs capteursSim;
@@ -78,9 +109,7 @@ int main(int argc, char** argv) {
 
 	/*
 	conteneurIndiceCapteurs capteursSim;
-	capteursSim = AnalyseInstance.comportementSimilaire(Date("2017-01-01T00:00:10.0100000"), Date("2018-01-01T00:00:10.0100000"));
->>>>>>> ab96e1102752a5b6c54b38e08b6dc5c0d4d7d540
-	
+	capteursSim = AnalyseInstance.comportementSimilaire(Date("2017-01-01T00:00:10.0100000"), Date("2018-01-01T00:00:10.0100000"));	
 	
 	/*for (auto it1 = capteursSim.begin(); it1 != capteursSim.end(); ++it1) {
 		cout << "score atmo : " << it1->first << endl;
@@ -89,24 +118,7 @@ int main(int argc, char** argv) {
 		}
 	}
 	*/
-	/*
-	MenuInstance.InitialiserMenu();
-
-	while (true) {
-		MenuInstance.AffichageSortieStandard("Veuillez rentrer votre commande");
-		string entree = MenuInstance.RecupererEntreeUtilisateur();
-		if (entree == "quitter") {
-			cout << "A bientôt !" << endl;
-			break;
-		}
-		vector<string> commandes = ParseurInstance.ParserCommande(entree);
-		executerCommandes(commandes);
-		
-	}*/
-
-
-
-
+	
 
 	/*
 	collectionCapteurs v = TraitementD.ParcoursCapteurs(18.902680, -60.469614);

@@ -76,16 +76,16 @@ void Menu::FormaterAffichageCaracteristiques(int & scoreAtmo, conteneurMoyMesure
 
 }
 
-void Menu::FormaterAffichageSimilaires(doubleCollectionCapteurs & retourFonction)
+void Menu::FormaterAffichageSimilaires(conteneurIndiceCapteurs & retourFonction)
 {
-	for(auto it = retourFonction.begin(); it != retourFonction.end(); ++it){
-		sortieStandard << "Atmo Score " << distance(it, retourFonction.begin());//indice
-		int d = distance(it, retourFonction.begin());
-		sortieStandard << DescriptionValeur(d) << " :" << endl;
-		collectionCapteurs vector_courant = *it;
+	for (auto it = retourFonction.begin(); it != retourFonction.end(); ++it) {
+		int scoreAtmo = it->first;
+		sortieStandard << "Atmo Score " << scoreAtmo << DescriptionValeur(scoreAtmo) << endl;
+		collectionCapteurs vector_courant = it->second;
 		for (auto itFils = vector_courant.begin(); itFils != vector_courant.end(); ++itFils) {
-			sortieStandard << *itFils << endl;
+			sortieStandard << "Capteur" << itFils->getId() << endl;
 		}
+		sortieStandard << endl;
 	}
 }
 
@@ -96,21 +96,24 @@ void Menu::FormaterAffichageDysfonctionnement(collectionCapteurs & retourFonctio
 	} else {
 		sortieStandard << "Capteurs considérés comme en dysfonctionnement :" <<endl;
 		for(auto it = retourFonction.begin(); it != retourFonction.end(); ++it){
-			sortieStandard << *it << endl; //affichage de la raison dans une future version.
+			sortieStandard << "Capteur" << it->getId() << endl; //affichage de la raison de dysfonctionnement dans une future version.
 		}
+		sortieStandard << endl;
 	}
 	
 }
 
-void Menu::FormaterAffichageQualite(int & scoreAtmo, conteneurMoyMesures & retourFonction) 
+void Menu::FormaterAffichageQualite(int & scoreAtmo, conteneurMoyMesures & retourFonction, bool & option) 
 {
 	sortieStandard << "Atmo Score : " << scoreAtmo <<
 	DescriptionValeur(scoreAtmo) << endl;
 	if(retourFonction.empty()){
 		return;
 	} else {
-		for(auto it = retourFonction.begin(); it != retourFonction.end(); ++it){
-			sortieStandard << it->first << ";" << it->second << endl;
+		if (option) {
+			for (auto it = retourFonction.begin(); it != retourFonction.end(); ++it) {
+				sortieStandard << it->first << ";" << it->second << endl;
+			}
 		}
 
 	}

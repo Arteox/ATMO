@@ -53,11 +53,12 @@ vector<string> Parseur::ParserCommande(string & entree) // mettre ici le paramèt
 		//faire l'affichage menu de l'erreur cerr
 		cout << "Commande invalide" << endl;
 		return commandeErreur;
-	} else {
+	}
+	else {
 		nbParametres = NombreDeParametresCommande(commandeParsee[0]);
 		aDesOptions = PossedeDesOptionsCommande(commandeParsee[0]);
 		if (aDesOptions) nbParametres++;
-		if (commandeParsee.size() >= nbParametres ) { // les paramètres attendus + la commande elle même sont dans commandeParsee
+		if (commandeParsee.size() >= nbParametres) { // les paramètres attendus + la commande elle même sont dans commandeParsee
 			if (aDesOptions) { // on récupère la dite option
 				if (!AttributionOption(commandeParsee[1])) {
 					if (!verificationParametre(commandeParsee[1])) {
@@ -65,29 +66,21 @@ vector<string> Parseur::ParserCommande(string & entree) // mettre ici le paramèt
 						return commandeErreur;
 					}
 				}
+			}
 			for (int i(1); i < commandeParsee.size(); i++) {
 				if (!verificationParametre(commandeParsee[i])) {
 					cout << "Paramètre invalide" << endl;
 					return commandeErreur;
 				}
-				else
-					cout << "ok";
-				}
 			}
-	
 		}
 		else {
-			cout << "Pas assez de paramètres" << endl;
-			return commandeErreur;
+				cout << "Pas assez de paramètres" << endl;
+				return commandeErreur;
+			}
 		}
-	}
 
 	return commandeParsee;
-}
-
-//------------------------------------------------- Surcharge d'opérateurs
-Parseur & Parseur::operator=(const Parseur & unParseur) {
-	return *this;
 }
 
 

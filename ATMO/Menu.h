@@ -88,7 +88,7 @@ public:
 	//
 
 
-	void FormaterAffichageSimilaires(doubleCollectionCapteurs & retourFonction);
+	void FormaterAffichageSimilaires(conteneurIndiceCapteurs & retourFonction);
 
 	// Mode d'emploi : Cette méthode a pour but de permettre un affichage correct 
 	// et conforme aux spécifications de la méthode visant à trouver les 
@@ -106,7 +106,7 @@ public:
 	//
 
 
-	void FormaterAffichageQualite(int & scoreAtmo, conteneurMoyMesures & retourFonction);
+	void FormaterAffichageQualite(int & scoreAtmo, conteneurMoyMesures & retourFonction, bool & option);
 
 	// Mode d'emploi : Cette méthode a pour but de permettre un affichage correct 
 	// et conforme aux spécifications de la méthode visant à trouver la
