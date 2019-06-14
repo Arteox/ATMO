@@ -91,8 +91,6 @@ namespace UnitTest
 		}
 		TEST_METHOD(CapteurRayonTest1)
 		{
-			//TraitementDonnees t = TraitementDonnees::GetInstance();
-			//multiset <Mesure> m;
 			setFichierName();
 			Capteur c2(0, -19.4789835505555, -35.2425725968753, "");
 			Capteur c3(1, -38.3884286616875, -24.9593580676985, "");

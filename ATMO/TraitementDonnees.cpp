@@ -23,6 +23,8 @@ using namespace std;
 #include <cstdlib>
 #include <locale>
 #include <codecvt>
+#include <windows.h>
+#include <tchar.h>
 
 //------------------------------------------------------ Include personnel
 #include "TraitementDonnees.h"
@@ -323,10 +325,25 @@ TraitementDonnees::TraitementDonnees()
 	fichierMesures = "C:\\Users\\Fabien GELUS\\Documents\\MEGAsync\\Cours\\GL UML\\Projet\\ATMOPortable\\ATMO\\DonneesCSV\\MesuresSample.csv";
 	*/
 	
+	/*
+	const char * relativePathCapteurs = "DonneesCSV\\Sensors.csv";
+	const char * relativePathTypesMesure = "DonneesCSV\\AttributeType.csv";
+	const char * relativePathMesures = "DonneesCSV\\MesuresSample.csv";
+	TCHAR  absolutePathCapteurs[4096] = TEXT("");
+	TCHAR  absolutePathTypesMesure[4096] = TEXT("");
+	TCHAR  absolutePathMesures[4096] = TEXT("");
+	GetFullPathName(relativePathCapteurs, 4096, absolutePathCapteurs, NULL);
+	GetFullPathName(relativePathTypesMesure, 4096, absolutePathTypesMesure, NULL);
+	GetFullPathName(relativePathMesures, 4096, absolutePathMesures, NULL);
+
+	fichierCapteurs = absolutePathCapteurs;
+	fichierTypesMesure = absolutePathTypesMesure;
+	fichierMesures = absolutePathMesures;*/
+
 	fichierCapteurs = "DonneesCSV\\Sensors.csv";
 	fichierTypesMesure = "DonneesCSV\\AttributeType.csv";
 	fichierMesures = "DonneesCSV\\MesuresSample.csv";
-	
+
 	lectureTypesMesure();
 	lectureMesures();
 	lectureCapteurs();

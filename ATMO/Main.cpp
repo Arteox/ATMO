@@ -24,6 +24,8 @@ using namespace std;
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <windows.h>
+#include <tchar.h>
 
 //------------------------------------------------------ Include personnel
 #include "TraitementDonnees.h"
@@ -82,7 +84,7 @@ void executerCommandes(vector<string> commandesAvecParams) {
 }
 
 int main(int argc, char** argv) {
-
+	
 	MenuInstance.InitialiserMenu();
 	
 	while (true) {
@@ -97,10 +99,13 @@ int main(int argc, char** argv) {
 
 	}
 
-
-
-
-
+	/*
+	const char *symlinkpath = "DonneesCSV\\Sensors.csv";
+	TCHAR  absolutePath[4096] = TEXT("");
+	int retval = GetFullPathName(symlinkpath,4096,absolutePath,NULL);
+	cout << absolutePath << endl;
+	string a = absolutePath;
+	cout << a << endl;*/
 
 
 	//conteneurIndiceCapteurs capteursSim;
