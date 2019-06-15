@@ -1,7 +1,7 @@
-/*************************************************************************
+﻿/*************************************************************************
 						   Analyse  -  description
 							 -------------------
-	d�but                : 07/05/2019
+	début                : 07/05/2019
 	copyright            : (C) 2019 par Mengxing ZHANG, Louis UNG, Fabien GELUS et Baptiste PAULETTO
 *************************************************************************/
 
@@ -9,7 +9,7 @@
 #if ! defined ANALYSE_H 
 #define ANALYSE_H
  
-//--------------------------------------------------- Interfaces utilis�es
+//--------------------------------------------------- Interfaces utilisées
 #include <map>
 #include <vector>
 #include <string>
@@ -29,7 +29,7 @@ typedef std::map<string, double> conteneurMoyMesures; // string = TypeMesure.get
 typedef std::pair<string, double> paireMoyMesures;
 
 //------------------------------------------------------------------------ 
-// R�le de la classe <Analyse>
+// Rôle de la classe <Analyse>
 //
 //
 //------------------------------------------------------------------------ 
@@ -47,33 +47,41 @@ public:
 	}
 
 
-	//----------------------------------------------------- M�thodes publiques
+	//----------------------------------------------------- Méthodes publiques
 	conteneurMoyMesures caracteristiquesZone( double lat, double longi, double rayon, Date & horodateDeb, Date & horodateFin);
-	// Mode d'emploi : si option -d activ�e, appeler cette methode puis afficher les moyennes en sortie, puis appeler qualiteAir avec en parametre la sortie 
+	// Mode d'emploi : si option -d activée, appeler cette methode puis afficher les moyennes en sortie, puis appeler qualiteAir avec en parametre la sortie 
 	//sinon, appeler qualiteair avec en parametre la sortie de cette methode
 	//
-	// Contrat :
-	//
+	// Contrat :recupere les données de mesure de tous les capteurs situés dans la zone et l’intervalle de temps
+	//	donnés. chaque type de mesure, fait la moyenne de toutes les mesures de ce type. 
+
 
 	conteneurIndiceCapteurs comportementSimilaire(Date & horodateDeb, Date & horodateFin);
 	// Mode d'emploi :
 	//
-	// Contrat :
-	//
+	// Contrat : Pour une période de temps, récupère tous les capteurs 
+	// ayant réalisé des mesures pendant cette période de temps et calcule le score ATMO de chaque capteur. 
+	// Tous les capteurs qui auront alors le même score ATMO serons considérés comme ayant un comportement similaire.
+	// Ces listes de capteurs (second) seront classés par indices (first)
+
 	collectionCapteurs dysfonctionnement(Date & horodateDeb, Date & horodateFin);
+	// Contrat : Sur a période de temps précisée, donne la liste des capteurs qui ont : réalisé des mesures dont
+	//	la valeur est négative - réalisé des mesures trop grandes par rapport à ce qui est défini 
+	//	par le score ATMO (>=5000 μg/m3) - arrêté de réaliser des mesures pendant une période de temps >1h 
+	// des mesures qui restent constantes dans le temps sur une période trop longue (>12h)
 
 	conteneurMoyMesures caracteristiquesPoint(double lat, double longi, Date & horodateDeb, Date & horodateFin);
-	//appeler qualiteair avec en parametre la sortie de cette methode
+	//Appeler qualiteair avec en parametre la sortie de cette methode
 	//
-	// Contrat :
-	//
+	// Contrat :recupere les données de mesure de tous les capteurs situés dans la zone et l’intervalle de temps
+	//	donnés. chaque type de mesure, fait la moyenne de toutes les mesures de ce type. 
 
 
 	int qualiteAir(conteneurMoyMesures & MoyMesures);
 	// Mode d'emploi :
-	// entr�e : moyenne des mesures pour chaque type
-	// sortie : indice de qualit?de l'air de 1 a 10  ou -1 si donn�es incoh�rentes
-	// on choisit le plus grand des sous - indices calcul�s pour le dioxyde de soufre, le dioxyde d'azote, l'ozone et les particules fines;
+	// entrée : moyenne des mesures pour chaque type
+	// sortie : indice de qualit?de l'air de 1 a 10  ou -1 si données incohérentes
+	// on choisit le plus grand des sous - indices calculés pour le dioxyde de soufre, le dioxyde d'azote, l'ozone et les particules fines;
 	// Contrat :
 	// 
 
@@ -88,27 +96,27 @@ public:
 	//------------------------------------------------------------------ PRIVE 
 
 protected:
-	//----------------------------------------------------- M�thodes prot�g�es
+	//----------------------------------------------------- Méthodes protégées
 
 private:
 	Analyse();
 	Analyse(const Analyse &);
-	//------------------------------------------------------- M�thodes priv�es
+	//------------------------------------------------------- Méthodes privées
 
 protected:
-	//----------------------------------------------------- Attributs prot�g�s
+	//----------------------------------------------------- Attributs protégés
 
 private:
-	//------------------------------------------------------- Attributs priv�s
+	//------------------------------------------------------- Attributs privés
 
 	//---------------------------------------------------------- Classes amies
 
-	//-------------------------------------------------------- Classes priv�es
+	//-------------------------------------------------------- Classes privées
 
-	//----------------------------------------------------------- Types priv�s
+	//----------------------------------------------------------- Types privés
 
 };
 
-//----------------------------------------- Types d�pendants de <Analyse>
+//----------------------------------------- Types dépendants de <Analyse>
 
 #endif // ANALYSE_H

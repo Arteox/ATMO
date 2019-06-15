@@ -196,7 +196,7 @@ conteneurIndiceCapteurs Analyse::comportementSimilaire(Date & horodateDeb, Date 
 			moyMesures.insert(paire);
 
 			int indice = qualiteAir(moyMesures);
-			if (indice >= 0) {
+			if (indice > 0) {
 				//score: capteurs accoci¨¦s
 				if (capteursIdentiques.find(indice) != capteursIdentiques.end()) {
 					capteursIdentiques[indice].push_back(*it);
@@ -495,7 +495,7 @@ int Analyse::qualiteAir(conteneurMoyMesures & MoyMesures)
 		return -1;
 	}
 
-	int indice = 0;
+	int indice = -1;
 	string types[4] = { "O3", "SO2", "NO2", "PM10" };
 	int atmo[4][9] = { {30,55,80,105,130,150,180,210,240}, {40,80,120,160,200,250,300,400,500}, {30,55,85,110,135,165,200,275,400}, {7,14,21,28,35,42,50,65,80} };
 	for (int i = 0; i < 4; i++) {

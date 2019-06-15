@@ -28,10 +28,9 @@ namespace UnitTest
 		TraitementD.setFichierMesures("C:\\Users\\Louis Ung\\Documents\\Insa 3a\\Semestre 2\\Genie_logiciel\\TP\\ATMO\\ATMO\\DonneesCSV\\Test.csv");
 		TraitementD.setFichierCapteurs("C:\\Users\\Louis Ung\\Documents\\Insa 3a\\Semestre 2\\Genie_logiciel\\TP\\ATMO\\ATMO\\DonneesCSV\\Sensors.csv");
 		*/
-		
-		TraitementD.setFichierMesures("..\\..\\ATMO\\DonneesCSV\\Test.csv");
 		TraitementD.setFichierCapteurs("..\\..\\ATMO\\DonneesCSV\\Sensors.csv");
 		TraitementD.setFichierTypesMesure("..\\..\\ATMO\\DonneesCSV\\AttributeType.csv");
+		TraitementD.setFichierMesures("..\\..\\ATMO\\DonneesCSV\\Test.csv");
 		
 	}
 

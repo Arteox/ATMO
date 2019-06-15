@@ -33,10 +33,11 @@ namespace UnitTest
 			TraitementD.setFichierMesures("C:\\Users\\Louis Ung\\Documents\\Insa 3a\\Semestre 2\\Genie_logiciel\\TP\\ATMO\\ATMO\\DonneesCSV\\Test.csv");
 			TraitementD.setFichierCapteurs("C:\\Users\\Louis Ung\\Documents\\Insa 3a\\Semestre 2\\Genie_logiciel\\TP\\ATMO\\ATMO\\DonneesCSV\\Sensors.csv");
 			*/
-			
-			TraitementD.setFichierMesures("..\\..\\ATMO\\DonneesCSV\\Test.csv");
 			TraitementD.setFichierCapteurs("..\\..\\ATMO\\DonneesCSV\\Sensors.csv");
 			TraitementD.setFichierTypesMesure("..\\..\\ATMO\\DonneesCSV\\AttributeType.csv");
+			TraitementD.setFichierMesures("..\\..\\ATMO\\DonneesCSV\\Test.csv");
+
+
 			
 		}
 		TEST_METHOD(CaracteristiqueZoneTest1)
@@ -134,7 +135,7 @@ namespace UnitTest
 			conteneurMoyMesures c;
 			c["O2"] = 5;
 			int indice = AnalyseInstance.qualiteAir(c);
-			Assert::IsTrue(indice == 0);
+			Assert::IsTrue(indice == -1);
 		}
 		TEST_METHOD(QualiteAirTest4)
 		{
@@ -190,7 +191,9 @@ namespace UnitTest
 			capteurs = AnalyseInstance.comportementSimilaire(Date(2017, 2, 1, 0, 0, 0), Date(2017, 2, 2, 0, 0, 0));
 
 			conteneurIndiceCapteurs::iterator it = capteurs.begin();
-			Assert::IsTrue(it->second.getId() == 2);
+			Assert::IsTrue(it->first == 1);
+			Assert::IsTrue(it->second[0].getId() == 1);
+			Assert::IsTrue(it->second[1].getId() == 2);
 		}
 	};
 }
