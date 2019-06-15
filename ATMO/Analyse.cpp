@@ -47,25 +47,14 @@ conteneurMoyMesures Analyse::caracteristiquesZone( double lat, double longi, dou
 		MenuInstance.AffichageSortieErreur("Pas de capteurs sur cette zone");
 		return moyMesures;
 	}
-	/*
-	cout << capteurs.size() << endl;
-	for (collectionCapteurs::iterator it = capteurs.begin(); it != capteurs.end(); ++it) {
-		cout << it->getLat() << " " << it->getLong() << endl;
-	}
-	*/
+
 	collectionMesures mesures;
 	mesures = TraitementD.ParcoursMesures(capteurs,horodateDeb, horodateFin);
 	if (mesures.size() == 0) {
 		MenuInstance.AffichageSortieErreur("Pas de mesures sur cette plage horaire");
 		return moyMesures;
 	}
-	//collectionTypesMesure types = TraitementD.ParcoursTypesMesure();
-	/*
-	cout << "taille mesures filtrées : " << mesures.size() << endl;
-	for (collectionMesures::iterator it = mesures.begin(); it != mesures.end(); ++it) {
-		cout << *it << endl;
-	}
-	*/
+
 
 	collectionMesures ::iterator it;  // declare an iterator to a vector of strings
 
@@ -307,25 +296,7 @@ collectionCapteurs Analyse::dysfonctionnement(Date & horodateDeb, Date & horodat
 						//MenuInstance.AffichageSortieErreur(" fr¨¦quence de prise de mesures heure");
 						break;
 					}
-					/*
-					else {
-						
-						if (((it2->getDate().getHeure() - lastMoment.getHeure())*(it2->getDate().getMin() - lastMoment.getMin())) > -15) {
-							dysf = true;
-							MenuInstance.AffichageSortieErreur(" fr¨¦quence de prise de mesures min");
-							break;
-						}
-						//meme heure
-						else
-						if (abs(it2->getDate().getMin() - lastMoment.getMin()) > FREQUENCE_CAPTEUR) {
-							dysf = true;
-							MenuInstance.AffichageSortieErreur(" fr¨¦quence de prise de mesures freq");
-							break;
-						}
-					}
-					*/
-					// si valeurs incoherentes
-					//todo
+
 
 					// si ses mesures restent constantes dans le temps sur une période trop longue (>12h)
 					// selon les different types

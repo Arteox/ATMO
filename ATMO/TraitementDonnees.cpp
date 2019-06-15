@@ -320,22 +320,6 @@ TraitementDonnees::TraitementDonnees(const TraitementDonnees & unTraitementDonne
 
 TraitementDonnees::TraitementDonnees()
 {
-	/*
-	fichierCapteurs = "C:\\Users\\Louis Ung\\Documents\\Insa 3a\\Semestre 2\\Genie_logiciel\\TP\\ATMO\\ATMO\\DonneesCSV\\Sensors.csv";
-	fichierTypesMesure = "C:\\Users\\Louis Ung\\Documents\\Insa 3a\\Semestre 2\\Genie_logiciel\\TP\\ATMO\\ATMO\\DonneesCSV\\AttributeType.csv";
-	fichierMesures = "C:\\Users\\Louis Ung\\Documents\\Insa 3a\\Semestre 2\\Genie_logiciel\\TP\\ATMO\\ATMO\\DonneesCSV\\MesuresSample.csv";
-	*/
-	/*
-	fichierCapteurs = "C:\\Users\\untra\\OneDrive\\ÎÄµµ\\insa\\18-19 2\\GL UML\\ATMO\\ATMO\\DonneesCSV\\Sensors.csv";
-	fichierTypesMesure = "C:\\Users\\untra\\OneDrive\\ÎÄµµ\\insa\\18-19 2\\GL UML\\ATMO\\ATMO\\DonneesCSV\\AttributeType.csv";
-	fichierMesures = "C:\\Users\\untra\\OneDrive\\ÎÄµµ\\insa\\18-19 2\\GL UML\\ATMO\\ATMO\\DonneesCSV\\MesuresSample.csv";
-	
-	*/
-	/*
-	fichierCapteurs = "C:\\Users\\Fabien GELUS\\Documents\\MEGAsync\\Cours\\GL UML\\Projet\\ATMOPortable\\ATMO\\DonneesCSV\\Sensors.csv";
-	fichierTypesMesure = "C:\\Users\\Fabien GELUS\\Documents\\MEGAsync\\Cours\\GL UML\\Projet\\ATMOPortable\\ATMO\\DonneesCSV\\AttributeType.csv";
-	fichierMesures = "C:\\Users\\Fabien GELUS\\Documents\\MEGAsync\\Cours\\GL UML\\Projet\\ATMOPortable\\ATMO\\DonneesCSV\\MesuresSample.csv";
-	*/
 	
 	
 	const char * relativePathCapteurs = "..\\ATMO\\DonneesCSV\\Sensors.csv";
@@ -351,11 +335,7 @@ TraitementDonnees::TraitementDonnees()
 	fichierCapteurs = absolutePathCapteurs;
 	fichierTypesMesure = absolutePathTypesMesure;
 	fichierMesures = absolutePathMesures;
-	/*
-	fichierCapteurs = "DonneesCSV\\Sensors.csv";
-	fichierTypesMesure = "DonneesCSV\\AttributeType.csv";
-	fichierMesures = "DonneesCSV\\MesuresSample.csv";
-	*/
+
 	lectureTypesMesure();
 	lectureMesures();
 	lectureCapteurs();
