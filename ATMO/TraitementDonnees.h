@@ -82,11 +82,11 @@ public:
 	// Contrat : Aucun
 	//
 
-	void setFichierCapteurs(string capteurCSV);
+	void setFichierCapteurs(const char * capteurCSV);
 
-	void setFichierTypesMesure(string typemesureCSV);
+	void setFichierTypesMesure(const char * typemesureCSV);
 
-	void setFichierMesures(string mesuresCSV);
+	void setFichierMesures(const char * mesuresCSV);
 
 	//-------------------------------------------- Constructeurs - destructeur
 

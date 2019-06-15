@@ -173,7 +173,7 @@ void TraitementDonnees::lectureCapteurs()
 				{
 					attributs.push_back(attribut);
 				}
-				int sensorID = stoi(attributs[0].substr(6,1));
+				int sensorID = stoi(attributs[0].substr(6,2));
 
 				//6 chiffres apres la virgule pour les coordonnees GPS
 				size_t dot1 = attributs[1].find(".");
@@ -210,21 +210,33 @@ collectionCapteurs TraitementDonnees::ParcoursCapteurs()
 	return donneesCapteurs;
 }
 
-void TraitementDonnees::setFichierCapteurs(string capteurCSV)
+void TraitementDonnees::setFichierCapteurs(const char * capteurCSV)
 {
-	fichierCapteurs = capteurCSV;
+	const char * relativePath = capteurCSV;
+	char  absolutePath[4096] = "";
+	GetFullPathNameA(relativePath, 4096, absolutePath, NULL);
+	
+	fichierCapteurs = absolutePath;
+
 	lectureCapteurs();
 }
 
-void TraitementDonnees::setFichierTypesMesure(string typemesureCSV)
+void TraitementDonnees::setFichierTypesMesure(const char * typemesureCSV)
 {
-	fichierTypesMesure = typemesureCSV;
+	const char * relativePath = typemesureCSV;
+	char  absolutePath[4096] = "";
+	GetFullPathNameA(relativePath, 4096, absolutePath, NULL);
+
+	fichierTypesMesure = absolutePath;
 	lectureTypesMesure();
 }
 
-void TraitementDonnees::setFichierMesures(string mesuresCSV)
+void TraitementDonnees::setFichierMesures(const char * mesuresCSV)
 {
-	fichierMesures = mesuresCSV;
+	const char * relativePath = mesuresCSV;
+	char  absolutePath[4096] = "";
+	GetFullPathNameA(relativePath, 4096, absolutePath, NULL);
+	fichierMesures = absolutePath;
 	lectureMesures();
 }
 
@@ -325,25 +337,25 @@ TraitementDonnees::TraitementDonnees()
 	fichierMesures = "C:\\Users\\Fabien GELUS\\Documents\\MEGAsync\\Cours\\GL UML\\Projet\\ATMOPortable\\ATMO\\DonneesCSV\\MesuresSample.csv";
 	*/
 	
-	/*
-	const char * relativePathCapteurs = "DonneesCSV\\Sensors.csv";
-	const char * relativePathTypesMesure = "DonneesCSV\\AttributeType.csv";
-	const char * relativePathMesures = "DonneesCSV\\MesuresSample.csv";
-	TCHAR  absolutePathCapteurs[4096] = TEXT("");
-	TCHAR  absolutePathTypesMesure[4096] = TEXT("");
-	TCHAR  absolutePathMesures[4096] = TEXT("");
-	GetFullPathName(relativePathCapteurs, 4096, absolutePathCapteurs, NULL);
-	GetFullPathName(relativePathTypesMesure, 4096, absolutePathTypesMesure, NULL);
-	GetFullPathName(relativePathMesures, 4096, absolutePathMesures, NULL);
+	
+	const char * relativePathCapteurs = "..\\ATMO\\DonneesCSV\\Sensors.csv";
+	const char * relativePathTypesMesure = "..\\ATMO\\DonneesCSV\\AttributeType.csv";
+	const char * relativePathMesures = "..\\ATMO\\DonneesCSV\\MesuresSample.csv";
+	char  absolutePathCapteurs[4096] = "";
+	char  absolutePathTypesMesure[4096] ="";
+	char  absolutePathMesures[4096] ="";
+	GetFullPathNameA(relativePathCapteurs, 4096, absolutePathCapteurs, NULL);
+	GetFullPathNameA(relativePathTypesMesure, 4096, absolutePathTypesMesure, NULL);
+	GetFullPathNameA(relativePathMesures, 4096, absolutePathMesures, NULL);
 
 	fichierCapteurs = absolutePathCapteurs;
 	fichierTypesMesure = absolutePathTypesMesure;
-	fichierMesures = absolutePathMesures;*/
-
+	fichierMesures = absolutePathMesures;
+	/*
 	fichierCapteurs = "DonneesCSV\\Sensors.csv";
 	fichierTypesMesure = "DonneesCSV\\AttributeType.csv";
 	fichierMesures = "DonneesCSV\\MesuresSample.csv";
-
+	*/
 	lectureTypesMesure();
 	lectureMesures();
 	lectureCapteurs();

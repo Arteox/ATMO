@@ -268,6 +268,8 @@ collectionCapteurs Analyse::dysfonctionnement(Date & horodateDeb, Date & horodat
 			if (it2->getValeur() < 0)
 			{
 				dysf = true;
+				//MenuInstance.AffichageSortieErreur("valeur négative");
+
 				break;
 			}
 			//si il y a des valeurs trop grandes (>=5000)
@@ -275,6 +277,7 @@ collectionCapteurs Analyse::dysfonctionnement(Date & horodateDeb, Date & horodat
 			if (it2->getValeur() > 5000)
 			{
 				dysf = true;
+				//MenuInstance.AffichageSortieErreur(" valeurs trop grandes (>=5000)");
 				break;
 			}
 			//si la fr¨¦quence de prise de mesures n'est pas respectée
@@ -285,33 +288,42 @@ collectionCapteurs Analyse::dysfonctionnement(Date & horodateDeb, Date & horodat
 			else {
 				if (it2->getDate().getAnnee() != lastMoment.getAnnee()) {
 					dysf = true;
+					//MenuInstance.AffichageSortieErreur(" fr¨¦quence de prise de mesures annee");
 					break;
 				}
 				else if (it2->getDate().getMois() != lastMoment.getMois()) {
 					dysf = true;
+					//MenuInstance.AffichageSortieErreur(" fr¨¦quence de prise de mesures mois");
 					break;
 				}
 				else if (it2->getDate().getJour() != lastMoment.getJour()) {
 					dysf = true;
+					//MenuInstance.AffichageSortieErreur(" fr¨¦quence de prise de mesures jour");
 					break;
 				}
 				else if (it2->getDate().getHeure() != lastMoment.getHeure()) {
 					if (abs(it2->getDate().getHeure() - lastMoment.getHeure()) > 1) {
 						dysf = true;
+						//MenuInstance.AffichageSortieErreur(" fr¨¦quence de prise de mesures heure");
 						break;
 					}
+					/*
 					else {
+						
 						if (((it2->getDate().getHeure() - lastMoment.getHeure())*(it2->getDate().getMin() - lastMoment.getMin())) > -15) {
 							dysf = true;
+							MenuInstance.AffichageSortieErreur(" fr¨¦quence de prise de mesures min");
 							break;
 						}
 						//meme heure
-						else if (abs(it2->getDate().getMin() - lastMoment.getMin()) > FREQUENCE_CAPTEUR) {
+						else
+						if (abs(it2->getDate().getMin() - lastMoment.getMin()) > FREQUENCE_CAPTEUR) {
 							dysf = true;
+							MenuInstance.AffichageSortieErreur(" fr¨¦quence de prise de mesures freq");
 							break;
 						}
 					}
-
+					*/
 					// si valeurs incoherentes
 					//todo
 
@@ -322,20 +334,24 @@ collectionCapteurs Analyse::dysfonctionnement(Date & horodateDeb, Date & horodat
 							if (it2->getValeur() != lastValeurs[i]) {
 								if (it2->getDate().getAnnee() != lastChanges[i].getAnnee()) {
 									dysf = true;
+									//MenuInstance.AffichageSortieErreur("mesures restent constantes");
 									break;
 								}
 								else if (it2->getDate().getMois() != lastChanges[i].getMois()) {
 									dysf = true;
+									//MenuInstance.AffichageSortieErreur("mesures restent constantes");
 									break;
 								}
 								else if (it2->getDate().getJour() != lastChanges[i].getJour()) {
 									if (abs(it2->getDate().getJour() > -lastChanges[i].getJour()) > 1) {
 										dysf = true;
+										//MenuInstance.AffichageSortieErreur("mesures restent constantes");
 										break;
 									}
 									else if ((it2->getDate().getJour() - lastChanges[i].getJour())*(it2->getDate().getHeure() - lastChanges[i].getHeure()) > -12)
 									{
 										dysf = true;
+										//MenuInstance.AffichageSortieErreur("mesures restent constantes");
 										break;
 									}
 								}
@@ -344,6 +360,7 @@ collectionCapteurs Analyse::dysfonctionnement(Date & horodateDeb, Date & horodat
 								{
 									if (abs(it2->getDate().getHeure() - lastChanges[i].getHeure()) > 12) {
 										dysf = true;
+										//MenuInstance.AffichageSortieErreur("mesures restent constantes");
 										break;
 									}
 								}
@@ -353,6 +370,7 @@ collectionCapteurs Analyse::dysfonctionnement(Date & horodateDeb, Date & horodat
 						}
 					}
 				}
+				lastMoment = it2->getDate();
 			}
 		}
 			

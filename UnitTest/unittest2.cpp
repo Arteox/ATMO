@@ -28,14 +28,16 @@ namespace UnitTest
 		
 		*/
 		static void setFichierName() {
-		
+		/*
 			TraitementD.setFichierTypesMesure("C:\\Users\\Louis Ung\\Documents\\Insa 3a\\Semestre 2\\Genie_logiciel\\TP\\ATMO\\ATMO\\DonneesCSV\\AttributeType.csv");
 			TraitementD.setFichierMesures("C:\\Users\\Louis Ung\\Documents\\Insa 3a\\Semestre 2\\Genie_logiciel\\TP\\ATMO\\ATMO\\DonneesCSV\\Test.csv");
 			TraitementD.setFichierCapteurs("C:\\Users\\Louis Ung\\Documents\\Insa 3a\\Semestre 2\\Genie_logiciel\\TP\\ATMO\\ATMO\\DonneesCSV\\Sensors.csv");
-			/*
-			TraitementD.setFichierMesures("C:\\Users\\Fabien GELUS\\Documents\\MEGAsync\\Cours\\GL UML\\Projet\\ATMOPortable\\ATMO\\DonneesCSV\\Test.csv");
-			TraitementD.setFichierCapteurs("C:\\Users\\Fabien GELUS\\Documents\\MEGAsync\\Cours\\GL UML\\Projet\\ATMOPortable\\ATMO\\DonneesCSV\\Sensors.csv");
 			*/
+			
+			TraitementD.setFichierMesures("..\\..\\ATMO\\DonneesCSV\\Test.csv");
+			TraitementD.setFichierCapteurs("..\\..\\ATMO\\DonneesCSV\\Sensors.csv");
+			TraitementD.setFichierTypesMesure("..\\..\\ATMO\\DonneesCSV\\AttributeType.csv");
+			
 		}
 		TEST_METHOD(CaracteristiqueZoneTest1)
 		{	
@@ -145,6 +147,50 @@ namespace UnitTest
 			c["PM10"] = 5;
 			int indice = AnalyseInstance.qualiteAir(c);
 			Assert::IsTrue(indice == 10);
+		}
+		TEST_METHOD(DysfonctionnementTest1)
+		{
+			// detection si plus d'1h d'intervalle
+			setFichierName();
+			collectionCapteurs capteursDysf;
+
+			capteursDysf=AnalyseInstance.dysfonctionnement(Date(2018, 1, 1, 0, 0, 0), Date(2018, 1, 2, 0, 0, 0));
+
+			collectionCapteurs::iterator it = capteursDysf.begin();
+			Assert::IsTrue(it->getId()==0);
+		}
+		TEST_METHOD(DysfonctionnementTest2)
+		{
+			// detection si valeur negative
+			setFichierName();
+			collectionCapteurs capteursDysf;
+
+			capteursDysf = AnalyseInstance.dysfonctionnement(Date(2018, 2, 1, 0, 0, 0), Date(2018, 2, 2, 0, 0, 0));
+
+			collectionCapteurs::iterator it = capteursDysf.begin();
+			Assert::IsTrue(it->getId() == 1);
+		}
+		TEST_METHOD(DysfonctionnementTest3)
+		{
+			// detection si valeur grande
+			setFichierName();
+			collectionCapteurs capteursDysf;
+
+			capteursDysf = AnalyseInstance.dysfonctionnement(Date(2018, 3, 1, 0, 0, 0), Date(2018, 3, 2, 0, 0, 0));
+
+			collectionCapteurs::iterator it = capteursDysf.begin();
+			Assert::IsTrue(it->getId() == 2);
+		}
+		TEST_METHOD(SimilaireTest3)
+		{
+			// detection si valeur grande
+			setFichierName();
+			conteneurIndiceCapteurs capteurs;
+
+			capteurs = AnalyseInstance.comportementSimilaire(Date(2017, 2, 1, 0, 0, 0), Date(2017, 2, 2, 0, 0, 0));
+
+			conteneurIndiceCapteurs::iterator it = capteurs.begin();
+			Assert::IsTrue(it->second.getId() == 2);
 		}
 	};
 }
