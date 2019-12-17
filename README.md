@@ -8,4 +8,5 @@ The data is stored in multiple CSV files.
 For further reading, please consult the doc folder (written in French)
 
 Language used : C++
+
 Number of persons in the team : 6
